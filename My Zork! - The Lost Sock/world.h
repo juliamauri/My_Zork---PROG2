@@ -14,7 +14,8 @@ public:
 	~World();
 
 	void CreateWorld();
-	void Movement();
+	void Command();
+	void Movement(char);
 	void DetectionRoom();
 
 };

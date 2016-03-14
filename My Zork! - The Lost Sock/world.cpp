@@ -76,15 +76,53 @@ void World::CreateWorld()
 
 }
 
-void World::Movement()
+void World::Command()
 {
-	char dir = '\0';
+	char cmd[20];
+	char *command;
+	char *rest;
 
-	do{
-		printf("Say direction n s e o: ");
-		scanf_s("%c", &dir);
-		fflush(stdin);
-	} while (dir != 'n' && dir != 's' && dir != 'e' && dir != 'o');
+	printf("Write the command: ");
+	fgets(cmd, 20, stdin);
+	fflush(stdin);
+
+	strtok_s(cmd, " ", &command);
+	strtok_s(command,"\n", &rest);
+
+	if (strcmp(cmd, "look") == 0)
+	{
+		// do something
+	}
+	else if (strcmp(cmd, "go") == 0)
+	{
+		// do something else
+	}
+	else if (strcmp(cmd, "open") == 0)
+	{
+		// do something else
+	}
+	else if (strcmp(cmd, "close") == 0)
+	{
+		// do something else
+	}
+	else if (strcmp(cmd, "quit") == 0)
+	{
+		// do something else
+	}
+	else if (strcmp(cmd, "help") == 0)
+	{
+		// do something else
+	}
+	/* more else if clauses */
+	else /* default: */
+	{
+		Command();
+	}
+
+}
+
+void World::Movement(char dir)
+{
 
 	switch (dir)
 	{
@@ -96,7 +134,7 @@ void World::Movement()
 		else
 		{
 			printf("Door doesn't exist.\n");
-			Movement();
+			Command();
 		}
 		break;
 
@@ -108,7 +146,7 @@ void World::Movement()
 		else
 		{
 			printf("Door doesn't exist.\n");
-			Movement();
+			Command();
 		}
 		break;
 
@@ -120,7 +158,7 @@ void World::Movement()
 		else
 		{
 			printf("Door doesn't exist.\n");
-			Movement();
+			Command();
 		}
 		break;
 
@@ -132,7 +170,7 @@ void World::Movement()
 		else
 		{
 			printf("Door doesn't exist.\n\n");
-			Movement();
+			Command();
 		}
 		break;
 
