@@ -11,11 +11,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="exits.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="zork.cpp" />
+    <ClCompile Include="players.cpp" />
+    <ClCompile Include="rooms.cpp" />
+    <ClCompile Include="world.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="zork.h" />
+    <ClInclude Include="exits.h" />
+    <ClInclude Include="players.h" />
+    <ClInclude Include="rooms.h" />
+    <ClInclude Include="world.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0E10A8C3-30CB-4338-A3A6-6EFD1335ABFF}</ProjectGuid>
