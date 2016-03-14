@@ -1,20 +1,27 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "exits.h"
+#include "rooms.h"
+#include "players.h"
+
 #include "world.h"
+
+#define NUM_ROOMS 11
 
 World::World()
 {
-	room = new Rooms[11];
-	exit = new Exits[11];
-	player = new Players[1];
+	room = new Rooms[NUM_ROOMS];
+	exit = new Exits[NUM_ROOMS];
+	player = new Players;
+	player->p = this;
 }
 
 World::~World()
 {
 	delete[] room;
 	delete[] exit;
-	delete[] player;
+	delete player;
 }
 
 void World::CreateWorld()
@@ -28,7 +35,7 @@ void World::CreateWorld()
 	room[0].n = 0;
 	room[0].s= 0;
 	room[0].e = 2;
-	room[0].o = 0;
+	room[0].w = 0;
 
 	strcpy_s(room[1].name, "Living room");
 	
@@ -36,7 +43,7 @@ void World::CreateWorld()
 	room[1].n = 3;
 	room[1].s = 0;
 	room[1].e = 4;
-	room[1].o = 1;
+	room[1].w = 1;
 	
 	strcpy_s(room[2].name, "Entrance hall"); 
 	
@@ -44,7 +51,7 @@ void World::CreateWorld()
 	room[2].n = 0;
 	room[2].s = 2;
 	room[2].e = 0;
-	room[2].o = 0;
+	room[2].w = 0;
 	
 	strcpy_s(room[3].name, "Kitchen");
 
@@ -52,7 +59,7 @@ void World::CreateWorld()
 	room[3].n = 0;
 	room[3].s = 5;
 	room[3].e = 0;
-	room[3].o = 2;
+	room[3].w = 2;
 
 	strcpy_s(room[4].name, "Storeroom");
 
@@ -60,7 +67,7 @@ void World::CreateWorld()
 	room[4].n = 4;
 	room[4].s = 0;
 	room[4].e = 0;
-	room[4].o = 0;
+	room[4].w = 0;
 
 	strcpy_s(room[5].name, "Machines room");
 	strcpy_s(room[6].name, "Drying room");
@@ -95,7 +102,13 @@ void World::Command()
 	}
 	else if (strcmp(cmd, "go") == 0)
 	{
-		// do something else
+		if (strcmp(command, "north") == 0 || strcmp(command, "south") == 0 || strcmp(command, "east") == 0 || strcmp(command, "west") == 0)
+			player->Movement(*command);
+		else if (*command == 'n' || *command == 's' || *command == 'e' || *command == 'o')
+			player->Movement(*command);
+		else
+			printf("Introduce a good command...\n");
+			Command();
 	}
 	else if (strcmp(cmd, "open") == 0)
 	{
@@ -113,72 +126,14 @@ void World::Command()
 	{
 		// do something else
 	}
-	/* more else if clauses */
-	else /* default: */
+	else
 	{
+		printf("Introduce a good command...\n");
 		Command();
 	}
 
 }
 
-void World::Movement(char dir)
-{
-
-	switch (dir)
-	{
-	case 'n':
-		if (room[player[0].pos - 1].n != 0)
-		{
-			player[0].pos = room[player[0].pos - 1].n;
-		}
-		else
-		{
-			printf("Door doesn't exist.\n");
-			Command();
-		}
-		break;
-
-	case 's':
-		if (room[player[0].pos - 1].s != 0)
-		{
-			player[0].pos = room[player[0].pos - 1].s;
-		}
-		else
-		{
-			printf("Door doesn't exist.\n");
-			Command();
-		}
-		break;
-
-	case 'e':
-		if (room[player[0].pos - 1].e != 0)
-		{
-			player[0].pos = room[player[0].pos - 1].e;
-		}
-		else
-		{
-			printf("Door doesn't exist.\n");
-			Command();
-		}
-		break;
-
-	case 'o':
-		if (room[player[0].pos - 1].o != 0)
-		{
-			player[0].pos = room[player[0].pos - 1].o;
-		}
-		else
-		{
-			printf("Door doesn't exist.\n\n");
-			Command();
-		}
-		break;
-
-	default:
-		break;
-	}
-	printf("\n");
-}
 
 void World::DetectionRoom()
 {

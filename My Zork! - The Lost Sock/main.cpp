@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 #include "world.h"
 
 int main()

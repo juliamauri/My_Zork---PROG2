@@ -1,6 +1,9 @@
+#ifndef __world__
+#define __world__
+
 #include "rooms.h"
-#include "players.h"
 #include "exits.h"
+class Players;
 
 class World
 {
@@ -15,7 +18,8 @@ public:
 
 	void CreateWorld();
 	void Command();
-	void Movement(char);
 	void DetectionRoom();
 
 };
+
+#endif //__world__
