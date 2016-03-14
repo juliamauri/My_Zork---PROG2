@@ -6,12 +6,14 @@
 World::World()
 {
 	room = new Rooms[11];
+	exit = new Exits[11];
 	player = new Players[1];
 }
 
 World::~World()
 {
 	delete[] room;
+	delete[] exit;
 	delete[] player;
 }
 
@@ -66,6 +68,11 @@ void World::CreateWorld()
 	strcpy_s(room[8].name, "Technology room");
 	strcpy_s(room[9].name, "Boss room");
 	strcpy_s(room[10].name, "Store socks");
+
+	for (int i = 0; i < 11; i++)
+	{
+		exit[i].pos = room[0].n_room;
+	}
 
 }
 
@@ -124,7 +131,7 @@ void World::Movement()
 		}
 		else
 		{
-			printf("Door doesn't exist.\n");
+			printf("Door doesn't exist.\n\n");
 			Movement();
 		}
 		break;
@@ -132,6 +139,10 @@ void World::Movement()
 	default:
 		break;
 	}
+	printf("\n");
+}
 
-	
+void World::DetectionRoom()
+{
+	printf("Actual room: %s.\n", room[player[0].pos - 1].name);
 }

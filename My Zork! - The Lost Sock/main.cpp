@@ -12,6 +12,7 @@ int main()
 	//printf("%s", Sock.room[0].name);
 
 	do{
+		Sock.DetectionRoom();
 		Sock.Movement();
 	} while (lel != 0);
 
