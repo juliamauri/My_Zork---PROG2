@@ -1,15 +1,19 @@
 #include <stdio.h>
-#include <string.h>
 
 #include "world.h"
 
 int main()
 {
+	int lel = 1;
 	World Sock;
 
-	strcpy_s(Sock.room[0].name, "hi");
+	Sock.CreateWorld();
 
-	printf("%s", Sock.room[0].name);
+	//printf("%s", Sock.room[0].name);
+
+	do{
+		Sock.Movement();
+	} while (lel != 0);
 
 	getchar();
 
