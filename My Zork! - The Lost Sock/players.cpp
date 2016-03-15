@@ -1,9 +1,8 @@
 #include <stdio.h>
 
 #include "world.h"
+#include "exits.h"
 #include "players.h"
-
-
 
 void Players::Movement(char dir)
 {
@@ -12,8 +11,14 @@ void Players::Movement(char dir)
 	case 'n':
 		if (p->room[pos - 1].n != 0)
 		{
-			pos = p->room[pos - 1].n;
-			printf("You across the door!\n");
+			if (p->exit[FindExit(p->room[pos - 1].n)].door != false){
+				pos = p->room[pos - 1].n;
+				printf("You across the door!\n");
+			}
+			else{
+				printf("The door is closed..");
+				p->Command();
+			}
 		}
 		else
 		{
@@ -76,5 +81,12 @@ void Players::ChangeWorld(){
 	else{
 		printf("What!?!?\n\n"); 
 		p->Command();
+	}
+}
+
+int Players::FindExit(int num_room){
+	for (int i = 0; i < NUM_CONNECTIONS; ++i){
+		if ((pos == p->exit[i].o || pos == p->exit[i].d) && (num_room == p->exit[i].o || num_room == p->exit[i].d))
+			return i;
 	}
 }

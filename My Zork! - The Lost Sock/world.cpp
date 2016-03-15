@@ -8,8 +8,7 @@
 
 #include "world.h"
 
-#define NUM_ROOMS 11
-#define NUM_CONNECTIONS 9 //NUM_ROMS - 1 - (NUM_WORLDS(in my case, 2) - 1)
+ //NUM_ROMS - 1 - (NUM_WORLDS(in my case, 2) - 1)
 
 World::World()
 {
@@ -17,6 +16,7 @@ World::World()
 	exit = new Exits[NUM_CONNECTIONS];
 	player = new Players;
 	player->p = this;
+	exit->e = this;
 }
 
 World::~World()
@@ -45,7 +45,7 @@ void World::CreateWorld()
 	room[1].n_room = 2;
 	exit[1].o = room[1].n = 3;
 	room[1].s = 0;
-	exit[2].o room[1].e = 4;
+	exit[2].o = room[1].e = 4;
 	exit[0].d = room[1].w = 1;
 	
 	strcpy_s(room[2].name, "Entrance hall"); 
@@ -99,8 +99,7 @@ void World::CreateWorld()
 	strcpy_s(room[8].name, "Technology room");
 	strcpy_s(room[8].desc, "Desc 9");
 	room[8].n_room = 9;
-	room[8].n = 8;
-	exit[6].d = room[8].n;
+	exit[6].d = room[8].n = 8;
 	room[8].s = 0;
 	room[8].e = 0;
 	room[8].w = 0;
@@ -108,24 +107,18 @@ void World::CreateWorld()
 	strcpy_s(room[9].name, "Boss room");
 	strcpy_s(room[9].desc, "Desc 10");
 	room[9].n_room = 10;
-	room[9].n = 11;
-	exit[7].d = room[10].n;
+	exit[8].o = room[9].n = 11;
 	room[9].s = 0;
 	room[9].e = 0;
-	room[9].w = 8;
-	exit[8].d = room[7].w;
+	exit[7].d = room[9].w = 8;
 
 	strcpy_s(room[10].name, "Store socks");
 	strcpy_s(room[10].desc, "Desc 11");	
 	room[10].n_room = 11;
 	room[10].n = 0;
-	room[10].s = 10;
+	exit[8].d = room[10].s = 10;
 	room[10].e = 0;
 	room[10].w = 0;
-
-
-
-
 }
 
 void World::Command()

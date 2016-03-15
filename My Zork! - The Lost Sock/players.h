@@ -12,6 +12,7 @@ public:
 public:
 	void Movement(char);
 	void ChangeWorld();
+	int FindExit(int);
 };
 
 #endif //__players__

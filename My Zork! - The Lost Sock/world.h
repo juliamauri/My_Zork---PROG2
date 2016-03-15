@@ -1,8 +1,11 @@
 #ifndef __world__
 #define __world__
 
+#define NUM_CONNECTIONS 9
+#define NUM_ROOMS 11
+
 #include "rooms.h"
-#include "exits.h"
+class Exits;
 class Players;
 
 class World
