@@ -8,6 +8,8 @@ class Players;
 class World
 {
 public:
+	bool loop = true;
+
 	Rooms* room = nullptr;
 	Exits* exit = nullptr;
 	Players* player = nullptr;
@@ -18,7 +20,7 @@ public:
 
 	void CreateWorld();
 	void Command();
-	void DetectionRoom();
+	void Loop();
 
 };
 

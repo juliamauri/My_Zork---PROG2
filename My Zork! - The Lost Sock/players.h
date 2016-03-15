@@ -11,6 +11,7 @@ public:
 
 public:
 	void Movement(char);
+	void ChangeWorld();
 };
 
 #endif //__players__

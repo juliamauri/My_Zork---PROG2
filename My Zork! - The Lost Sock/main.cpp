@@ -3,18 +3,11 @@
 
 int main()
 {
-	int lel = 1;
 	World Sock;
 
 	Sock.CreateWorld();
 
-	//printf("%s", Sock.room[0].name);
-
-	do{
-		Sock.Command();
-	} while (lel != 0);
-
-	getchar();
+	Sock.Loop();
 
 	return 0;
 }
