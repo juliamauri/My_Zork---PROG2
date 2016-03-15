@@ -7,11 +7,17 @@ class Players
 {
 public:
 	int pos;
+	char lastcloseddoor;
+	int lastnumdoor;
+	bool movclose[4];
+
 	World* p;
 
 public:
 	void Movement(char);
 	void ChangeWorld();
+	void OpenDoor(char);
+	void CloseDoor(char);
 	int FindExit(int);
 };
 
