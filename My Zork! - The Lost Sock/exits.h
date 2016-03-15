@@ -4,7 +4,7 @@
 class Exits
 {
 public:
-	int pos;
+	int o,d;
 	bool door = false;
 	char desc[150];
 };
