@@ -23,7 +23,7 @@ World::~World()
 	delete player;
 }
 
-void World::CreateWorld()
+void World::CreateWorld() const
 {
 	
 	player->lastnumdoor = player->pos = 1;
@@ -250,7 +250,7 @@ void World::Command()
 	}
 }
 
-void World::Help(){
+void World::Help() const{
 	system("cls");
 
 	printf("Commands enabled:\n");

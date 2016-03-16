@@ -5,7 +5,7 @@
 #include "exits.h"
 #include "players.h"
 
-void Players::Look(char dir){
+void Players::Look(char dir) const{
 	switch (dir)
 	{
 	case 'n':
@@ -272,7 +272,7 @@ void Players::CloseDoor(char otherdir){
 	p->Command();
 }
 
-short Players::FindExit(short num_room){
+short Players::FindExit(short num_room)const{
 	for (short i = 0; i < NUM_CONNECTIONS; ++i){
 		if ((pos == p->exit[i].origin || pos == p->exit[i].destiny) && (num_room == p->exit[i].origin || num_room == p->exit[i].destiny))
 			return i;

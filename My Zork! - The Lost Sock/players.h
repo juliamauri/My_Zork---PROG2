@@ -15,12 +15,12 @@ public:
 	bool movclose;
 
 public:
-	void Look(char);
+	void Look(char) const;
 	void Movement(char);
 	void ChangeWorld();
 	void OpenDoor(char);
 	void CloseDoor(char);
-	short FindExit(short);
+	short FindExit(short)const;
 };
 
 #endif //__players__

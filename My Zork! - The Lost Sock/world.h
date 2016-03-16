@@ -25,9 +25,9 @@ public:
 	World();
 	~World();
 
-	void CreateWorld();
+	void CreateWorld()const;
 	void Command();
-	void Help();
+	void Help() const;
 	void Loop();
 };
 

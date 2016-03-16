@@ -11,8 +11,8 @@ public:
 	char descexit[150];
 
 public:
-	void Desc();
-	void DescExit();
+	void Desc() const;
+	void DescExit() const;
 };
 
 #endif //__rooms__
