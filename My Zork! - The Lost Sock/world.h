@@ -10,7 +10,10 @@ class Players;
 
 class World
 {
-public:
+	friend class Rooms;
+	friend class Exits;
+	friend class Players;
+private:
 	bool loop = true;
 
 	Rooms* room = nullptr;
