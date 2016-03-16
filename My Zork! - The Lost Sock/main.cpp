@@ -5,9 +5,7 @@ int main()
 {
 	World Sock;
 
-	Sock.CreateWorld();
-
-	Sock.Loop();
+	Sock.Init();
 
 	return 0;
 }

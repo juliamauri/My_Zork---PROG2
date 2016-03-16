@@ -15,7 +15,7 @@ public:
 	bool movclose;
 
 public:
-	void Look(char) const;
+	void Look(char)const;
 	void Movement(char);
 	void ChangeWorld();
 	void OpenDoor(char);

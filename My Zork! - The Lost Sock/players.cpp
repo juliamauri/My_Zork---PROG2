@@ -5,33 +5,35 @@
 #include "exits.h"
 #include "players.h"
 
-void Players::Look(char dir) const{
+void Players::Look(char dir)const{
+	//look directions
 	switch (dir)
 	{
 	case 'n':
 		if (p->room[pos - 1].n != 0)
-			p->room[p->room[pos - 1].n].DescExit();
+			p->room[p->room[pos - 1].n - 1].DescExit();
 		else
 			printf("Door doesn't exist.\n\n");
 		break;
 	case 's':
 		if (p->room[pos - 1].s != 0)
-			p->room[p->room[pos - 1].s].DescExit();
+			p->room[p->room[pos - 1].s - 1].DescExit();
 		else
 			printf("Door doesn't exist.\n\n");
 		break;
 	case 'e':
 		if (p->room[pos - 1].e != 0)
-			p->room[p->room[pos - 1].e].DescExit();
+			p->room[p->room[pos - 1].e - 1].DescExit();
 		else
 			printf("Door doesn't exist.\n\n");
 			break;
 	case 'w':
 		if (p->room[pos - 1].w != 0)
-			p->room[p->room[pos - 1].w].DescExit();
+			p->room[p->room[pos - 1].w - 1].DescExit();
 		else
 			printf("Door doesn't exist.\n\n");
 		break;
+		//look
 	default:
 		system("cls");
 		p->room[pos - 1].Desc();
@@ -163,6 +165,8 @@ void Players::ChangeWorld(){
 	}
 }
 
+// Open/Close door functions, with some if and values, that changed while player moving, etc. It works for best using the doors.
+
 void Players::OpenDoor(char otherdir){
 	if (p->exit[lastnumdoor].origin == pos || p->exit[lastnumdoor].destiny == pos || lastnumdoor == pos){
 		if (otherdir)
@@ -272,6 +276,7 @@ void Players::CloseDoor(char otherdir){
 	p->Command();
 }
 
+//Find exit of conection with doors
 short Players::FindExit(short num_room)const{
 	for (short i = 0; i < NUM_CONNECTIONS; ++i){
 		if ((pos == p->exit[i].origin || pos == p->exit[i].destiny) && (num_room == p->exit[i].origin || num_room == p->exit[i].destiny))

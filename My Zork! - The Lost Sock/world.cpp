@@ -29,8 +29,8 @@ void World::CreateWorld() const
 	player->lastnumdoor = player->pos = 1;
 
 	strcpy_s(room[0].name, "Bedroom"); 
-	strcpy_s(room[0].desc, "Desc 1");
-	strcpy_s(room[0].descexit, "DescExit 1");
+	strcpy_s(room[0].desc, "Yeah... It's my bedroom...");
+	strcpy_s(room[0].descexit, "It smells a jerk...");
 	room[0].n_room = 1;
 	room[0].n = 0;
 	room[0].s= 0;
@@ -39,8 +39,8 @@ void World::CreateWorld() const
 	
 
 	strcpy_s(room[1].name, "Living room");
-	strcpy_s(room[1].desc, "Desc 2");
-	strcpy_s(room[1].descexit, "DescExit 2");
+	strcpy_s(room[1].desc, "My room thatI smoke weed every day(taranta tararan...[song]). One joint stay on the table <3");
+	strcpy_s(room[1].descexit, "It smells a weed *^*");
 	room[1].n_room = 2;
 	exit[1].origin = room[1].n = 3;
 	room[1].s = 0;
@@ -48,8 +48,8 @@ void World::CreateWorld() const
 	exit[0].destiny = room[1].w = 1;
 	
 	strcpy_s(room[2].name, "Entrance hall"); 
-	strcpy_s(room[2].desc, "Desc 2");
-	strcpy_s(room[2].descexit, "DescExit 3");
+	strcpy_s(room[2].desc, "Normal room that I use every day to contact the other world.");
+	strcpy_s(room[2].descexit, "Smells tasty... WTF?!? o_o");
 	room[2].n_room = 3;
 	room[2].n = 0;
 	exit[1].destiny = room[2].s = 2;
@@ -57,8 +57,8 @@ void World::CreateWorld() const
 	room[2].w = 0;
 	
 	strcpy_s(room[3].name, "Kitchen");
-	strcpy_s(room[3].desc, "Desc 4");
-	strcpy_s(room[3].descexit, "DescExit 4");
+	strcpy_s(room[3].desc, "Too much sugar everywhere ._.");
+	strcpy_s(room[3].descexit, "Hmm... I'm hungry :3");
 	room[3].n_room = 4;
 	room[3].n = 0;
 	exit[3].origin  = room[3].s = 5;
@@ -66,8 +66,8 @@ void World::CreateWorld() const
 	exit[2].destiny = room[3].w = 2;
 
 	strcpy_s(room[4].name, "Storeroom");
-	strcpy_s(room[4].desc, "Desc 5");
-	strcpy_s(room[4].descexit, "DescExit 5");
+	strcpy_s(room[4].desc, "Amount of rope everywhere...");
+	strcpy_s(room[4].descexit, "It smells trash");
 	room[4].n_room = 5;
 	exit[3].destiny = room[4].n = 4;
 	room[4].s = 0;
@@ -75,8 +75,8 @@ void World::CreateWorld() const
 	room[4].w = 0;
 
 	strcpy_s(room[5].name, "Machines room");
-	strcpy_s(room[5].desc, "Desc 6");
-	strcpy_s(room[5].descexit, "DescExit 6");
+	strcpy_s(room[5].desc, "Too much metal");
+	strcpy_s(room[5].descexit, "Nosy!! OMG! PLS! STOP!");
 	room[5].n_room = 6;
 	room[5].n = 0;
 	exit[4].origin = room[5].s = 7;
@@ -84,8 +84,8 @@ void World::CreateWorld() const
 	room[5].w = 0;
 
 	strcpy_s(room[6].name, "Drying room");
-	strcpy_s(room[6].desc, "Desc 7");
-	strcpy_s(room[6].descexit, "DescExit 7");
+	strcpy_s(room[6].desc, "Wind everywhere");
+	strcpy_s(room[6].descexit, "I fell cold");
 	room[6].n_room = 7;
 	exit[4].destiny = room[6].n = 6;
 	room[6].s = 0;
@@ -93,8 +93,8 @@ void World::CreateWorld() const
 	room[6].w = 0;
 
 	strcpy_s(room[7].name, "Research room");
-	strcpy_s(room[7].desc, "Desc 8");
-	strcpy_s(room[7].descexit, "DescExit 8");
+	strcpy_s(room[7].desc, "Papers everiwhere...");
+	strcpy_s(room[7].descexit, "I can see lights...");
 	room[7].n_room = 8;
 	room[7].n = 0;
 	exit[6].origin = room[7].s = 9;
@@ -102,8 +102,8 @@ void World::CreateWorld() const
 	exit[5].destiny = room[7].w = 7;
 
 	strcpy_s(room[8].name, "Technology room");
-	strcpy_s(room[8].desc, "Desc 9");
-	strcpy_s(room[8].descexit, "DescExit 9");
+	strcpy_s(room[8].desc, "Unknown technology... Waow *^*");
+	strcpy_s(room[8].descexit, "Too much security...");
 	room[8].n_room = 9;
 	exit[6].destiny = room[8].n = 8;
 	room[8].s = 0;
@@ -111,8 +111,8 @@ void World::CreateWorld() const
 	room[8].w = 0;
 
 	strcpy_s(room[9].name, "Boss room");
-	strcpy_s(room[9].desc, "Desc 10");
-	strcpy_s(room[9].descexit, "DescExit 10");
+	strcpy_s(room[9].desc, "Wires across the room");
+	strcpy_s(room[9].descexit, "I activated my senses arachnids...");
 	room[9].n_room = 10;
 	exit[8].origin = room[9].n = 11;
 	room[9].s = 0;
@@ -120,8 +120,8 @@ void World::CreateWorld() const
 	exit[7].destiny = room[9].w = 8;
 
 	strcpy_s(room[10].name, "Store socks");
-	strcpy_s(room[10].desc, "Desc 11");	
-	strcpy_s(room[10].descexit, "DescExit 11");
+	strcpy_s(room[10].desc, "Socks everywhere!");	
+	strcpy_s(room[10].descexit, "I supose that is the last room, pls!!");
 	room[10].n_room = 11;
 	room[10].n = 0;
 	exit[8].destiny = room[10].s = 10;
@@ -250,7 +250,7 @@ void World::Command()
 	}
 }
 
-void World::Help() const{
+void World::Help(){
 	system("cls");
 
 	printf("Commands enabled:\n");
@@ -263,6 +263,21 @@ void World::Help() const{
 	printf("- quit: to exit the game.\n");
 	printf("- help: for ptinting the help commands.\n");
 	printf("*Direction: north(or n), south(or s), east(or e), west(or w).\n\n");
+}
+
+void World::Init(){
+	CreateWorld();
+
+	Help();
+
+	printf("Lore: You are a simple human who praise Lord Gaben");
+	printf("\n\n");
+
+	printf("Pulse any key to continue...");
+	getchar();
+	system("cls");
+
+	Loop();
 }
 
 void World::Loop(){
