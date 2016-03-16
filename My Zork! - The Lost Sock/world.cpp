@@ -8,8 +8,6 @@
 
 #include "world.h"
 
-
-
 World::World()
 {
 	room = new Rooms[NUM_ROOMS];
@@ -130,8 +128,7 @@ void World::CreateWorld()
 	room[10].e = 0;
 	room[10].w = 0;
 
-	for (short i = 0; i < 4; ++i)
-		player->movclose[i] = false;
+	player->movclose = false;
 }
 
 void World::Command()

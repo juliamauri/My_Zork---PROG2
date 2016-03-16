@@ -28,7 +28,6 @@ public:
 	void Command();
 	void Help();
 	void Loop();
-
 };
 
 #endif //__world__

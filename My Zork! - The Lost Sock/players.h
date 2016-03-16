@@ -9,7 +9,7 @@ public:
 	short pos;
 	char lastcloseddoor;
 	short lastnumdoor;
-	bool movclose[4];
+	bool movclose;
 
 	World* p;
 
@@ -20,6 +20,7 @@ public:
 	void OpenDoor(char);
 	void CloseDoor(char);
 	short FindExit(short);
+	//void MovCloseToFase();
 };
 
 #endif //__players__

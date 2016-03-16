@@ -56,13 +56,13 @@ void Players::Movement(char dir)
 		{
 			if (p->exit[FindExit(p->room[pos - 1].n)].door != false){
 				pos = p->room[pos - 1].n;
-				movclose[0] = true;
+				movclose = true;
 				printf("You across the door!\n");
 			}
 			else{
 				printf("The door is closed..\n\n");
-				lastnumdoor = FindExit(pos);
-				movclose[0] = false;
+				lastcloseddoor = dir;
+				movclose = false;
 				p->Command();
 			}
 			lastnumdoor = FindExit(pos);
@@ -79,13 +79,13 @@ void Players::Movement(char dir)
 		{
 			if (p->exit[FindExit(p->room[pos - 1].s)].door != false){
 				pos = p->room[pos - 1].s;
-				movclose[1] = true;
+				movclose = true;
 				printf("You across the door!\n");
 			}
 			else{
 				printf("The door is closed..\n\n");
 				lastcloseddoor = dir;
-				movclose[1] = false;
+				movclose = false;
 				p->Command();
 			}
 			lastnumdoor = FindExit(pos);
@@ -102,13 +102,13 @@ void Players::Movement(char dir)
 		{
 			if (p->exit[FindExit(p->room[pos - 1].e)].door != false){
 				pos = p->room[pos - 1].e;
-				movclose[2] = true;
+				movclose = true;
 				printf("You across the door!\n");
 			}
 			else{
 				printf("The door is closed..\n\n");
 				lastcloseddoor = dir;
-				movclose[2] = false;
+				movclose = false;
 				p->Command();
 			}
 			lastnumdoor = FindExit(pos);
@@ -125,13 +125,13 @@ void Players::Movement(char dir)
 		{
 			if (p->exit[FindExit(p->room[pos - 1].w)].door != false){
 				pos = p->room[pos - 1].w;
-				movclose[3] = true;
+				movclose = true;
 				printf("You across the door!\n");
 			}
 			else{
 				printf("The door is closed..\n\n");
 				lastcloseddoor = dir;
-				movclose[3] = false;
+				movclose = false;
 				p->Command();
 			}
 			lastnumdoor = FindExit(pos);
@@ -217,13 +217,14 @@ void Players::OpenDoor(char otherdir){
 
 void Players::CloseDoor(char otherdir){
 	if (p->exit[lastnumdoor].o == pos || p->exit[lastnumdoor].d == pos){
+		
+		if (movclose == false && lastcloseddoor == 's') lastcloseddoor = 'n';
+		else if (movclose == false && lastcloseddoor == 'n') lastcloseddoor = 's';
+		else if (movclose == false && lastcloseddoor == 'w') lastcloseddoor = 'e';
+		else if (movclose == false && lastcloseddoor == 'e') lastcloseddoor = 'w';
+		
 		if (otherdir)
 			lastcloseddoor = otherdir;
-		
-		if (movclose[0] == false && lastcloseddoor == 's') lastcloseddoor = 'n';
-		if (movclose[1] == false && lastcloseddoor == 'n') lastcloseddoor = 's';
-		if (movclose[2] == false && lastcloseddoor == 'w') lastcloseddoor = 'e';
-		if (movclose[3] == false && lastcloseddoor == 'e') lastcloseddoor = 'w';
 		
 		switch (lastcloseddoor)
 		{
@@ -231,7 +232,7 @@ void Players::CloseDoor(char otherdir){
 			if (p->room[pos - 1].n != 0){
 				p->exit[FindExit(p->room[pos - 1].n)].door = false;
 				printf("The north door is now close!\n\n");
-				movclose[1] = false;
+				movclose = false;
 			}
 			else
 				printf("What are you trying?\n\n");
@@ -240,7 +241,7 @@ void Players::CloseDoor(char otherdir){
 			if (p->room[pos - 1].s != 0){
 				p->exit[FindExit(p->room[pos - 1].s)].door = false;
 				printf("The south door is now close!\n\n");
-				movclose[0] = false;
+				movclose = false;
 			}
 			else
 				printf("What are you trying?\n\n");
@@ -249,7 +250,7 @@ void Players::CloseDoor(char otherdir){
 			if (p->room[pos - 1].e != 0){
 				p->exit[FindExit(p->room[pos - 1].e)].door = false;
 				printf("The east door is now close!\n\n");
-				movclose[3] = false;
+				movclose = false;
 			}
 			else
 				printf("What are you trying?\n\n");
@@ -258,7 +259,7 @@ void Players::CloseDoor(char otherdir){
 			if (p->room[pos - 1].w != 0){
 				p->exit[FindExit(p->room[pos - 1].w)].door = false;
 				printf("The west door is now close!\n\n");
-				movclose[2] = false;
+				movclose = false;
 			}
 			else
 				printf("What are you trying?\n\n");
@@ -277,3 +278,9 @@ short Players::FindExit(short num_room){
 			return i;
 	}
 }
+/*
+void Players::MovCloseToFase(){
+	for (short i = 0; i < 4; ++i)
+		movclose[i] = false;
+}
+*/
