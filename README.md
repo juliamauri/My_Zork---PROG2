@@ -47,5 +47,4 @@ Degree: Video Game Design and Development.
 
 2015 - 2016
 
-  <tabTrigger>readme</tabTrigger>
 </snippet>
