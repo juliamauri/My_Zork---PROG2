@@ -278,9 +278,3 @@ short Players::FindExit(short num_room){
 			return i;
 	}
 }
-/*
-void Players::MovCloseToFase(){
-	for (short i = 0; i < 4; ++i)
-		movclose[i] = false;
-}
-*/

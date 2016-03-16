@@ -20,7 +20,6 @@ public:
 	void OpenDoor(char);
 	void CloseDoor(char);
 	short FindExit(short);
-	//void MovCloseToFase();
 };
 
 #endif //__players__
