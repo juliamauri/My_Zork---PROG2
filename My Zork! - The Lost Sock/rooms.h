@@ -8,9 +8,11 @@ public:
 	int n_room; // Contains number soom and world
 	char name[20];
 	char desc[250];
+	char descexit[150];
 
 public:
 	void Desc();
+	void DescExit();
 };
 
 #endif //__rooms__

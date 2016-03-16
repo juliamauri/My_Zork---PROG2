@@ -1,8 +1,51 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "world.h"
 #include "exits.h"
 #include "players.h"
+
+void Players::Look(char dir){
+	switch (dir)
+	{
+	case 'n':
+		if (p->room[pos - 1].n != 0)
+			p->room[p->room[pos - 1].n].DescExit();
+		else
+			printf("Door doesn't exist.\n\n");
+		break;
+	case 's':
+		if (p->room[pos - 1].s != 0)
+			p->room[p->room[pos - 1].s].DescExit();
+		else
+			printf("Door doesn't exist.\n\n");
+		break;
+	case 'e':
+		if (p->room[pos - 1].e != 0)
+			p->room[p->room[pos - 1].e].DescExit();
+		else
+			printf("Door doesn't exist.\n\n");
+			break;
+	case 'w':
+		if (p->room[pos - 1].w != 0)
+			p->room[p->room[pos - 1].w].DescExit();
+		else
+			printf("Door doesn't exist.\n\n");
+		break;
+	default:
+		system("cls");
+		p->room[pos - 1].Desc();
+
+		if (p->room[pos - 1].n != 0) printf("There are way at north!\n\n");
+		if (pos == 6) printf("There are portal at north!\n\n");
+		if (p->room[pos - 1].s != 0) printf("There are way at south!\n\n");
+		if (pos == 5) printf("There are portal at south!\n\n");
+		if (p->room[pos - 1].e != 0) printf("There are way at east!\n\n");
+		if (p->room[pos - 1].w != 0) printf("There are way at west!\n\n");
+		break;
+	}
+	p->Command();
+}
 
 void Players::Movement(char dir)
 {
@@ -225,5 +268,7 @@ int Players::FindExit(int num_room){
 	for (int i = 0; i < NUM_CONNECTIONS; ++i){
 		if ((pos == p->exit[i].o || pos == p->exit[i].d) && (num_room == p->exit[i].o || num_room == p->exit[i].d))
 			return i;
+		else 
+			return -1;
 	}
 }

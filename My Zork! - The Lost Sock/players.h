@@ -14,6 +14,7 @@ public:
 	World* p;
 
 public:
+	void Look(char);
 	void Movement(char);
 	void ChangeWorld();
 	void OpenDoor(char);
