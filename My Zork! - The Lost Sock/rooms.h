@@ -4,8 +4,8 @@
 class Rooms
 {
 public:
-	int n, s, e, w; //Contanins number of next room, 0 is nothing
-	int n_room; // Contains number soom and world
+	short n, s, e, w; //Contanins number of next room, 0 is nothing
+	short n_room; // Contains number soom and world
 	char name[20];
 	char desc[250];
 	char descexit[150];

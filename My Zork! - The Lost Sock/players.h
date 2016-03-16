@@ -6,9 +6,9 @@
 class Players
 {
 public:
-	int pos;
+	short pos;
 	char lastcloseddoor;
-	int lastnumdoor;
+	short lastnumdoor;
 	bool movclose[4];
 
 	World* p;
@@ -19,7 +19,7 @@ public:
 	void ChangeWorld();
 	void OpenDoor(char);
 	void CloseDoor(char);
-	int FindExit(int);
+	short FindExit(short);
 };
 
 #endif //__players__

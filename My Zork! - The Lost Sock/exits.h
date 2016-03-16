@@ -4,9 +4,8 @@
 class Exits
 {
 public:
-	int o,d;
+	short o,d;
 	bool door = false;
-	char desc[150];
 
 public:
 	void Desc();
