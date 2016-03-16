@@ -164,7 +164,7 @@ void Players::ChangeWorld(){
 }
 
 void Players::OpenDoor(char otherdir){
-	if (p->exit[lastnumdoor].o == pos || p->exit[lastnumdoor].d == pos || lastnumdoor == pos){
+	if (p->exit[lastnumdoor].origin == pos || p->exit[lastnumdoor].destiny == pos || lastnumdoor == pos){
 		if (otherdir)
 			lastcloseddoor = otherdir;
 		
@@ -216,7 +216,7 @@ void Players::OpenDoor(char otherdir){
 }
 
 void Players::CloseDoor(char otherdir){
-	if (p->exit[lastnumdoor].o == pos || p->exit[lastnumdoor].d == pos){
+	if (p->exit[lastnumdoor].origin == pos || p->exit[lastnumdoor].destiny == pos){
 		
 		if (movclose == false && lastcloseddoor == 's') lastcloseddoor = 'n';
 		else if (movclose == false && lastcloseddoor == 'n') lastcloseddoor = 's';
@@ -274,7 +274,7 @@ void Players::CloseDoor(char otherdir){
 
 short Players::FindExit(short num_room){
 	for (short i = 0; i < NUM_CONNECTIONS; ++i){
-		if ((pos == p->exit[i].o || pos == p->exit[i].d) && (num_room == p->exit[i].o || num_room == p->exit[i].d))
+		if ((pos == p->exit[i].origin || pos == p->exit[i].destiny) && (num_room == p->exit[i].origin || num_room == p->exit[i].destiny))
 			return i;
 	}
 }

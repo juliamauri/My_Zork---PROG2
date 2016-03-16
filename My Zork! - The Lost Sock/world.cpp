@@ -34,7 +34,7 @@ void World::CreateWorld()
 	room[0].n_room = 1;
 	room[0].n = 0;
 	room[0].s= 0;
-	exit[0].o = room[0].e = 2;
+	exit[0].origin = room[0].e = 2;
 	room[0].w = 0;
 	
 
@@ -42,17 +42,17 @@ void World::CreateWorld()
 	strcpy_s(room[1].desc, "Desc 2");
 	strcpy_s(room[1].descexit, "DescExit 2");
 	room[1].n_room = 2;
-	exit[1].o = room[1].n = 3;
+	exit[1].origin = room[1].n = 3;
 	room[1].s = 0;
-	exit[2].o = room[1].e = 4;
-	exit[0].d = room[1].w = 1;
+	exit[2].origin = room[1].e = 4;
+	exit[0].destiny = room[1].w = 1;
 	
 	strcpy_s(room[2].name, "Entrance hall"); 
 	strcpy_s(room[2].desc, "Desc 2");
 	strcpy_s(room[2].descexit, "DescExit 3");
 	room[2].n_room = 3;
 	room[2].n = 0;
-	exit[1].d = room[2].s = 2;
+	exit[1].destiny = room[2].s = 2;
 	room[2].e = 0;
 	room[2].w = 0;
 	
@@ -61,15 +61,15 @@ void World::CreateWorld()
 	strcpy_s(room[3].descexit, "DescExit 4");
 	room[3].n_room = 4;
 	room[3].n = 0;
-	exit[3].o  = room[3].s = 5;
+	exit[3].origin  = room[3].s = 5;
 	room[3].e = 0;
-	exit[2].d = room[3].w = 2;
+	exit[2].destiny = room[3].w = 2;
 
 	strcpy_s(room[4].name, "Storeroom");
 	strcpy_s(room[4].desc, "Desc 5");
 	strcpy_s(room[4].descexit, "DescExit 5");
 	room[4].n_room = 5;
-	exit[3].d = room[4].n = 4;
+	exit[3].destiny = room[4].n = 4;
 	room[4].s = 0;
 	room[4].e = 0;
 	room[4].w = 0;
@@ -79,7 +79,7 @@ void World::CreateWorld()
 	strcpy_s(room[5].descexit, "DescExit 6");
 	room[5].n_room = 6;
 	room[5].n = 0;
-	exit[4].o = room[5].s = 7;
+	exit[4].origin = room[5].s = 7;
 	room[5].e = 0;
 	room[5].w = 0;
 
@@ -87,9 +87,9 @@ void World::CreateWorld()
 	strcpy_s(room[6].desc, "Desc 7");
 	strcpy_s(room[6].descexit, "DescExit 7");
 	room[6].n_room = 7;
-	exit[4].d = room[6].n = 6;
+	exit[4].destiny = room[6].n = 6;
 	room[6].s = 0;
-	exit[5].o = room[6].e = 8;
+	exit[5].origin = room[6].e = 8;
 	room[6].w = 0;
 
 	strcpy_s(room[7].name, "Research room");
@@ -97,15 +97,15 @@ void World::CreateWorld()
 	strcpy_s(room[7].descexit, "DescExit 8");
 	room[7].n_room = 8;
 	room[7].n = 0;
-	exit[6].o = room[7].s = 9;
-	exit[7].o = room[7].e = 10;
-	exit[5].d = room[7].w = 7;
+	exit[6].origin = room[7].s = 9;
+	exit[7].origin = room[7].e = 10;
+	exit[5].destiny = room[7].w = 7;
 
 	strcpy_s(room[8].name, "Technology room");
 	strcpy_s(room[8].desc, "Desc 9");
 	strcpy_s(room[8].descexit, "DescExit 9");
 	room[8].n_room = 9;
-	exit[6].d = room[8].n = 8;
+	exit[6].destiny = room[8].n = 8;
 	room[8].s = 0;
 	room[8].e = 0;
 	room[8].w = 0;
@@ -114,17 +114,17 @@ void World::CreateWorld()
 	strcpy_s(room[9].desc, "Desc 10");
 	strcpy_s(room[9].descexit, "DescExit 10");
 	room[9].n_room = 10;
-	exit[8].o = room[9].n = 11;
+	exit[8].origin = room[9].n = 11;
 	room[9].s = 0;
 	room[9].e = 0;
-	exit[7].d = room[9].w = 8;
+	exit[7].destiny = room[9].w = 8;
 
 	strcpy_s(room[10].name, "Store socks");
 	strcpy_s(room[10].desc, "Desc 11");	
 	strcpy_s(room[10].descexit, "DescExit 11");
 	room[10].n_room = 11;
 	room[10].n = 0;
-	exit[8].d = room[10].s = 10;
+	exit[8].destiny = room[10].s = 10;
 	room[10].e = 0;
 	room[10].w = 0;
 

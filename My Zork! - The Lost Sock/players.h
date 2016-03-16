@@ -6,12 +6,13 @@
 class Players
 {
 public:
+	World* p;
 	short pos;
+
+	//Variables for doing the Close/Open door funciton, with totally uses of commands.
 	char lastcloseddoor;
 	short lastnumdoor;
 	bool movclose;
-
-	World* p;
 
 public:
 	void Look(char);

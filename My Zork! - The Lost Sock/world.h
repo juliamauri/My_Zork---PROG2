@@ -13,6 +13,7 @@ class World
 	friend class Rooms;
 	friend class Exits;
 	friend class Players;
+
 private:
 	bool loop = true;
 

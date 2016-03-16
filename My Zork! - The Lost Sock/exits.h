@@ -4,7 +4,7 @@
 class Exits
 {
 public:
-	short o,d;
+	short origin,destiny;
 	bool door = false;
 };
 
