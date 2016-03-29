@@ -7,5 +7,7 @@ int main()
 
 	Sock.Init();
 
+	Sock.Loop();
+
 	return 0;
 }

@@ -250,7 +250,7 @@ void World::Command()
 	}
 }
 
-void World::Help(){
+void World::Help() const{
 	system("cls");
 
 	printf("Commands enabled:\n");
@@ -276,8 +276,6 @@ void World::Init(){
 	printf("Pulse any key to continue...");
 	getchar();
 	system("cls");
-
-	Loop();
 }
 
 void World::Loop(){
