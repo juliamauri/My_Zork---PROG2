@@ -21,6 +21,7 @@ public:
 	void OpenDoor(char);
 	void CloseDoor(char);
 	short FindExit(short)const;
+	void PrintOCDoor(short, bool)const;
 };
 
 #endif //__players__

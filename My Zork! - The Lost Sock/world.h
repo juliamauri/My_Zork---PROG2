@@ -24,7 +24,7 @@ public:
 	void CreateWorld()const;
 	void Command();
 	void Help()const;
-	void Init();
+	void Init()const;
 	void Loop();
 };
 

@@ -13,6 +13,7 @@ public:
 public:
 	void Desc() const;
 	void DescExit() const;
+	short DirNum(char)const;
 };
 
 #endif //__rooms__

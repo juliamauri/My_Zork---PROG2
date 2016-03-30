@@ -131,7 +131,7 @@ void World::CreateWorld() const
 	player->movclose = false;
 }
 
-void World::Command()
+void World::Command() 
 {
 	char command1[20];
 	char *command2;
@@ -265,7 +265,7 @@ void World::Help() const{
 	printf("*Direction: north(or n), south(or s), east(or e), west(or w).\n\n");
 }
 
-void World::Init(){
+void World::Init()const{
 	CreateWorld();
 
 	Help();
