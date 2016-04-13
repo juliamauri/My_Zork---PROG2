@@ -17,6 +17,7 @@ class My_String{
 
 		~My_String();
 
+		void write();
 		void write(const char* str);
 		unsigned int lenght() const;
 		const char* c_str() const;

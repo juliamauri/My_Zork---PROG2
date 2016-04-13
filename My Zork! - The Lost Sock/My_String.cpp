@@ -24,6 +24,21 @@ My_String::~My_String(){
 
 }
 
+void My_String::write(){
+
+	char temp[20];
+	fgets(temp, 20, stdin);
+	fflush(stdin);
+
+	unsigned int num_temp = strlen(temp);
+
+	if ((num_temp>0) && (temp[num_temp - 1] == '\n'))
+		temp[num_temp - 1] = '\0';
+
+	write(temp);
+
+}
+
 void My_String::write(const char* str){
 
 	int len = strlen(str);

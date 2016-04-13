@@ -128,37 +128,18 @@ void World::CreateWorld() const
 
 void World::Command() 
 {
-	char command[20];
-	char *command2;
-	char *command3;
-	char *restcommand;
+	My_String command;
 
 	printf("Write the command: ");
 	
-	/* Get the name, with size limit. */
-	fgets(command, 20, stdin);
-	fflush(stdin);
-	/* Remove trailing newline, if there. */
-	if ((strlen(command)>0) && (command[strlen(command) - 1] == '\n'))
-		command[strlen(command) - 1] = '\0';
-
-	My_String command1(command);
-
-	//My_String command2 = command1 -= " ";
-	/*
-	strtok_s(command1, " ", &command2);
-	strtok_s(command2, " ", &command3);
-	if (strcmp(command3, "") == 0)
-		strtok_s(command2, "\n", &restcommand);
-	else
-		strtok_s(command3, "\n", &restcommand);
-
-	strtok_s(command1, "\n", &restcommand);
-	*/
-
-	/*
-	if (strcmp(restcommand, "") == 0){
-		if (strcmp(command1, "look") == 0)
+	command.write();
+	My_String command2 = command -= " ";
+	My_String command3 = command2 -= " ";
+	My_String rest = command3 -= " ";
+	getchar();
+	
+	if (rest == ""){
+		if (command == "look")
 		{
 			if (strcmp(command3, "") == 0 && (strcmp(command2, "north") == 0 || strcmp(command2, "south") == 0 || strcmp(command2, "east") == 0 || strcmp(command2, "west") == 0))
 				player->Look(*command2);
@@ -254,7 +235,7 @@ void World::Command()
 			Command();
 		}
 	}
-	*/
+	
 }
 
 void World::Help() const{
