@@ -6,31 +6,34 @@
 #include "exits.h"
 #include "players.h"
 #include "rooms.h"
-/*
-void Players::Look(char dir)const{
+
+void Players::Look(char dir){
 	//look directions
 	if (strcmp(&dir, "") == 0){
 		system("cls");
-		p->room[pos - 1].Desc();
-
-		if (p->room[pos - 1].n != 0) printf("There are way at north!\n\n");
-		if (pos == 6) printf("There are portal at north!\n\n");
-		if (p->room[pos - 1].s != 0) printf("There are way at south!\n\n");
-		if (pos == 5) printf("There are portal at south!\n\n");
-		if (p->room[pos - 1].e != 0) printf("There are way at east!\n\n");
-		if (p->room[pos - 1].w != 0) printf("There are way at west!\n\n");
+		pos->Desc();
+		for (short i = 0; i < NUM_CONNECTIONS; ++i){
+			if (p->exit[i].origin == pos){
+				if (p->exit[i].dir_dest == 'n') printf("There are way at north!\n\n");
+				if (pos == p->exit[4].origin && p->exit[4].dir_dest == 's') printf("There are portal at north!\n\n");
+				if (p->exit[i].dir_dest == 's') printf("There are way at south!\n\n");
+				if (pos == p->exit[3].origin && p->exit[3].dir_dest == 'n') printf("There are portal at south!\n\n");
+				if (p->exit[i].dir_dest == 'e') printf("There are way at east!\n\n");
+				if (p->exit[i].dir_dest == 'w') printf("There are way at west!\n\n");
+			}
+		}
 	}
 	else {
-		short num_dir = p->room[pos - 1].DirNum(dir);
+		short num_ext = FindExit(dir);
 
-		if (num_dir != 0)
-			p->room[num_dir - 1].DescExit();
+		if (num_ext != -1)
+			p->exit[num_ext].destiny->DescExit();
 		else
 			printf("Door doesn't exist.\n\n");
 	}
 	p->Command();
 }
-*/
+
 void Players::Movement(char dir)
 {
 
@@ -41,7 +44,7 @@ void Players::Movement(char dir)
 		temp = p->exit[num_ext].origin;
 		p->exit[num_ext].origin = p->exit[num_ext].destiny;
 		p->exit[num_ext].destiny = temp;
-		fpos = p->exit[num_ext].origin;
+		pos = p->exit[num_ext].origin;
 
 		if (p->exit[num_ext].dir_dest == 'n') p->exit[num_ext].dir_dest = 's';
 		else if (p->exit[num_ext].dir_dest == 's') p->exit[num_ext].dir_dest = 'n';
@@ -77,13 +80,13 @@ void Players::Movement(char dir)
 }
 
 void Players::ChangeWorld(){
-	if (fpos == p->exit[3].origin && p->exit[3].dir_dest == 'n'){
-		fpos = p->exit[4].origin;
+	if (pos == p->exit[3].origin && p->exit[3].dir_dest == 'n'){
+		pos = p->exit[4].origin;
 		printf("You acroos the portal!\n\n");
 		//lastnumdoor = FindExit(pos);
 	}
-	else if (fpos == p->exit[4].origin && p->exit[4].dir_dest == 's'){
-		fpos = p->exit[3].origin;
+	else if (pos == p->exit[4].origin && p->exit[4].dir_dest == 's'){
+		pos = p->exit[3].origin;
 		printf("You acroos the portal!\n\n");
 		//lastnumdoor = FindExit(pos);
 	}
@@ -151,9 +154,10 @@ void Players::CloseDoor(char otherdir){
 //Find exit of conection with doors
 short Players::FindExit(char dir){
 	for (short i = 0; i < NUM_CONNECTIONS; ++i){
-		if (p->exit[i].origin == fpos && p->exit[i].dir_dest == dir)
+		if (p->exit[i].origin == pos && p->exit[i].dir_dest == dir)
 			return i;
 	}
+	return -1;
 }
 /*
 void Players::PrintOCDoor(short dir, bool OpenClose)const{

@@ -27,7 +27,7 @@ void World::CreateWorld() const
 {
 	
 	//player->lastnumdoor = player->pos = 1;
-	player->fpos = &room[0];
+	player->pos = &room[0];
 
 	strcpy_s(room[0].name, "Bedroom"); 
 	strcpy_s(room[0].desc, "Yeah... It's my bedroom...");
@@ -147,7 +147,7 @@ void World::Command()
 
 	if (strcmp(restcommand, "") == 0){
 		if (strcmp(command1, "look") == 0)
-		{/*
+		{
 			if (strcmp(command3, "") == 0 && (strcmp(command2, "north") == 0 || strcmp(command2, "south") == 0 || strcmp(command2, "east") == 0 || strcmp(command2, "west") == 0))
 				player->Look(*command2);
 			else if (strcmp(command3, "") == 0 && (strcmp(command2, "n") == 0 || strcmp(command2, "s") == 0 || strcmp(command2, "e") == 0 || strcmp(command2, "w") == 0))
@@ -158,8 +158,6 @@ void World::Command()
 				printf("Introduce a good command...\n\n");
 				Command();
 			}
-			*/
-			Command();
 		}
 		else if (strcmp(command1, "go") == 0)
 		{
@@ -279,7 +277,7 @@ void World::Init()const{
 void World::Loop(){
 	
 	do{
-		player->fpos->Desc();
+		player->pos->Desc();
 
 		Command();
 

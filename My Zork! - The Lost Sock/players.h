@@ -8,7 +8,7 @@ class Players
 {
 public:
 	World* p;
-	Rooms* fpos;
+	Rooms* pos;
 
 	//Variables for doing the Close/Open door funciton, with totally uses of commands.
 	char lastcloseddoor;
@@ -16,7 +16,7 @@ public:
 	bool movclose;
 
 public:
-	//void Look(char)const;
+	void Look(char);
 	void Movement(char);
 	void ChangeWorld();
 	//void OpenDoor(char);
