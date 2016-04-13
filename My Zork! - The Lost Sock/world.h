@@ -1,22 +1,18 @@
 #ifndef __world__
 #define __world__
 
-#define NUM_ROOMS 11
-#define NUM_CONNECTIONS 9  //NUM_ROMS - 1 - (NUM_WORLDS(in my case, 2) - 1)
-
+#include "entity.h"
+#include "VectorDynamic.h"
 #include "rooms.h"
 #include "exits.h"
-#include "VectorDynamic.h"
-class Players;
+#include "players.h"
+#include "items.h"
 
 class World
 {
 public:
 	bool loop = true;
-	Vector<Rooms*> room;
-	Exits* exit = nullptr;
-	Players* player = nullptr;
-
+	Vector<Entity*> entity;
 public:
 	World();
 	~World();

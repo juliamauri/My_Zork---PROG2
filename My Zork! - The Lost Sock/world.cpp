@@ -1,134 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "exits.h"
-#include "rooms.h"
-#include "players.h"
-#include "My_String.h"
-#include "VectorDynamic.h"
-
 #include "world.h"
 
 World::World()
 {
-	Vector<Rooms*> room;
-	//room = new Rooms[NUM_ROOMS];
-	exit = new Exits[NUM_CONNECTIONS];
-	player = new Players;
-	player->p = this;
 }
 
 World::~World()
 {
-	//delete[] room;
-	delete[] exit;
-	delete player;
 }
 
 void World::CreateWorld() 
 {
-	room.push_back(new Rooms);
-	
-	
-	player->pos = room[0];
-	
-	room[0]->name.write("Bedroom");
-	room[0]->desc.write("Yeah... It's my bedroom...");
-	room[0]->descexit.write("It smells a jerk...");
-	
-	//exit[0].origin = &room[0];
-	room.push_back(new Rooms);
+	entity.push_back(new Entity("Entity 1", "Rooms"));
+	entity[0]->room.push_back(new Rooms("Bedroom", "Yeah... It's my bedroom...", "It smells a jerk..."));
+	entity[0]->room.push_back(new Rooms("Living room", "Normal room that I use every day to contact the other world.", "Smells tasty... WTF?!? o_o"));
+	entity[0]->room.push_back(new Rooms("Entrance hall", "Yeah... It's my bedroom...", "It smells a jerk..."));
+	entity[0]->room.push_back(new Rooms("Kitchen", "Too much sugar everywhere ._.", "Hmm... I'm hungry :3"));
+	entity[0]->room.push_back(new Rooms("Storeroom", "Amount of rope everywhere...", "It smells trash"));
+	entity[0]->room.push_back(new Rooms("Machines room", "Too much metal", "Nosy!! OMG! PLS! STOP!"));
+	entity[0]->room.push_back(new Rooms("Drying room", "Wind everywhere", "I feel cold"));
+	entity[0]->room.push_back(new Rooms("Research room", "Papers everiwhere...", "I can see lights..."));
+	entity[0]->room.push_back(new Rooms("Technology room", "Unknown technology... Waow *^*", "Too much security..."));
+	entity[0]->room.push_back(new Rooms("Boss room", "Wires across the room", "I activated my senses arachnids..."));
+	entity[0]->room.push_back(new Rooms("Store socks", "Socks everywhere!", "I supose that is the last room, pls!!"));
 
-	room[1]->name.write("Living room");
-	room[1]->desc.write("My room thatI smoke weed every day(taranta tararan...[song]). One joint stay on the table <3");
-	room[1]->descexit.write("It smells a weed *^*");
-	/*
-	exit[1].origin = &room[1];
-	exit[2].origin = &room[1];
-	exit[0].destiny = &room[1];
-	exit[0].dir_dest = 'e';
-	
+	entity.push_back(new Entity("Entity 2", "Exits"));
+	entity[1]->exit.push_back(new Exits("Exit 1", "Bedroom and Living room", 'e', entity[0]->room[0], entity[0]->room[1]));
+	entity[1]->exit.push_back(new Exits("Exit 2", "Living room and Entrance hall", 'n', entity[0]->room[1], entity[0]->room[2]));
+	entity[1]->exit.push_back(new Exits("Exit 3", "Living room and Kitchen", 'e', entity[0]->room[1], entity[0]->room[3]));
+	entity[1]->exit.push_back(new Exits("Exit 4", "Kitchen and Storeroom", 's', entity[0]->room[3], entity[0]->room[4]));
+	entity[1]->exit.push_back(new Exits("Exit 5", "Machines room and Drying room", 's', entity[0]->room[5], entity[0]->room[6]));
+	entity[1]->exit.push_back(new Exits("Exit 6", "Drying room and Research room", 'e', entity[0]->room[6], entity[0]->room[7]));
+	entity[1]->exit.push_back(new Exits("Exit 7", "Research room and Technology room", 's', entity[0]->room[7], entity[0]->room[8]));
+	entity[1]->exit.push_back(new Exits("Exit 8", "Research room and Boss room", 'e', entity[0]->room[7], entity[0]->room[9]));
+	entity[1]->exit.push_back(new Exits("Exit 9", "Boss room and Store socks", 'n', entity[0]->room[9], entity[0]->room[10]));
 
-	room[2].name.write("Entrance hall");
-	room[2].desc.write("Normal room that I use every day to contact the other world.");
-	room[2].descexit.write("Smells tasty... WTF?!? o_o");
+	//entity.push_back(new Entity("Entity 3", "Items"));
+	//entity[2->item.push_back(new Items("Joint", "You tavell a lot.."));
+	//entity[0]->room[1]->itemlist->push_back(entity[2]->item[0]);
 
-	exit[1].destiny = &room[2];
-	exit[1].dir_dest = 'n';
-	
+	entity.push_back(new Entity("Entity 3", "Players"));
+	entity[2]->player.push_back(new Players("Juli", "The Best", entity[0]->room[0]));
 
-	room[3].name.write("Kitchen");
-	room[3].desc.write("Too much sugar everywhere ._.");
-	room[3].descexit.write("Hmm... I'm hungry :3");
-
-	exit[3].origin  = &room[3];
-	exit[2].destiny = &room[3];
-	exit[2].dir_dest = 'e';
-
-
-	room[4].name.write("Storeroom");
-	room[4].desc.write("Amount of rope everywhere...");
-	room[4].descexit.write("It smells trash");
-
-	exit[3].destiny = &room[4];
-	exit[3].dir_dest = 's';
-
-
-	room[5].name.write("Machines room");
-	room[5].desc.write("Too much metal");
-	room[5].descexit.write("Nosy!! OMG! PLS! STOP!");
-
-
-	exit[4].origin = &room[5];
-
-
-	room[6].name.write("Drying room");
-	room[6].desc.write("Wind everywhere");
-	room[6].descexit.write("I fell cold");
-
-	exit[4].destiny = &room[6];
-	exit[4].dir_dest = 's';
-	exit[5].origin = &room[6];
-
-
-	room[7].name.write("Research room");
-	room[7].desc.write("Papers everiwhere...");
-	room[7].descexit.write("I can see lights...");
-
-	exit[6].origin = &room[7];
-	exit[7].origin = &room[7];
-	exit[5].destiny = &room[7];
-	exit[5].dir_dest = 'e';
-
-
-	room[8].name.write("Technology room");
-	room[8].desc.write("Unknown technology... Waow *^*");
-	room[8].descexit.write("Too much security...");
-
-	exit[6].destiny = &room[8];
-	exit[6].dir_dest = 's';
-
-
-	room[9].name.write("Boss room");
-	room[9].desc.write("Wires across the room");
-	room[9].descexit.write("I activated my senses arachnids...");
-
-	exit[8].origin = &room[9];
-	exit[7].destiny = &room[9];
-	exit[7].dir_dest = 'e';
-
-
-	room[10].name.write("Store socks");
-	room[10].desc.write("Socks everywhere!");
-	room[10].descexit.write("I supose that is the last room, pls!!");
-
-	exit[8].destiny = &room[10];
-	exit[8].dir_dest = 'n';
-
-	*/
-	player->movclose = false;
+	entity[0]->room[1]->item.push_back(new Items("Joint", "You tavell a lot.."));
+	entity[0]->room[2]->item.push_back(new Items("Candies", "Hmmm, delicios :3"));
+	//entity[0]->room[2]->item.push_back(new Items(entity[0]->room[1]->item[0]));
 }
-
+/*
 void World::Command() 
 {
 	My_String command;
@@ -281,4 +201,4 @@ void World::Loop(){
 		system("cls");
 
 	} while (loop != false);
-}
+}*/

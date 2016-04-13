@@ -11,7 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="entity.cpp" />
     <ClCompile Include="exits.cpp" />
+    <ClCompile Include="items.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="My_String.cpp" />
     <ClCompile Include="players.cpp" />
@@ -19,7 +21,9 @@
     <ClCompile Include="world.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="entity.h" />
     <ClInclude Include="exits.h" />
+    <ClInclude Include="items.h" />
     <ClInclude Include="My_String.h" />
     <ClInclude Include="players.h" />
     <ClInclude Include="rooms.h" />

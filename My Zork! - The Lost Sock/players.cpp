@@ -5,7 +5,7 @@
 #include "exits.h"
 #include "players.h"
 #include "rooms.h"
-
+/*
 void Players::Look(char dir)
 {
 	if (dir){
@@ -188,3 +188,4 @@ void Players::PrintOCDoor(short dir, bool OpenClose)const
 		break;
 	}
 }
+*/

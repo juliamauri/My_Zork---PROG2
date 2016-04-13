@@ -1,20 +1,26 @@
 #ifndef __players__
 #define __players__
 
-#include "world.h"
+#include "entity.h"
 #include "rooms.h"
+#include "VectorDynamic.h"
+#include "items.h"
 
-class Players
+class Players : public Entity
 {
 public:
-	World* p;
-	Rooms* pos;
+	Rooms* pos = nullptr;
+	//Vector<Items*>* itemlist;
+
 
 	//Variables for doing the Close/Open door funciton, with totally uses of commands.
 	char lasttrieddoor;
-	bool movclose;
+	bool movclose = false;
 
 public:
+	Players(const char* name, const char* desc, Rooms* pos) : Entity(name, desc), pos(pos){};
+	~Players(){};
+
 	void Look(char);
 	void Movement(char);
 	void ChangeWorld();
