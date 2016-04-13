@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #include "exits.h"
 #include "rooms.h"
@@ -136,48 +135,47 @@ void World::Command()
 	My_String command2 = command -= " ";
 	My_String command3 = command2 -= " ";
 	My_String rest = command3 -= " ";
-	getchar();
 	
 	if (rest == ""){
 		if (command == "look")
 		{
-			if (strcmp(command3, "") == 0 && (strcmp(command2, "north") == 0 || strcmp(command2, "south") == 0 || strcmp(command2, "east") == 0 || strcmp(command2, "west") == 0))
-				player->Look(*command2);
-			else if (strcmp(command3, "") == 0 && (strcmp(command2, "n") == 0 || strcmp(command2, "s") == 0 || strcmp(command2, "e") == 0 || strcmp(command2, "w") == 0))
-				player->Look(*command2);
-			else if (strcmp(command3, "") == 0 && strcmp(command2, "") == 0)
+			if (command3 == "" && (command2 == "north" || command2 == "south" || command2 == "east" || command2 == "west"))
+				player->Look(*command2.c_str());
+			else if (command3 == "" && (command2 == "n" || command2 == "s" || command2 == "e" || command2 == "w"))
+				player->Look(*command2.c_str());
+			else if (command3 == "" && command2 == "")
 				player->Look(NULL);
 			else{
 				printf("Introduce a good command...\n\n");
 				Command();
 			}
 		}
-		else if (strcmp(command1, "go") == 0)
+		else if (command == "go")
 		{
-			if (strcmp(command3, "") == 0 && (strcmp(command2, "north") == 0 || strcmp(command2, "south") == 0 || strcmp(command2, "east") == 0 || strcmp(command2, "west") == 0))
-				player->Movement(*command2);
-			else if (strcmp(command3, "") == 0 (strcmp(command2, "n") == 0 || strcmp(command2, "s") == 0 || strcmp(command2, "e") == 0 || strcmp(command2, "w") == 0))
-				player->Movement(*command2);
+			if (command3 == "" && (command2 == "north" || command2 == "south" || command2 == "east" || command2 == "west"))
+				player->Movement(*command2.c_str());
+			else if (command3 == "" && (command2 == "n" || command2 == "s" || command2 == "e" || command2 == "w"))
+				player->Movement(*command2.c_str());
 			else{
 				printf("Introduce a good command...\n\n");
 				Command();
 			}
 		}
-		else if (strcmp(command1, "open") == 0)
+		else if (command == "open")
 		{
-			if (strcmp(command3, "") == 0){
-				if (strcmp(command2, "door") == 0 || strcmp(command2, "gate") == 0)
+			if (command3 == ""){
+				if (command2 == "door" || command2 == "gate")
 					player->OpenDoor(NULL);
 				else{
 					printf("Introduce a good command...\n\n");
 					Command();
 				}
 			}
-			else if (strcmp(restcommand, "") == 0){
-				if ((strcmp(command2, "north") == 0 || strcmp(command2, "south") == 0 || strcmp(command2, "east") == 0 || strcmp(command2, "west") == 0) && ((strcmp(command3, "door") == 0 || strcmp(command3, "gate") == 0)))
-					player->OpenDoor(*command2);
-				else if ((strcmp(command2, "n") == 0 || strcmp(command2, "s") == 0 || strcmp(command2, "e") == 0 || strcmp(command2, "w") == 0) && ((strcmp(command3, "door") == 0 || strcmp(command3, "gate") == 0)))
-					player->OpenDoor(*command2);
+			else if (rest == ""){
+				if ((command2 == "north" || command2 == "south" || command2 == "east" || command2 == "west") && (command3 == "door" || command3 == "gate"))
+					player->OpenDoor(*command2.c_str());
+				else if ((command2 == "n" || command2 == "s" || command2 == "e" || command2 == "w") && (command3 == "door" || command3 == "gate"))
+					player->OpenDoor(*command2.c_str());
 				else{
 					printf("Introduce a good command...\n\n");
 					Command();
@@ -188,21 +186,21 @@ void World::Command()
 				Command();
 			}
 		}
-		else if (strcmp(command1, "close") == 0)
+		else if (command == "close")
 		{
-			if (strcmp(command3, "") == 0){
-				if (strcmp(command2, "door") == 0 || strcmp(command2, "gate") == 0)
+			if (command3 == ""){
+				if (command2 == "door" || command2 == "gate")
 					player->CloseDoor(NULL);
 				else{
 					printf("Introduce a good command...\n\n");
 					Command();
 				}
 			}
-			else if (strcmp(restcommand, "") == 0){
-				if ((strcmp(command2, "north") == 0 || strcmp(command2, "south") == 0 || strcmp(command2, "east") == 0 || strcmp(command2, "west") == 0) && ((strcmp(command3, "door") == 0 || strcmp(command3, "gate") == 0)))
-					player->CloseDoor(*command2);
-				else if ((strcmp(command2, "n") == 0 || strcmp(command2, "s") == 0 || strcmp(command2, "e") == 0 || strcmp(command2, "w") == 0) && ((strcmp(command3, "door") == 0 || strcmp(command3, "gate") == 0)))
-					player->CloseDoor(*command2);
+			else if (rest == ""){
+				if ((command2 == "north" || command2 == "south" || command2 == "east" || command2 == "west") && (command3 == "door" || command3 == "gate"))
+					player->CloseDoor(*command2.c_str());
+				else if ((command2 == "n" || command2 == "s" || command2 == "e" || command2 == "w") && (command3 == "door" || command3 == "gate"))
+					player->CloseDoor(*command2.c_str());
 				else{
 					printf("Introduce a good command...\n\n");
 					Command();
@@ -213,17 +211,17 @@ void World::Command()
 				Command();
 			}
 		}
-		else if (strcmp(command1, "quit") == 0)
+		else if (command == "quit")
 		{
 			loop = false;
 		}
-		else if (strcmp(command1, "help") == 0)
+		else if (command == "help")
 		{
 			Help();
 		}
-		else if (strcmp(command1, "enter") == 0)
+		else if (command == "enter")
 		{
-			if (strcmp(command3, "") == 0 && strcmp(command2, "portal") == 0)
+			if (command3 == "" && command2 == "portal")
 				player->ChangeWorld();
 			else{
 				printf("Introduce a good command...\n\n");
