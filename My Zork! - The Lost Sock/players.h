@@ -11,18 +11,17 @@ public:
 	Rooms* pos;
 
 	//Variables for doing the Close/Open door funciton, with totally uses of commands.
-	char lastcloseddoor;
-	short lastnumdoor;
+	char lasttrieddoor;
 	bool movclose;
 
 public:
 	void Look(char);
 	void Movement(char);
 	void ChangeWorld();
-	//void OpenDoor(char);
-	//void CloseDoor(char);
-	short FindExit(char dir);
-	//void PrintOCDoor(short, bool)const;
+	void OpenDoor(char);
+	void CloseDoor(char);
+	short FindExit(char dir)const;
+	void PrintOCDoor(short, bool)const;
 };
 
 #endif //__players__

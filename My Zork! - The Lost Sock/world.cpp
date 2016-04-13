@@ -171,7 +171,7 @@ void World::Command()
 			}
 		}
 		else if (strcmp(command1, "open") == 0)
-		{/*
+		{
 			if (strcmp(command3, "") == 0){
 				if (strcmp(command2, "door") == 0 || strcmp(command2, "gate") == 0)
 					player->OpenDoor(NULL);
@@ -193,11 +193,10 @@ void World::Command()
 			else{
 				printf("Introduce a good command...\n\n");
 				Command();
-			}*/
-			Command();
+			}
 		}
 		else if (strcmp(command1, "close") == 0)
-		{/*
+		{
 			if (strcmp(command3, "") == 0){
 				if (strcmp(command2, "door") == 0 || strcmp(command2, "gate") == 0)
 					player->CloseDoor(NULL);
@@ -219,8 +218,7 @@ void World::Command()
 			else{
 				printf("Introduce a good command...\n\n");
 				Command();
-			}*/
-			Command();
+			}
 		}
 		else if (strcmp(command1, "quit") == 0)
 		{
