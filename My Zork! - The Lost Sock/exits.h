@@ -1,11 +1,16 @@
 #ifndef __exits__
 #define __exits__
 
+#include "rooms.h"
+
 class Exits
 {
 public:
-	short origin,destiny;
 	bool door = false;
+	Rooms* origin = nullptr;
+	Rooms* destiny = nullptr;
+	char dir_dest;
+
 };
 
 #endif //__exits__

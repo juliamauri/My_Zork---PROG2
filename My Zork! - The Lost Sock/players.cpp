@@ -5,7 +5,8 @@
 #include "world.h"
 #include "exits.h"
 #include "players.h"
-
+#include "rooms.h"
+/*
 void Players::Look(char dir)const{
 	//look directions
 	if (strcmp(&dir, "") == 0){
@@ -29,10 +30,26 @@ void Players::Look(char dir)const{
 	}
 	p->Command();
 }
-
+*/
 void Players::Movement(char dir)
 {
 
+	short num_ext = FindExit(dir);
+	Rooms* temp = nullptr;
+
+	if (dir == p->exit[num_ext].dir_dest){
+		temp = p->exit[num_ext].origin;
+		p->exit[num_ext].origin = p->exit[num_ext].destiny;
+		p->exit[num_ext].destiny = temp;
+		fpos = p->exit[num_ext].origin;
+
+		if (p->exit[num_ext].dir_dest == 'n') p->exit[num_ext].dir_dest = 's';
+		else if (p->exit[num_ext].dir_dest == 's') p->exit[num_ext].dir_dest = 'n';
+		else if (p->exit[num_ext].dir_dest == 'e') p->exit[num_ext].dir_dest = 'w';
+		else if (p->exit[num_ext].dir_dest == 'w') p->exit[num_ext].dir_dest = 'e';
+	}
+
+	/*
 	short num_dir = p->room[pos - 1].DirNum(dir);
 
 	if (num_dir != 0)
@@ -56,18 +73,19 @@ void Players::Movement(char dir)
 		p->Command();
 	}
 	printf("\n");
+	*/
 }
 
 void Players::ChangeWorld(){
-	if (pos == 5){
-		pos = 6;
+	if (fpos == p->exit[3].origin && p->exit[3].dir_dest == 'n'){
+		fpos = p->exit[4].origin;
 		printf("You acroos the portal!\n\n");
-		lastnumdoor = FindExit(pos);
+		//lastnumdoor = FindExit(pos);
 	}
-	else if (pos == 6){
-		pos = 5;
+	else if (fpos == p->exit[4].origin && p->exit[4].dir_dest == 's'){
+		fpos = p->exit[3].origin;
 		printf("You acroos the portal!\n\n");
-		lastnumdoor = FindExit(pos);
+		//lastnumdoor = FindExit(pos);
 	}
 	else{
 		printf("What!?!?\n\n"); 
@@ -76,7 +94,7 @@ void Players::ChangeWorld(){
 }
 
 // Open/Close door functions, with some if and values, that changed while player moving, etc. It works for best using the doors.
-
+/*
 void Players::OpenDoor(char otherdir){
 	if (p->exit[lastnumdoor].origin == pos || p->exit[lastnumdoor].destiny == pos || lastnumdoor == pos){
 		if (otherdir)
@@ -129,15 +147,15 @@ void Players::CloseDoor(char otherdir){
 	}
 	p->Command();
 }
-
+*/
 //Find exit of conection with doors
-short Players::FindExit(short num_room)const{
+short Players::FindExit(char dir){
 	for (short i = 0; i < NUM_CONNECTIONS; ++i){
-		if ((pos == p->exit[i].origin || pos == p->exit[i].destiny) && (num_room == p->exit[i].origin || num_room == p->exit[i].destiny))
+		if (p->exit[i].origin == fpos && p->exit[i].dir_dest == dir)
 			return i;
 	}
 }
-
+/*
 void Players::PrintOCDoor(short dir, bool OpenClose)const{
 	switch (dir)
 	{
@@ -167,3 +185,4 @@ void Players::PrintOCDoor(short dir, bool OpenClose)const{
 		break;
 	}
 }
+*/
