@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #include "world.h"
 #include "exits.h"
@@ -9,7 +8,15 @@
 
 void Players::Look(char dir)
 {
-	if (strcmp(&dir, "") == 0){
+	if (dir){
+		short num_ext = FindExit(dir);
+
+		if (num_ext != -1)
+			p->exit[num_ext].destiny->DescExit();
+		else
+			printf("Door doesn't exist.\n\n");
+	}
+	else {
 		system("cls");
 		pos->Desc();
 		for (short i = 0; i < NUM_CONNECTIONS; ++i){
@@ -22,14 +29,6 @@ void Players::Look(char dir)
 				if (p->exit[i].dir_dest == 'w') printf("There are way at west!\n\n");
 			}
 		}
-	}
-	else {
-		short num_ext = FindExit(dir);
-
-		if (num_ext != -1)
-			p->exit[num_ext].destiny->DescExit();
-		else
-			printf("Door doesn't exist.\n\n");
 	}
 	p->Command();
 }

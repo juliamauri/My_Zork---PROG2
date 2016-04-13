@@ -5,6 +5,7 @@
 #include "exits.h"
 #include "rooms.h"
 #include "players.h"
+#include "My_String.h"
 
 #include "world.h"
 
@@ -25,20 +26,19 @@ World::~World()
 
 void World::CreateWorld() const
 {
-	
-	//player->lastnumdoor = player->pos = 1;
 	player->pos = &room[0];
 
-	strcpy_s(room[0].name, "Bedroom"); 
-	strcpy_s(room[0].desc, "Yeah... It's my bedroom...");
-	strcpy_s(room[0].descexit, "It smells a jerk...");
+
+	room[0].name.write("Bedroom");
+	room[0].desc.write("Yeah... It's my bedroom...");
+	room[0].descexit.write("It smells a jerk...");
 
 	exit[0].origin = &room[0];
 	
 
-	strcpy_s(room[1].name, "Living room");
-	strcpy_s(room[1].desc, "My room thatI smoke weed every day(taranta tararan...[song]). One joint stay on the table <3");
-	strcpy_s(room[1].descexit, "It smells a weed *^*");
+	room[1].name.write("Living room");
+	room[1].desc.write("My room thatI smoke weed every day(taranta tararan...[song]). One joint stay on the table <3");
+	room[1].descexit.write("It smells a weed *^*");
 
 	exit[1].origin = &room[1];
 	exit[2].origin = &room[1];
@@ -46,50 +46,51 @@ void World::CreateWorld() const
 	exit[0].dir_dest = 'e';
 	
 
-	strcpy_s(room[2].name, "Entrance hall"); 
-	strcpy_s(room[2].desc, "Normal room that I use every day to contact the other world.");
-	strcpy_s(room[2].descexit, "Smells tasty... WTF?!? o_o");
+	room[2].name.write("Entrance hall");
+	room[2].desc.write("Normal room that I use every day to contact the other world.");
+	room[2].descexit.write("Smells tasty... WTF?!? o_o");
 
 	exit[1].destiny = &room[2];
 	exit[1].dir_dest = 'n';
 	
 
-	strcpy_s(room[3].name, "Kitchen");
-	strcpy_s(room[3].desc, "Too much sugar everywhere ._.");
-	strcpy_s(room[3].descexit, "Hmm... I'm hungry :3");
+	room[3].name.write("Kitchen");
+	room[3].desc.write("Too much sugar everywhere ._.");
+	room[3].descexit.write("Hmm... I'm hungry :3");
 
 	exit[3].origin  = &room[3];
 	exit[2].destiny = &room[3];
 	exit[2].dir_dest = 'e';
 
 
-	strcpy_s(room[4].name, "Storeroom");
-	strcpy_s(room[4].desc, "Amount of rope everywhere...");
-	strcpy_s(room[4].descexit, "It smells trash");
+	room[4].name.write("Storeroom");
+	room[4].desc.write("Amount of rope everywhere...");
+	room[4].descexit.write("It smells trash");
 
 	exit[3].destiny = &room[4];
 	exit[3].dir_dest = 's';
 
 
-	strcpy_s(room[5].name, "Machines room");
-	strcpy_s(room[5].desc, "Too much metal");
-	strcpy_s(room[5].descexit, "Nosy!! OMG! PLS! STOP!");
+	room[5].name.write("Machines room");
+	room[5].desc.write("Too much metal");
+	room[5].descexit.write("Nosy!! OMG! PLS! STOP!");
+
 
 	exit[4].origin = &room[5];
 
 
-	strcpy_s(room[6].name, "Drying room");
-	strcpy_s(room[6].desc, "Wind everywhere");
-	strcpy_s(room[6].descexit, "I fell cold");
+	room[6].name.write("Drying room");
+	room[6].desc.write("Wind everywhere");
+	room[6].descexit.write("I fell cold");
 
 	exit[4].destiny = &room[6];
 	exit[4].dir_dest = 's';
 	exit[5].origin = &room[6];
 
 
-	strcpy_s(room[7].name, "Research room");
-	strcpy_s(room[7].desc, "Papers everiwhere...");
-	strcpy_s(room[7].descexit, "I can see lights...");
+	room[7].name.write("Research room");
+	room[7].desc.write("Papers everiwhere...");
+	room[7].descexit.write("I can see lights...");
 
 	exit[6].origin = &room[7];
 	exit[7].origin = &room[7];
@@ -97,26 +98,26 @@ void World::CreateWorld() const
 	exit[5].dir_dest = 'e';
 
 
-	strcpy_s(room[8].name, "Technology room");
-	strcpy_s(room[8].desc, "Unknown technology... Waow *^*");
-	strcpy_s(room[8].descexit, "Too much security...");
+	room[8].name.write("Technology room");
+	room[8].desc.write("Unknown technology... Waow *^*");
+	room[8].descexit.write("Too much security...");
 
 	exit[6].destiny = &room[8];
 	exit[6].dir_dest = 's';
 
 
-	strcpy_s(room[9].name, "Boss room");
-	strcpy_s(room[9].desc, "Wires across the room");
-	strcpy_s(room[9].descexit, "I activated my senses arachnids...");
+	room[9].name.write("Boss room");
+	room[9].desc.write("Wires across the room");
+	room[9].descexit.write("I activated my senses arachnids...");
 
 	exit[8].origin = &room[9];
 	exit[7].destiny = &room[9];
 	exit[7].dir_dest = 'e';
 
 
-	strcpy_s(room[10].name, "Store socks");
-	strcpy_s(room[10].desc, "Socks everywhere!");	
-	strcpy_s(room[10].descexit, "I supose that is the last room, pls!!");
+	room[10].name.write("Store socks");
+	room[10].desc.write("Socks everywhere!");
+	room[10].descexit.write("I supose that is the last room, pls!!");
 
 	exit[8].destiny = &room[10];
 	exit[8].dir_dest = 'n';
@@ -127,15 +128,24 @@ void World::CreateWorld() const
 
 void World::Command() 
 {
-	char command1[20];
+	char command[20];
 	char *command2;
 	char *command3;
 	char *restcommand;
 
 	printf("Write the command: ");
-	fgets(command1, 20, stdin);
+	
+	/* Get the name, with size limit. */
+	fgets(command, 20, stdin);
 	fflush(stdin);
+	/* Remove trailing newline, if there. */
+	if ((strlen(command)>0) && (command[strlen(command) - 1] == '\n'))
+		command[strlen(command) - 1] = '\0';
 
+	My_String command1(command);
+
+	//My_String command2 = command1 -= " ";
+	/*
 	strtok_s(command1, " ", &command2);
 	strtok_s(command2, " ", &command3);
 	if (strcmp(command3, "") == 0)
@@ -144,7 +154,9 @@ void World::Command()
 		strtok_s(command3, "\n", &restcommand);
 
 	strtok_s(command1, "\n", &restcommand);
+	*/
 
+	/*
 	if (strcmp(restcommand, "") == 0){
 		if (strcmp(command1, "look") == 0)
 		{
@@ -153,7 +165,7 @@ void World::Command()
 			else if (strcmp(command3, "") == 0 && (strcmp(command2, "n") == 0 || strcmp(command2, "s") == 0 || strcmp(command2, "e") == 0 || strcmp(command2, "w") == 0))
 				player->Look(*command2);
 			else if (strcmp(command3, "") == 0 && strcmp(command2, "") == 0)
-				player->Look(*command3);
+				player->Look(NULL);
 			else{
 				printf("Introduce a good command...\n\n");
 				Command();
@@ -242,6 +254,7 @@ void World::Command()
 			Command();
 		}
 	}
+	*/
 }
 
 void World::Help() const{

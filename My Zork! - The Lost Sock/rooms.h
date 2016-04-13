@@ -1,12 +1,14 @@
 #ifndef __rooms__
 #define __rooms__
 
+#include "My_String.h"
+
 class Rooms
 {
 public:
-	char name[20];
-	char desc[250];
-	char descexit[150];
+	My_String name;
+	My_String desc;
+	My_String descexit;
 
 public:
 	void Desc() const;

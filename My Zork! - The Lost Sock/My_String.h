@@ -11,15 +11,18 @@ class My_String{
 
 
 	public:
+		My_String(){}
 		My_String(const char* str);
 		My_String(const My_String& str);
 
 		~My_String();
 
+		void write(const char* str);
 		unsigned int lenght() const;
 		const char* c_str() const;
 		bool empty() const;
 		bool operator == (const My_String str) const;
+		My_String operator -= (const My_String str) const;
 };
 
 #endif
