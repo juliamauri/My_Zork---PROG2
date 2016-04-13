@@ -5,12 +5,14 @@
 #include "rooms.h"
 #include "players.h"
 #include "My_String.h"
+#include "VectorDynamic.h"
 
 #include "world.h"
 
 World::World()
 {
-	room = new Rooms[NUM_ROOMS];
+	Vector<Rooms*> room;
+	//room = new Rooms[NUM_ROOMS];
 	exit = new Exits[NUM_CONNECTIONS];
 	player = new Players;
 	player->p = this;
@@ -18,27 +20,29 @@ World::World()
 
 World::~World()
 {
-	delete[] room;
+	//delete[] room;
 	delete[] exit;
 	delete player;
 }
 
-void World::CreateWorld() const
+void World::CreateWorld() 
 {
-	player->pos = &room[0];
-
-
-	room[0].name.write("Bedroom");
-	room[0].desc.write("Yeah... It's my bedroom...");
-	room[0].descexit.write("It smells a jerk...");
-
-	exit[0].origin = &room[0];
+	room.push_back(new Rooms);
 	
+	
+	player->pos = room[0];
+	
+	room[0]->name.write("Bedroom");
+	room[0]->desc.write("Yeah... It's my bedroom...");
+	room[0]->descexit.write("It smells a jerk...");
+	
+	//exit[0].origin = &room[0];
+	room.push_back(new Rooms);
 
-	room[1].name.write("Living room");
-	room[1].desc.write("My room thatI smoke weed every day(taranta tararan...[song]). One joint stay on the table <3");
-	room[1].descexit.write("It smells a weed *^*");
-
+	room[1]->name.write("Living room");
+	room[1]->desc.write("My room thatI smoke weed every day(taranta tararan...[song]). One joint stay on the table <3");
+	room[1]->descexit.write("It smells a weed *^*");
+	/*
 	exit[1].origin = &room[1];
 	exit[2].origin = &room[1];
 	exit[0].destiny = &room[1];
@@ -121,7 +125,7 @@ void World::CreateWorld() const
 	exit[8].destiny = &room[10];
 	exit[8].dir_dest = 'n';
 
-
+	*/
 	player->movclose = false;
 }
 
@@ -251,7 +255,7 @@ void World::Help() const{
 	printf("*Direction: north(or n), south(or s), east(or e), west(or w).\n\n");
 }
 
-void World::Init()const{
+void World::Init(){
 	CreateWorld();
 
 	Help();

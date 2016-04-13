@@ -6,14 +6,14 @@
 
 #include "rooms.h"
 #include "exits.h"
+#include "VectorDynamic.h"
 class Players;
 
 class World
 {
 public:
 	bool loop = true;
-
-	Rooms* room = nullptr;
+	Vector<Rooms*> room;
 	Exits* exit = nullptr;
 	Players* player = nullptr;
 
@@ -21,10 +21,10 @@ public:
 	World();
 	~World();
 
-	void CreateWorld()const;
+	void CreateWorld();
 	void Command();
 	void Help()const;
-	void Init()const;
+	void Init();
 	void Loop();
 };
 
