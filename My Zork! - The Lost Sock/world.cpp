@@ -26,6 +26,7 @@ void World::CreateWorld()
 	entity[0]->room.push_back(new Rooms("Boss room", "Wires across the room", "I activated my senses arachnids..."));
 	entity[0]->room.push_back(new Rooms("Store socks", "Socks everywhere!", "I supose that is the last room, pls!!"));
 
+
 	entity.push_back(new Entity("Entity 2", "Exits"));
 	entity[1]->exit.push_back(new Exits("Exit 1", "Bedroom and Living room", 'e', entity[0]->room[0], entity[0]->room[1]));
 	entity[1]->exit.push_back(new Exits("Exit 2", "Living room and Entrance hall", 'n', entity[0]->room[1], entity[0]->room[2]));
@@ -37,16 +38,40 @@ void World::CreateWorld()
 	entity[1]->exit.push_back(new Exits("Exit 8", "Research room and Boss room", 'e', entity[0]->room[7], entity[0]->room[9]));
 	entity[1]->exit.push_back(new Exits("Exit 9", "Boss room and Store socks", 'n', entity[0]->room[9], entity[0]->room[10]));
 
-	entity.push_back(new Entity("Entity 3", "Items"));
-	entity[2]->item.push_back(new Items("Joint", "You tavell a lot.."));
-	entity[2]->item.push_back(new Items("Candies", "Hmmm, delicios :3"));
-	entity[0]->room[1]->itemlist.push_back(entity[2]->item[0]);
-	entity[0]->room[2]->itemlist.push_back(entity[2]->item[1]);
 
-	entity.push_back(new Entity("Entity 4", "Players"));
-	entity[3]->player.push_back(new Players("Juli", "The Best", entity[0]->room[0]));
+	entity.push_back(new Entity("Entity 3", "Players"));
+	entity[2]->player.push_back(new Players("Juli", "The Best", entity[0]->room[0]));
 	
-	
+
+	entity.push_back(new Entity("Entity 4", "Items"));
+	entity[3]->item.push_back(new Items("Joint", "You tavell a lot.."));
+	entity[0]->room[1]->itemlist.push_back(entity[3]->item[0]);
+	entity[3]->item.push_back(new Items("Candies", "Hmmm, delicios :3"));
+	entity[2]->player[0]->itemlist.push_back(entity[3]->item[1]);
+	entity[3]->item.push_back(new Items("Chocolate", "Hmmm, delicios :3"));
+	entity[0]->room[3]->itemlist.push_back(entity[3]->item[2]);
+	entity[3]->item.push_back(new Items("Bottle of water", "Very important for live.."));
+	entity[0]->room[3]->itemlist.push_back(entity[3]->item[3]);
+	entity[3]->item.push_back(new Items("Pills", "I'm sick ;("));
+	entity[0]->room[0]->itemlist.push_back(entity[3]->item[4]);
+	entity[3]->item.push_back(new Items("Perfume", "I'm glourious :D"));
+	entity[0]->room[0]->itemlist.push_back(entity[3]->item[5]);
+
+	entity[3]->item.push_back(new Items("Scissors", "Cut everithing"));
+	entity[0]->room[0]->itemlist.push_back(entity[3]->item[6]);
+	entity[3]->item.push_back(new Items("Lighter", "Burn everithing"));
+	entity[0]->room[1]->itemlist.push_back(entity[3]->item[7]);
+	entity[3]->item.push_back(new Items("Umbrellas", "It's raining men.."));
+	entity[0]->room[2]->itemlist.push_back(entity[3]->item[8]);
+	entity[3]->item.push_back(new Items("Knife", "I cut my finger :D"));
+	entity[0]->room[3]->itemlist.push_back(entity[3]->item[9]);
+	entity[3]->item.push_back(new Items("Gun", "Shot the air"));
+	entity[0]->room[0]->itemlist.push_back(entity[3]->item[10]);
+
+	entity[3]->item.push_back(new Items("Screwdriver", "Fix some bugs"));
+	entity[0]->room[5]->itemlist.push_back(entity[3]->item[11]);
+	entity[3]->item.push_back(new Items("Power supply", "More energy, please"));
+	entity[0]->room[8]->itemlist.push_back(entity[3]->item[12]);
 }
 /*
 void World::Command() 
