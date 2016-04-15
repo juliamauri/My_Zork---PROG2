@@ -13,6 +13,7 @@ class World
 public:
 	bool loop = true;
 	Vector<Entity*> entity;
+	Players* player = nullptr;
 public:
 	World();
 	~World();

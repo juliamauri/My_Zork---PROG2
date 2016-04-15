@@ -24,6 +24,7 @@ public:
 	Entity(const char* name, const char* desc) : name(name), desc(desc){};
 	//Entity(const Entity& copy) : name(copy.name), desc(copy.desc){};
 	virtual ~Entity(){};
+	void Desc();
 };
 
 #endif //__entity__

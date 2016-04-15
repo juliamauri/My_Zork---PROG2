@@ -3,6 +3,7 @@
 
 #include<stdio.h>
 #include<string.h>
+#include"VectorDynamic.h"
 
 class My_String{
 
@@ -23,7 +24,7 @@ class My_String{
 		const char* c_str() const;
 		bool empty() const;
 		bool operator == (const My_String str) const;
-		My_String operator -= (const My_String str) const;
+		void tokens(const char* detection, Vector<My_String*>& ptr);
 };
 
 #endif

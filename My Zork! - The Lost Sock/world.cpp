@@ -40,7 +40,7 @@ void World::CreateWorld()
 
 
 	entity.push_back(new Entity("Entity 3", "Players"));
-	entity[2]->player.push_back(new Players("Juli", "The Best", entity[0]->room[0]));
+	entity[2]->player.push_back(player = new Players("Juli", "The Best", entity[0]->room[0]));
 	
 
 	entity.push_back(new Entity("Entity 4", "Items"));
@@ -73,117 +73,191 @@ void World::CreateWorld()
 	entity[3]->item.push_back(new Items("Power supply", "More energy, please"));
 	entity[0]->room[8]->itemlist.push_back(entity[3]->item[12]);
 }
-/*
+
 void World::Command() 
 {
-	My_String command;
+	Vector<My_String*> commands;
+	My_String* command = nullptr;
+	My_String* command2 = nullptr;
+	My_String* command3 = nullptr;
+	int size;
+
+	commands.push_back(new My_String);
 
 	printf("Write the command: ");
-	
-	command.write();
-	My_String command2 = command -= " ";
-	My_String command3 = command2 -= " ";
-	My_String rest = command3 -= " ";
-	
-	if (rest == ""){
-		if (command == "look")
+	commands[0]->write();
+
+	commands[0]->tokens(" ", commands);
+	size = commands.size();
+
+	if (size == 3)
+	{
+		command = commands[0];
+		command2 = commands[1];
+		command3 = commands[2];
+	}
+	else if (size == 2)
+	{
+		command = commands[0];
+		command2 = commands[1];
+	}
+	else if (size == 1)
+	{
+		command = commands[0];
+	}
+	else
+	{
+		printf("Introduce a good command...\n\n");
+		Command();
+	}
+
+	if (*command == "look" && command3 == nullptr)
+	{
+		if (command2 == nullptr)
+			Command();
+			//player->Look(NULL);
+		else if (*command2 == "north" || *command2 == "south" || *command2 == "east" || *command2 == "west")
+			Command();
+			//player->Look(*command2.c_str());
+		else if (*command2 == "n" || *command2 == "s" || *command2 == "e" || *command2 == "w")
+			Command();
+			//player->Look(*command2.c_str());
+		else
 		{
-			if (command3 == "" && (command2 == "north" || command2 == "south" || command2 == "east" || command2 == "west"))
-				player->Look(*command2.c_str());
-			else if (command3 == "" && (command2 == "n" || command2 == "s" || command2 == "e" || command2 == "w"))
-				player->Look(*command2.c_str());
-			else if (command3 == "" && command2 == "")
-				player->Look(NULL);
-			else{
-				printf("Introduce a good command...\n\n");
-				Command();
-			}
-		}
-		else if (command == "go")
-		{
-			if (command3 == "" && (command2 == "north" || command2 == "south" || command2 == "east" || command2 == "west"))
-				player->Movement(*command2.c_str());
-			else if (command3 == "" && (command2 == "n" || command2 == "s" || command2 == "e" || command2 == "w"))
-				player->Movement(*command2.c_str());
-			else{
-				printf("Introduce a good command...\n\n");
-				Command();
-			}
-		}
-		else if (command == "open")
-		{
-			if (command3 == ""){
-				if (command2 == "door" || command2 == "gate")
-					player->OpenDoor(NULL);
-				else{
-					printf("Introduce a good command...\n\n");
-					Command();
-				}
-			}
-			else if (rest == ""){
-				if ((command2 == "north" || command2 == "south" || command2 == "east" || command2 == "west") && (command3 == "door" || command3 == "gate"))
-					player->OpenDoor(*command2.c_str());
-				else if ((command2 == "n" || command2 == "s" || command2 == "e" || command2 == "w") && (command3 == "door" || command3 == "gate"))
-					player->OpenDoor(*command2.c_str());
-				else{
-					printf("Introduce a good command...\n\n");
-					Command();
-				}
-			}
-			else{
-				printf("Introduce a good command...\n\n");
-				Command();
-			}
-		}
-		else if (command == "close")
-		{
-			if (command3 == ""){
-				if (command2 == "door" || command2 == "gate")
-					player->CloseDoor(NULL);
-				else{
-					printf("Introduce a good command...\n\n");
-					Command();
-				}
-			}
-			else if (rest == ""){
-				if ((command2 == "north" || command2 == "south" || command2 == "east" || command2 == "west") && (command3 == "door" || command3 == "gate"))
-					player->CloseDoor(*command2.c_str());
-				else if ((command2 == "n" || command2 == "s" || command2 == "e" || command2 == "w") && (command3 == "door" || command3 == "gate"))
-					player->CloseDoor(*command2.c_str());
-				else{
-					printf("Introduce a good command...\n\n");
-					Command();
-				}
-			}
-			else{
-				printf("Introduce a good command...\n\n");
-				Command();
-			}
-		}
-		else if (command == "quit")
-		{
-			loop = false;
-		}
-		else if (command == "help")
-		{
-			Help();
-		}
-		else if (command == "enter")
-		{
-			if (command3 == "" && command2 == "portal")
-				player->ChangeWorld();
-			else{
-				printf("Introduce a good command...\n\n");
-				Command();
-			}
-		}
-		else{
 			printf("Introduce a good command...\n\n");
 			Command();
 		}
 	}
-	
+	else if (*command == "go")
+	{
+		if (command2 == nullptr)
+		{
+			printf("Introduce a good command...\n\n");
+			Command();
+		}
+		else
+		{
+			if (*command2 == "north" || *command2 == "south" || *command2 == "east" || *command2 == "west")
+				Command();
+			//player->Movement(*command2.c_str());
+			else if (*command2 == "n" || *command2 == "s" || *command2 == "e" || *command2 == "w")
+				Command();
+			//player->Movement(*command2.c_str());
+			else
+			{
+				printf("Introduce a good command...\n\n");
+				Command();
+			}
+		}
+	}
+	else if (*command == "open")
+	{
+		if (command2 == nullptr)
+		{
+			printf("Introduce a good command...\n\n");
+			Command();
+		}
+		else
+		{
+			if (command3 == nullptr)
+			{
+				if (*command2 == "door" || *command2 == "gate")
+					Command();
+				//player->OpenDoor(NULL);
+				else
+				{
+					printf("Introduce a good command...\n\n");
+					Command();
+				}
+			}
+			else
+			{
+				if ((*command2 == "north" || *command2 == "south" || *command2 == "east" || *command2 == "west") && (*command3 == "door" || *command3 == "gate"))
+					Command();
+				//player->OpenDoor(*command2.c_str());
+				else if ((*command2 == "n" || *command2 == "s" || *command2 == "e" || *command2 == "w") && (*command3 == "door" || *command3 == "gate"))
+					Command();
+				//player->OpenDoor(*command2.c_str());
+				else
+				{
+					printf("Introduce a good command...\n\n");
+					Command();
+				}
+			}
+		}
+	}
+	else if (*command == "close")
+	{
+		if (command2 == nullptr)
+		{
+			printf("Introduce a good command...\n\n");
+			Command();
+		}
+		else
+		{
+			if (command3 == nullptr)
+			{
+				if (*command2 == "door" || *command2 == "gate")
+					Command();
+				//player->CloseDoor(NULL);
+				else
+				{
+					printf("Introduce a good command...\n\n");
+					Command();
+				}
+			}
+			else
+			{
+				if ((*command2 == "north" || *command2 == "south" || *command2 == "east" || *command2 == "west") && (*command3 == "door" || *command3 == "gate"))
+					Command();
+				//player->CloseDoor(*command2.c_str());
+				else if ((*command2 == "n" || *command2 == "s" || *command2 == "e" || *command2 == "w") && (*command3 == "door" || *command3 == "gate"))
+					Command();
+				//player->CloseDoor(*command2.c_str());
+				else
+				{
+					printf("Introduce a good command...\n\n");
+					Command();
+				}
+			}
+		}
+	}
+	else if (*command == "quit" && command2 == nullptr)
+	{
+		Command();
+		//loop = false;
+	}
+	else if (*command == "help" && command2 == nullptr)
+	{
+		Command();
+		//Help();
+	}
+	else if (*command == "enter" && command3 == nullptr)
+	{
+		if (command2 == nullptr)
+		{
+			printf("Introduce a good command...\n\n");
+			Command();
+		}
+		else
+		{
+			if (*command2 == "portal")
+				Command();
+			//player->ChangeWorld();
+			else
+			{
+				printf("Introduce a good command...\n\n");
+				Command();
+			}
+		}
+	}
+	else
+	{
+		printf("Introduce a good command...\n\n");
+		Command();
+	}
 }
+
 
 void World::Help() const{
 	system("cls");
@@ -226,4 +300,4 @@ void World::Loop(){
 		system("cls");
 
 	} while (loop != false);
-}*/
+}
