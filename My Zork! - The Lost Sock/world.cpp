@@ -37,16 +37,16 @@ void World::CreateWorld()
 	entity[1]->exit.push_back(new Exits("Exit 8", "Research room and Boss room", 'e', entity[0]->room[7], entity[0]->room[9]));
 	entity[1]->exit.push_back(new Exits("Exit 9", "Boss room and Store socks", 'n', entity[0]->room[9], entity[0]->room[10]));
 
-	//entity.push_back(new Entity("Entity 3", "Items"));
-	//entity[2->item.push_back(new Items("Joint", "You tavell a lot.."));
-	//entity[0]->room[1]->itemlist->push_back(entity[2]->item[0]);
+	entity.push_back(new Entity("Entity 3", "Items"));
+	entity[2]->item.push_back(new Items("Joint", "You tavell a lot.."));
+	entity[2]->item.push_back(new Items("Candies", "Hmmm, delicios :3"));
+	entity[0]->room[1]->itemlist.push_back(entity[2]->item[0]);
+	entity[0]->room[2]->itemlist.push_back(entity[2]->item[1]);
 
-	entity.push_back(new Entity("Entity 3", "Players"));
-	entity[2]->player.push_back(new Players("Juli", "The Best", entity[0]->room[0]));
-
-	entity[0]->room[1]->item.push_back(new Items("Joint", "You tavell a lot.."));
-	entity[0]->room[2]->item.push_back(new Items("Candies", "Hmmm, delicios :3"));
-	//entity[0]->room[2]->item.push_back(new Items(entity[0]->room[1]->item[0]));
+	entity.push_back(new Entity("Entity 4", "Players"));
+	entity[3]->player.push_back(new Players("Juli", "The Best", entity[0]->room[0]));
+	
+	
 }
 /*
 void World::Command() 

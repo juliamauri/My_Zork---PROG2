@@ -10,7 +10,7 @@ class Players : public Entity
 {
 public:
 	Rooms* pos = nullptr;
-	//Vector<Items*>* itemlist;
+	Vector<Items*> itemlist;
 
 
 	//Variables for doing the Close/Open door funciton, with totally uses of commands.

@@ -10,7 +10,7 @@ class Rooms : public Entity
 {
 public:
 	My_String descext;
-	//Vector<Items*>* itemlist;
+	Vector<Items*> itemlist;
 
 public:
 	Rooms(const char* name, const char* desc, const char* descext) : Entity(name, desc), descext(descext){};
