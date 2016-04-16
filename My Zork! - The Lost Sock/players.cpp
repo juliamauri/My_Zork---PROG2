@@ -32,7 +32,7 @@ void Players::Look(char dir)
 	}
 	p->Command();
 }
-/*
+
 void Players::Movement(char dir)
 {
 
@@ -40,16 +40,16 @@ void Players::Movement(char dir)
 	Rooms* temp = nullptr;
 
 	if (num_ext != -1){
-		if (p->exit[num_ext].door){
-			temp = p->exit[num_ext].origin;
-			p->exit[num_ext].origin = p->exit[num_ext].destiny;
-			p->exit[num_ext].destiny = temp;
-			pos = p->exit[num_ext].origin;
+		if (exit[num_ext]->door){
+			temp = exit[num_ext]->origin;
+			exit[num_ext]->origin = exit[num_ext]->destiny;
+			exit[num_ext]->destiny = temp;
+			pos = exit[num_ext]->origin;
 
-			if (p->exit[num_ext].dir_dest == 'n') p->exit[num_ext].dir_dest = 's';
-			else if (p->exit[num_ext].dir_dest == 's') p->exit[num_ext].dir_dest = 'n';
-			else if (p->exit[num_ext].dir_dest == 'e') p->exit[num_ext].dir_dest = 'w';
-			else if (p->exit[num_ext].dir_dest == 'w') p->exit[num_ext].dir_dest = 'e';
+			if (exit[num_ext]->dir_dest == 'n') exit[num_ext]->dir_dest = 's';
+			else if (exit[num_ext]->dir_dest == 's') exit[num_ext]->dir_dest = 'n';
+			else if (exit[num_ext]->dir_dest == 'e') exit[num_ext]->dir_dest = 'w';
+			else if (exit[num_ext]->dir_dest == 'w') exit[num_ext]->dir_dest = 'e';
 
 			movclose = true;
 
@@ -58,7 +58,7 @@ void Players::Movement(char dir)
 		else
 		{
 			printf("The door is closed..\n\n");
-			lasttrieddoor = p->exit[num_ext].dir_dest;
+			lasttrieddoor = exit[num_ext]->dir_dest;
 			movclose = false;
 			p->Command();
 		}
@@ -69,7 +69,7 @@ void Players::Movement(char dir)
 		p->Command();
 	}
 }
-*/
+
 void Players::ChangeWorld()
 {
 	if (pos == exit[3]->origin && exit[3]->dir_dest == 'n'){
@@ -85,7 +85,7 @@ void Players::ChangeWorld()
 		p->Command();
 	}
 }
-/*
+
 // Open/Close door functions, with some if and values, that changed while player moving, etc. It works for best using the doors.
 void Players::OpenDoor(char dir)
 {
@@ -99,7 +99,7 @@ void Players::OpenDoor(char dir)
 
 		if (num_ext != -1)
 		{
-				p->exit[num_ext].door = true;
+				exit[num_ext]->door = true;
 				PrintOCDoor(lasttrieddoor, true);
 
 				if (lasttrieddoor == 'n') lasttrieddoor = 's';
@@ -134,7 +134,7 @@ void Players::CloseDoor(char dir)
 
 		if (num_ext != -1)
 		{
-				p->exit[num_ext].door = false;
+				exit[num_ext]->door = false;
 				PrintOCDoor(lasttrieddoor, false);
 				movclose = false;
 		}
@@ -147,7 +147,7 @@ void Players::CloseDoor(char dir)
 	p->Command();
 
 }
-*/
+
 //Find exit of conection with doors
 short Players::FindExit(char dir)const
 {
@@ -158,7 +158,7 @@ short Players::FindExit(char dir)const
 	}
 	return -1;
 }
-/*
+
 void Players::PrintOCDoor(short dir, bool OpenClose)const
 {
 	switch (dir)
@@ -189,4 +189,3 @@ void Players::PrintOCDoor(short dir, bool OpenClose)const
 		break;
 	}
 }
-*/
