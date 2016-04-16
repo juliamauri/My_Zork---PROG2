@@ -14,6 +14,8 @@ public:
 	World* p;
 	Rooms* pos = nullptr;
 	unsigned int ext_size = NULL;
+	unsigned int itemcarry = NULL;
+	unsigned int max_itemcarry = 2;
 
 	//Variables for doing the Close/Open door funciton, with totally uses of commands.
 	char lasttrieddoor;

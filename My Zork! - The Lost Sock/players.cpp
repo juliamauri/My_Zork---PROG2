@@ -6,6 +6,7 @@
 #include "players.h"
 #include "rooms.h"
 
+
 void Players::Look(char dir)
 {
 	if (dir){
@@ -20,7 +21,8 @@ void Players::Look(char dir)
 		system("cls");
 		pos->Desc();
 		for (unsigned int i = 0; i < ext_size; ++i){
-			if (exit[i]->origin == pos){
+			if (exit[i]->origin == pos)
+			{
 				if (exit[i]->dir_dest == 'n') printf("There are way at north!\n\n");
 				if (pos == exit[4]->origin && exit[4]->dir_dest == 's') printf("There are portal at north!\n\n");
 				if (exit[i]->dir_dest == 's') printf("There are way at south!\n\n");
@@ -28,6 +30,13 @@ void Players::Look(char dir)
 				if (exit[i]->dir_dest == 'e') printf("There are way at east!\n\n");
 				if (exit[i]->dir_dest == 'w') printf("There are way at west!\n\n");
 			}
+		}
+		pos->numberitems = pos->item.size();
+		printf("Items:\n\n");
+		for (unsigned int i = 0; i < pos->numberitems; i++){
+			printf("%i-", i + 1);
+			pos->item[i]->Desc();
+			printf("-----------------\n\n");
 		}
 	}
 	p->Command();
@@ -153,8 +162,29 @@ void Players::PDItem(const char* item)
 
 }
 
-void Players::Inventory(){
+void Players::Inventory()
+{
+	itemcarry = item.size();
 
+	printf("\n You are carring: \n");
+	for (unsigned int i = 0;i < itemcarry;i++)
+	{
+		printf("%i-", i+1);
+		item[i]->Desc();
+		if (item[i]->objectsarea == true){
+			item[i]->itemcarry = item[i]->item.size();
+			for (unsigned int j = 0; j < item[i]->itemcarry; j++)
+			{
+				printf("%i.%i-", i+1,j + 1);
+				item[i]->item[j]->Desc();
+				printf("\n-------\n");
+			}
+			printf("Total space of object: %i/%i\n\n", item[i]->itemcarry, item[i]->max_itemcarry);
+		}
+		printf("\n-----------------\n");
+	}
+	printf("Total space of you: %i/%i\n\n", itemcarry, max_itemcarry);
+	p->Command();
 }
 
 void Players::EUItem(const char* item){

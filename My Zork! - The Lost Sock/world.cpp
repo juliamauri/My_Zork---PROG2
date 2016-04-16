@@ -60,7 +60,7 @@ void World::CreateWorld()
 	bedroom->item.push_back(pills);
 	entity[3]->item.push_back(perfume = new Items("Perfume", "I'm glourious :D"));
 	bedroom->item.push_back(perfume);
-	entity[3]->item.push_back(backpack = new Items("Backpack", "More place for items :D", true));
+	entity[3]->item.push_back(backpack = new Items("Backpack", "More place for items :D", true,5));
 	bedroom->item.push_back(backpack);
 
 	entity[3]->item.push_back(scissors = new Items("Scissors", "Cut everithing"));

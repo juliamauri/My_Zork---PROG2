@@ -10,6 +10,7 @@ class Rooms : public Entity
 {
 public:
 	My_String descexit;
+	unsigned int numberitems = NULL;
 
 public:
 	Rooms(const char* name, const char* desc, const char* descexit) : Entity(name, desc), descexit(descexit){};
