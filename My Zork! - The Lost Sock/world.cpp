@@ -84,6 +84,7 @@ void World::Command()
 	My_String* command = nullptr;
 	My_String* command2 = nullptr;
 	My_String* command3 = nullptr;
+	My_String* command4 = nullptr;
 	int size;
 
 	commands.push_back(new My_String);
@@ -94,7 +95,14 @@ void World::Command()
 	commands[0]->tokens(" ", commands);
 	size = commands.size();
 
-	if (size == 3)
+	if (size == 4)
+	{
+		command = commands[0];
+		command2 = commands[1];
+		command3 = commands[2];
+		command4 = commands[3];
+	}
+	else if (size == 3)
 	{
 		command = commands[0];
 		command2 = commands[1];
@@ -215,6 +223,73 @@ void World::Command()
 			}
 		}
 	}
+	else if ((*command == "pick" || *command == "drop") && command3 == nullptr)
+	{
+		if (command2 == nullptr)
+		{
+			printf("Introduce a good command...\n\n");
+			Command();
+		}
+		else
+		{
+			Command();
+			//player->PDItem(command2->c_str());
+		}
+	}
+	else if ((*command == "inventory" || *command == "inv" || *command == "i") && command2 == nullptr)
+	{
+		Command();
+		//player->inventory();
+	}
+	else if ((*command == "equip" || *command == "unequip") && command3 == nullptr)
+	{
+		if (command2 == nullptr)
+		{
+			printf("Introduce a good command...\n\n");
+			Command();
+		}
+		else
+		{
+			Command();
+			//player->EUItem(command2->c_str());
+		}
+	}
+	else if (*command == "put")
+	{
+		if (command4 == nullptr)
+		{
+			printf("Introduce a good command...\n\n");
+			Command();
+		}
+		else
+		{
+			if (*command3 == "into"){ Command(); }
+				//player->PGItem(command2->c_str(), command4->c_str());
+			else 
+			{
+				printf("Introduce a good command...\n\n");
+				Command();
+			}
+		}
+	}
+	else if (*command == "get")
+	{
+		if (command4 == nullptr)
+		{
+			printf("Introduce a good command...\n\n");
+			Command();
+		}
+		else
+		{
+			if (*command3 == "from"){ Command(); }
+			//player->PGItem(command2->c_str(), command4->c_str());
+			else
+			{
+				printf("Introduce a good command...\n\n");
+				Command();
+			}
+		}
+	}
 	else if (*command == "quit" && command2 == nullptr)
 	{
 		loop = false;
@@ -225,7 +300,7 @@ void World::Command()
 	}
 	else if (*command == "enter" && command3 == nullptr)
 	{
-		if (command2 == nullptr)
+		if (command4 == nullptr)
 		{
 			printf("Introduce a good command...\n\n");
 			Command();
