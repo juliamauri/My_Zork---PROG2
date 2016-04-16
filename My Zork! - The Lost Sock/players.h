@@ -28,7 +28,11 @@ public:
 	void ChangeWorld();
 	void OpenDoor(char);
 	void CloseDoor(char);
-	short FindExit(char dir)const;
+	void PDItem(const char*);
+	void Inventory();
+	void EUItem(const char*);
+	void PGItem(const char*, const char*);
+	short FindExit(char)const;
 	void PrintOCDoor(short, bool)const;
 };
 

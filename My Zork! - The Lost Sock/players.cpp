@@ -148,6 +148,23 @@ void Players::CloseDoor(char dir)
 
 }
 
+void Players::PDItem(const char* item)
+{
+
+}
+
+void Players::Inventory(){
+
+}
+
+void Players::EUItem(const char* item){
+
+}
+
+void Players::PGItem(const char* item1, const char* item2)
+{
+
+}
 //Find exit of conection with doors
 short Players::FindExit(char dir)const
 {

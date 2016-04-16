@@ -60,6 +60,8 @@ void World::CreateWorld()
 	bedroom->item.push_back(pills);
 	entity[3]->item.push_back(perfume = new Items("Perfume", "I'm glourious :D"));
 	bedroom->item.push_back(perfume);
+	entity[3]->item.push_back(backpack = new Items("Backpack", "More place for items :D", true));
+	bedroom->item.push_back(backpack);
 
 	entity[3]->item.push_back(scissors = new Items("Scissors", "Cut everithing"));
 	living->item.push_back(scissors);
@@ -233,13 +235,12 @@ void World::Command()
 		else
 		{
 			Command();
-			//player->PDItem(command2->c_str());
+			player->PDItem(command2->c_str());
 		}
 	}
 	else if ((*command == "inventory" || *command == "inv" || *command == "i") && command2 == nullptr)
 	{
-		Command();
-		//player->inventory();
+		player->Inventory();
 	}
 	else if ((*command == "equip" || *command == "unequip") && command3 == nullptr)
 	{
@@ -250,8 +251,7 @@ void World::Command()
 		}
 		else
 		{
-			Command();
-			//player->EUItem(command2->c_str());
+			player->EUItem(command2->c_str());
 		}
 	}
 	else if (*command == "put")
@@ -263,8 +263,8 @@ void World::Command()
 		}
 		else
 		{
-			if (*command3 == "into"){ Command(); }
-				//player->PGItem(command2->c_str(), command4->c_str());
+			if (*command3 == "into")
+				player->PGItem(command2->c_str(), command4->c_str());
 			else 
 			{
 				printf("Introduce a good command...\n\n");
@@ -281,8 +281,8 @@ void World::Command()
 		}
 		else
 		{
-			if (*command3 == "from"){ Command(); }
-			//player->PGItem(command2->c_str(), command4->c_str());
+			if (*command3 == "from")
+				player->PGItem(command2->c_str(), command4->c_str());
 			else
 			{
 				printf("Introduce a good command...\n\n");

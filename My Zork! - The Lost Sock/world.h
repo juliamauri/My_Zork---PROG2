@@ -33,6 +33,7 @@ public:
 	Items* bottlewater = nullptr;
 	Items* pills = nullptr;
 	Items* perfume = nullptr;
+	Items* backpack = nullptr;
 	Items* scissors = nullptr;
 	Items* lighter = nullptr;
 	Items* umbrellas = nullptr;
