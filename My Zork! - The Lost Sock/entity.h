@@ -9,7 +9,6 @@ class Exits;
 class Items;
 class Players;
 
-
 class Entity
 {
 public:
@@ -17,12 +16,11 @@ public:
 	My_String desc;
 	Vector<Rooms*> room;
 	Vector<Exits*> exit;
-	Vector<Items*> item;
 	Vector<Players*> player;
+	Vector< Items* > item;
 
 public:
 	Entity(const char* name, const char* desc) : name(name), desc(desc){};
-	//Entity(const Entity& copy) : name(copy.name), desc(copy.desc){};
 	virtual ~Entity(){};
 	void Desc();
 };

@@ -6,19 +6,21 @@
 #include "VectorDynamic.h"
 #include "items.h"
 
+class World;
+
 class Players : public Entity
 {
 public:
+	World* p;
 	Rooms* pos = nullptr;
-	Vector<Items*> itemlist;
-
+	unsigned int ext_size = NULL;
 
 	//Variables for doing the Close/Open door funciton, with totally uses of commands.
 	char lasttrieddoor;
 	bool movclose = false;
 
 public:
-	Players(const char* name, const char* desc, Rooms* pos) : Entity(name, desc), pos(pos){};
+	Players(const char* name, const char* desc,unsigned int ext_size) : Entity(name, desc),ext_size(ext_size){};
 	~Players(){};
 
 	void Look(char);

@@ -9,12 +9,13 @@
 class Rooms : public Entity
 {
 public:
-	My_String descext;
-	Vector<Items*> itemlist;
+	My_String descexit;
 
 public:
-	Rooms(const char* name, const char* desc, const char* descext) : Entity(name, desc), descext(descext){};
+	Rooms(const char* name, const char* desc, const char* descexit) : Entity(name, desc), descexit(descexit){};
 	~Rooms(){};
+
+	void DescExit()const;
 };
 
 #endif //__rooms__
