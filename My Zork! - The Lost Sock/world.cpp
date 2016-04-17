@@ -250,7 +250,7 @@ void World::Command()
 		}
 		else
 		{
-			player->EUItem(command2->c_str());
+			player->EUItem(*command->c_str(), command2->c_str());
 		}
 	}
 	else if (*command == "put")

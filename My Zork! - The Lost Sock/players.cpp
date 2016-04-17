@@ -230,8 +230,57 @@ void Players::Inventory()
 	p->Command();
 }
 
-void Players::EUItem(const char* item){
+void Players::EUItem(char command,const char* i){
+	My_String item(i);
+	p->player->itemcarry = p->player->item.size();
 
+	switch (command)
+	{
+	case 'e':
+		if (itemequip == nullptr)
+		{
+			for (unsigned int i = 0; i < p->player->itemcarry; i++)
+			{
+				if (item == p->player->item[i]->name.c_str())
+				{
+					itemequip = p->player->item[i];
+					p->player->item.resize(p->player->item[i]);
+					printf("You get the item %s equiped!\n\n", item.c_str());
+					p->Command();
+				}
+			}
+		}
+		else
+		{
+			printf("You have an item equipped...\n\n");
+			p->Command();
+		}
+		printf("I am not carring this item...\n\n");
+		p->Command();
+		break;
+	case 'u':
+		if (itemequip == nullptr)
+		{
+			printf("You haven't an item equipped...\n\n");
+			p->Command();
+		}
+		else
+		{
+			if (p->player->itemcarry < p->player->max_itemcarry)
+			{
+				p->player->item.push_back(itemequip);
+				itemequip = nullptr;
+				printf("The item %s is in your inventory and unequip!\n\n", item.c_str());
+				p->Command();
+			}
+			else
+			{
+				printf("You are full of item capacity...\n\n");
+				p->Command();
+			}
+		}
+		break;
+	}
 }
 
 void Players::PGItem(const char* item1, const char* item2)

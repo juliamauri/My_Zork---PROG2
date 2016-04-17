@@ -13,6 +13,7 @@ class Players : public Entity
 public:
 	World* p;
 	Rooms* pos = nullptr;
+	Items* itemequip = nullptr;
 	unsigned int ext_size = NULL;
 	unsigned int itemcarry = NULL;
 	unsigned int max_itemcarry = 3;
@@ -32,7 +33,7 @@ public:
 	void CloseDoor(char);
 	void PDItem(char,const char*);
 	void Inventory();
-	void EUItem(const char*);
+	void EUItem(char,const char*);
 	void PGItem(const char*, const char*);
 	short FindExit(char)const;
 	void PrintOCDoor(short, bool)const;
