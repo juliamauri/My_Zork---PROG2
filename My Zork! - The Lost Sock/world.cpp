@@ -48,35 +48,35 @@ void World::CreateWorld()
 	
 	
 	entity.push_back(new Entity("Entity 4", "Items"));
-	entity[3]->item.push_back(joint = new Items("Joint", "You tavell a lot.."));
+	entity[3]->item.push_back(joint = new Items("joint", "You tavell a lot.."));
 	living->item.push_back(joint);
-	entity[3]->item.push_back(candies = new Items("Candies", "Hmmm, delicios :3"));
+	entity[3]->item.push_back(candies = new Items("candies", "Hmmm, delicios :3"));
 	player->item.push_back(candies);
-	entity[3]->item.push_back(chocolate = new Items("Chocolate", "Hmmm, delicios :3"));
+	entity[3]->item.push_back(chocolate = new Items("chocolate", "Hmmm, delicios :3"));
 	kitchen->item.push_back(chocolate);
-	entity[3]->item.push_back(bottlewater = new Items("Bottle of water", "Very important for live.."));
+	entity[3]->item.push_back(bottlewater = new Items("bottle of water", "Very important for live.."));
 	kitchen->item.push_back(bottlewater);
-	entity[3]->item.push_back(pills = new Items("Pills", "I'm sick ;("));
+	entity[3]->item.push_back(pills = new Items("pills", "I'm sick ;("));
 	bedroom->item.push_back(pills);
-	entity[3]->item.push_back(perfume = new Items("Perfume", "I'm glourious :D"));
+	entity[3]->item.push_back(perfume = new Items("perfume", "I'm glourious :D"));
 	bedroom->item.push_back(perfume);
-	entity[3]->item.push_back(backpack = new Items("Backpack", "More place for items :D", true,5));
+	entity[3]->item.push_back(backpack = new Items("backpack", "More place for items :D", true,5));
 	bedroom->item.push_back(backpack);
 
-	entity[3]->item.push_back(scissors = new Items("Scissors", "Cut everithing"));
+	entity[3]->item.push_back(scissors = new Items("scissors", "Cut everithing"));
 	living->item.push_back(scissors);
-	entity[3]->item.push_back(lighter = new Items("Lighter", "Burn everithing"));
+	entity[3]->item.push_back(lighter = new Items("lighter", "Burn everithing"));
 	living->item.push_back(lighter);
-	entity[3]->item.push_back(umbrellas = new Items("Umbrellas", "It's raining men.."));
+	entity[3]->item.push_back(umbrellas = new Items("umbrellas", "It's raining men.."));
 	entrance->item.push_back(umbrellas);
-	entity[3]->item.push_back(knife = new Items("Knife", "I cut my finger :D"));
+	entity[3]->item.push_back(knife = new Items("knife", "I cut my finger :D"));
 	kitchen->item.push_back(knife);
-	entity[3]->item.push_back(gun = new Items("Gun", "Shot the air"));
+	entity[3]->item.push_back(gun = new Items("gun", "Shot the air"));
 	bedroom->item.push_back(gun);
 
-	entity[3]->item.push_back(screwdriver = new Items("Screwdriver", "Fix some bugs"));
+	entity[3]->item.push_back(screwdriver = new Items("screwdriver", "Fix some bugs"));
 	machines->item.push_back(screwdriver);
-	entity[3]->item.push_back(powersupply = new Items("Power supply", "More energy, please"));
+	entity[3]->item.push_back(powersupply = new Items("power supply", "More energy, please"));
 	technology->item.push_back(powersupply);
 }
 
@@ -234,8 +234,7 @@ void World::Command()
 		}
 		else
 		{
-			Command();
-			player->PDItem(command2->c_str());
+			player->PDItem(*command->c_str(),command2->c_str());
 		}
 	}
 	else if ((*command == "inventory" || *command == "inv" || *command == "i") && command2 == nullptr)

@@ -15,7 +15,7 @@ public:
 	Rooms* pos = nullptr;
 	unsigned int ext_size = NULL;
 	unsigned int itemcarry = NULL;
-	unsigned int max_itemcarry = 2;
+	unsigned int max_itemcarry = 3;
 
 	//Variables for doing the Close/Open door funciton, with totally uses of commands.
 	char lasttrieddoor;
@@ -30,7 +30,7 @@ public:
 	void ChangeWorld();
 	void OpenDoor(char);
 	void CloseDoor(char);
-	void PDItem(const char*);
+	void PDItem(char,const char*);
 	void Inventory();
 	void EUItem(const char*);
 	void PGItem(const char*, const char*);

@@ -126,6 +126,29 @@ public:
 			return false;
 	}
 
+	void resize(const TYPE &element)
+	{
+		bool flag = false;
+		TYPE *temp = new TYPE[capacity];
+		for (unsigned int i = 0; i < num_elements; i++)
+		{
+			if (flag == false){
+				if (buffer[i] == element)
+				{
+					flag = true;
+					i--;
+					--num_elements;
+				}
+				else
+					temp[i] = buffer[i];
+			}
+			else
+				temp[i] = buffer[i+1];
+		}
+		delete[] buffer;
+		buffer = temp;
+	}
+
 	bool pop_back(unsigned int resize, TYPE& value){
 		if (num_elements != 0){
 			TYPE temp;

@@ -5,6 +5,7 @@
 #include "exits.h"
 #include "players.h"
 #include "rooms.h"
+#include "My_String.h"
 
 
 void Players::Look(char dir)
@@ -157,9 +158,51 @@ void Players::CloseDoor(char dir)
 
 }
 
-void Players::PDItem(const char* item)
+void Players::PDItem(char command,const char* i)
 {
+	My_String item(i);
+	pos->numberitems = pos->item.size();
+	p->player->itemcarry = p->player->item.size();
 
+	switch (command)
+	{
+	case 'p':
+		for (unsigned int i = 0; i < pos->numberitems; i++)
+		{
+			if (item == pos->item[i]->name.c_str())
+			{
+				if (p->player->itemcarry < p->player->max_itemcarry)
+				{
+					p->player->item.push_back(pos->item[i]);
+					pos->item.resize(pos->item[i]);
+					printf("The item %s is in your inventory!\n\n", item.c_str());
+					p->Command();
+				}
+				else
+				{
+					printf("You are full of item capacity...\n\n");
+					p->Command();
+				}
+			}
+		}
+		printf("This item not exist in these room...\n\n");
+		p->Command();
+		break;
+	case 'd':
+		for (unsigned int i = 0; i < p->player->itemcarry; i++)
+		{
+			if (item == p->player->item[i]->name.c_str())
+			{
+				pos->item.push_back(p->player->item[i]);
+				p->player->item.resize(p->player->item[i]);
+				printf("You drop the item %s at room of your inventory!\n\n", item.c_str());
+				p->Command();
+			}
+		}
+		printf("I am not carring this item...\n\n");
+		p->Command();
+		break;
+	}
 }
 
 void Players::Inventory()
