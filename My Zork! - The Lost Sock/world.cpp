@@ -141,7 +141,7 @@ void World::CreateWorld()
 
 	entity[3]->item.push_back(screwdriver = new Items("screwdriver", "Fix some bugs", false, 2));
 	machines->item.push_back(screwdriver);
-	entity[3]->item.push_back(powersupply = new Items("power supply", "More energy, please",false));
+	entity[3]->item.push_back(powersupply = new Items("powersupply", "More energy, please",false));
 	technology->item.push_back(powersupply);
 }
 
