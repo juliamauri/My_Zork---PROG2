@@ -346,6 +346,7 @@ void Players::PGItem(char command, const char* i1, const char* i2)
 			}
 			else
 				flag_item1 = false;
+			if (flag_item1 == true) break;
 		}
 
 		if (flag_item1 == false)

@@ -76,7 +76,10 @@ void My_String::tokens(const char* detection, Vector<My_String*>& ptr){
 		strtok_s(ptr[i++]->buffer, detection, &rest);
 		My_String* send = new My_String(rest);
 		if (*send == "")
+		{
+			delete send;
 			flag = false;
+		}
 		else
 			ptr.push_back(send);
 	} while (flag);

@@ -13,93 +13,36 @@ World::~World()
 	
 	for (int clear = sizeentities - 1; clear >= 0; clear--)
 	{
-		//entity[clear]->name.~My_String();
-		//entity[clear]->desc.~My_String();
-
 		int size = entity[clear]->item.size();
 		for (int i = size - 1; i >= 0; i--)
 		{
-			if (entity[clear]->item[i]->objectsarea == true)
-			{
-				int sizeoa = entity[clear]->item[i]->item.size();
-				if (sizeoa == 0){}
-				else
-				{
-					for (int j = sizeoa - 1; j >= 0; j--)
-					{/*
-						entity[clear]->item[i]->item[j]->name.~My_String();
-						entity[clear]->item[i]->item[j]->desc.~My_String();
-						entity[clear]->item[i]->item[j]->player.~Vector();
-						entity[clear]->item[i]->item[j]->room.~Vector();
-						entity[clear]->item[i]->item[j]->exit.~Vector();*/
-						delete entity[clear]->item[i]->item[j];
-						entity[clear]->item[i]->item[j]->item.~Vector();
-					}
-				}
-			}
-			/*entity[clear]->item[i]->name.~My_String();
-			entity[clear]->item[i]->desc.~My_String();
-			entity[clear]->item[i]->item.~Vector();
-			entity[clear]->item[i]->player.~Vector();
-			entity[clear]->item[i]->room.~Vector();
-			entity[clear]->item[i]->exit.~Vector();*/
 			delete entity[clear]->item[i];
 		}
-		entity[clear]->item.~Vector();
+	
 
 		size = entity[clear]->player.size();
 		for (int i = size - 1; i >= 0; i--)
-		{/*
-			entity[clear]->player[i]->p = nullptr;
-			entity[clear]->player[i]->pos = nullptr;
-			entity[clear]->player[i]->itemequip = nullptr;
-
-			entity[clear]->player[i]->name.~My_String();
-			entity[clear]->player[i]->desc.~My_String();
-			entity[clear]->player[i]->player.~Vector();
-			entity[clear]->player[i]->room.~Vector();
-			entity[clear]->player[i]->exit.~Vector();
-			entity[clear]->player[i]->item.~Vector();*/
+		{
 			delete entity[clear]->player[i];
 		}
-		entity[clear]->player.~Vector();
+
 
 		size = entity[clear]->exit.size();
 		for (int i = size - 1; i >= 0; i--)
 		{
-			/*entity[clear]->exit[i]->origin = nullptr;
-			entity[clear]->exit[i]->destiny = nullptr;
-
-			entity[clear]->exit[i]->name.~My_String();
-			entity[clear]->exit[i]->desc.~My_String();
-			entity[clear]->exit[i]->item.~Vector();
-			entity[clear]->exit[i]->player.~Vector();
-			entity[clear]->exit[i]->room.~Vector();
-			entity[clear]->exit[i]->exit.~Vector();*/
 			delete entity[clear]->exit[i];
 		}
-		entity[clear]->exit.~Vector();
+
 
 		size = entity[clear]->room.size();
 		for (int i = size - 1; i >= 0; i--)
 		{
-			
-			/*entity[clear]->room[i]->name.~My_String();
-			entity[clear]->room[i]->desc.~My_String();
-			entity[clear]->room[i]->descexit.~My_String();
-			entity[clear]->room[i]->player.~Vector();
-			entity[clear]->room[i]->room.~Vector();
-			entity[clear]->room[i]->exit.~Vector();
-			entity[clear]->room[i]->item.~Vector();*/
 			delete entity[clear]->room[i];
-
 		}
-		entity[clear]->room.~Vector();
-		//delete entity[clear];
-	}
 
-	for (unsigned int i = 0; i < sizeentities; i++)
-		delete entity[i];
+
+		delete entity[clear];
+	}
 }
 
 void World::CreateWorld() 
