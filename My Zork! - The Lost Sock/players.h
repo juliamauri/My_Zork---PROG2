@@ -34,7 +34,7 @@ public:
 	void PDItem(char,const char*);
 	void Inventory();
 	void EUItem(char,const char*);
-	void PGItem(const char*, const char*);
+	void PGItem(char,const char*, const char*);
 	short FindExit(char)const;
 	void PrintOCDoor(short, bool)const;
 };

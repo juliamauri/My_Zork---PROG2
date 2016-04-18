@@ -283,9 +283,111 @@ void Players::EUItem(char command,const char* i){
 	}
 }
 
-void Players::PGItem(const char* item1, const char* item2)
+void Players::PGItem(char command, const char* i1, const char* i2)
 {
+	My_String item1(i2);
+	My_String item2(i1);
+	bool flag_item1 = true;
+	bool flag_item2 = true;
+	p->player->itemcarry = p->player->item.size();
 
+	switch (command)
+	{
+	case 'p':
+		for (unsigned int i = 0; i < p->player->itemcarry; i++)
+		{
+			if (item1 == p->player->item[i]->name.c_str())
+			{
+				if (p->player->item[i]->objectsarea == true)
+				{
+					p->player->item[i]->itemcarry = p->player->item[i]->item.size();
+					if (p->player->item[i]->itemcarry < p->player->item[i]->max_itemcarry)
+					{
+						for (unsigned int j = 0; j < p->player->itemcarry; j++)
+						{
+							if (item2 == p->player->item[j]->name.c_str())
+							{
+								p->player->item[i]->item.push_back(p->player->item[j]);
+								p->player->item.resize(p->player->item[j]);
+								printf("You put the item %s at %s!\n\n", item2.c_str(), item1.c_str());
+								p->Command();
+							}
+							else
+							{
+								flag_item1 = true;
+								flag_item2 = false;
+							}
+						}
+					}
+					else
+					{
+						printf("This item is full of capacity...\n\n");
+						p->Command();
+					}
+				}
+				else
+				{
+					printf("This item can't carry other items...\n\n");
+					p->Command();
+				}
+			}
+			else
+				flag_item1 = false;
+		}
+		if (flag_item1 == false)
+			printf("I am not carring the item %s...\n\n", item1.c_str());
+		else if (flag_item2 == false)
+			printf("I am not carring the item %s...\n\n", item2.c_str());
+		p->Command();
+		break;
+	case 'g':
+		if (itemcarry < max_itemcarry)
+		{
+			for (unsigned int i = 0; i < p->player->itemcarry; i++)
+			{
+				if (item1 == p->player->item[i]->name.c_str())
+				{
+					if (p->player->item[i]->objectsarea == true)
+					{
+						p->player->item[i]->itemcarry = p->player->item[i]->item.size();
+						for (unsigned int j = 0; j < p->player->item[i]->itemcarry; j++)
+						{
+							if (item2 == p->player->item[i]->item[j]->name.c_str())
+							{
+								p->player->item.push_back(p->player->item[i]->item[j]);
+								p->player->item[i]->item.resize(p->player->item[i]->item[j]);
+								printf("You get the item %s from %s!\n\n", item2.c_str(), item1.c_str());
+								p->Command();
+							}
+							else
+							{
+								flag_item1 = true;
+								flag_item2 = false;
+							}
+						}
+					}
+					else
+					{
+						printf("This item can't carry other items...\n\n");
+						p->Command();
+					}
+				}
+				else
+					flag_item1 = false;
+			}
+		}
+		else
+		{
+			printf("You are full of capacity in your inventory...\n\n");
+			p->Command();
+		}
+		if (flag_item1 == false)
+			printf("I am not carring the item %s...\n\n", item1.c_str());
+		else if (flag_item2 == false)
+			printf("The item %s isn't carring the item %s...\n\n",item1.c_str(), item2.c_str());
+		p->Command();
+		break;
+	}
 }
 //Find exit of conection with doors
 short Players::FindExit(char dir)const

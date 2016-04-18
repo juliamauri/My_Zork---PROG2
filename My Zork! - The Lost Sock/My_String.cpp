@@ -26,8 +26,8 @@ My_String::~My_String(){
 
 void My_String::write(){
 
-	char temp[20];
-	fgets(temp, 20, stdin);
+	char temp[35];
+	fgets(temp, 35, stdin);
 	fflush(stdin);
 
 	unsigned int num_temp = strlen(temp);

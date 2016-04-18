@@ -263,7 +263,7 @@ void World::Command()
 		else
 		{
 			if (*command3 == "into")
-				player->PGItem(command2->c_str(), command4->c_str());
+				player->PGItem(*command->c_str(), command2->c_str(), command4->c_str());
 			else 
 			{
 				printf("Introduce a good command...\n\n");
@@ -281,7 +281,7 @@ void World::Command()
 		else
 		{
 			if (*command3 == "from")
-				player->PGItem(command2->c_str(), command4->c_str());
+				player->PGItem(*command->c_str(), command2->c_str(), command4->c_str());
 			else
 			{
 				printf("Introduce a good command...\n\n");
