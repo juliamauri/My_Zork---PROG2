@@ -7,7 +7,7 @@ template<class TYPE>
 class Vector{
 private:
 	TYPE* buffer;
-	unsigned int capacity = 10;
+	unsigned int capacity = 1;
 	unsigned int num_elements = 0;
 
 
