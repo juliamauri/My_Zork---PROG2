@@ -45,7 +45,7 @@ World::~World()
 	}
 }
 
-void World::CreateWorld() 
+void World::CreateWorld()
 {
 	Rooms* bedroom = nullptr;
 	Rooms* living = nullptr;
@@ -368,7 +368,7 @@ void World::Command()
 	}
 	else if (*command == "enter" && command3 == nullptr)
 	{
-		if (command4 == nullptr)
+		if (command2 == nullptr)
 		{
 			printf("Introduce a good command...\n\n");
 			Command();
@@ -399,12 +399,16 @@ void World::Help() const{
 	system("cls");
 
 	printf("Commands enabled:\n");
-	printf("- look: for printing description room and possible exits.\n");
+	printf("- look: for printing description room, possible exits and items.\n");
 	printf("- look + direction: for printing description of possible exits content.\n");
 	printf("- go + direction: for moving at rooms.");
 	printf("- enter + portal: for passing the portal.");
 	printf("- open/close + door/gate: for opening or closing doors/gates when you tryied to pass.\n");
-	printf("- open/close + direction + door/gate: for opening or closing doors/gates directly with direction.\n");
+	printf("- pick/drop + item: for picking and dropping items on the room.\n");
+	printf("- inventory/inv/i: s for looking at the list of items player is carrying. You have 3 spaces of limit.\n");
+	printf("- equip/unequip + item: for equiping any item at player.\n");
+	printf("- put/get + item + into/from + item: put items inside other items.\n");
+	printf("- stats: for seeing your stats, the objects can afect the stats.\n");
 	printf("- quit: to exit the game.\n");
 	printf("- help: for ptinting the help commands.\n");
 	printf("*Direction: north(or n), south(or s), east(or e), west(or w).\n\n");

@@ -10,7 +10,7 @@ public:
 
 public:
 	Stats(int attack, int defense, int hp) : attack(attack), defense(defense), hp(hp){};
-	virtual ~Stats(){};
+	~Stats(){};
 };
 
 #endif //__stats__

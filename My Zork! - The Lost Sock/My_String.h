@@ -24,7 +24,7 @@ class My_String{
 		const char* c_str() const;
 		bool empty() const;
 		bool operator == (const My_String str) const;
-		void tokens(const char* detection, Vector<My_String*>& ptr);
+		void tokens(const char* detection, Vector<My_String*>& ptr)const;
 };
 
 #endif

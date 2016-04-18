@@ -27,8 +27,8 @@ My_String::~My_String(){
 
 void My_String::write(){
 
-	char temp[35];
-	fgets(temp, 35, stdin);
+	char temp[40];
+	fgets(temp, 40, stdin);
 	fflush(stdin);
 
 	unsigned int num_temp = strlen(temp);
@@ -67,7 +67,7 @@ bool My_String::operator==(const My_String str) const{
 	
 }
 
-void My_String::tokens(const char* detection, Vector<My_String*>& ptr){
+void My_String::tokens(const char* detection, Vector<My_String*>& ptr)const{
 	
 	char* rest;
 	bool flag = true;

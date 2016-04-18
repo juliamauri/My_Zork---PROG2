@@ -75,7 +75,7 @@ public:
 		buffer[num_elements++] = element;
 	}
 
-	void push_front(const TYPE &element){
+	void push_front(const TYPE &element)const{
 		if (capacity == num_elements)
 		{
 			TYPE *temp = nullptr;
@@ -102,23 +102,23 @@ public:
 		printf("\n");
 	}
 
-	bool empty(){
+	bool empty()const{
 		return num_elements == 0 ? 1 : 0;
 	}
 
-	void clean(){
+	void clean()const{
 		num_elements = 0;
 	}
 
-	int size(){
+	int size()const{
 		return num_elements;
 	}
 
-	int capacityn(){
+	int capacityn()const{
 		return capacity;
 	}
 
-	bool pop_back(TYPE& value){
+	bool pop_back(TYPE& value)const{
 		if (num_elements != 0){
 			TYPE temp = buffer[num_elements - 1];
 			if (num_elements-- >= 0)
@@ -153,7 +153,7 @@ public:
 		buffer = temp;
 	}
 
-	bool pop_back(unsigned int resize, TYPE& value){
+	bool pop_back(unsigned int resize, TYPE& value)const{
 		if (num_elements != 0){
 			TYPE temp;
 			for (resize; resize > 0; resize--){
@@ -174,7 +174,7 @@ public:
 			return false;
 	}
 
-	void shrink_to_fit(){
+	void shrink_to_fit()const{
 		TYPE* temp = nullptr;
 		capacity = num_elements;
 		temp = new TYPE[capacity];

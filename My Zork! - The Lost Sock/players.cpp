@@ -8,7 +8,7 @@
 #include "My_String.h"
 
 
-void Players::Look(char dir)
+void Players::Look(char dir)const
 {
 	if (dir){
 		short num_ext = FindExit(dir);

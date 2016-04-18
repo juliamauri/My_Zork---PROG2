@@ -34,7 +34,7 @@ public:
 	{
 	};
 
-	void Look(char);
+	void Look(char)const;
 	void Movement(char);
 	void ChangeWorld();
 	void OpenDoor(char);

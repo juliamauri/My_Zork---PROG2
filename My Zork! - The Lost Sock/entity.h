@@ -24,7 +24,7 @@ public:
 	~Entity()
 	{};
 
-	void Desc();
+	void Desc()const;
 };
 
 #endif //__entity__
