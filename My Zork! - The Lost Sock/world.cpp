@@ -90,7 +90,6 @@ World::~World()
 		}
 		entity[clear]->room.~Vector();
 	}
-
 	joint = nullptr;
 	candies = nullptr;
 	chocolate = nullptr;
@@ -167,7 +166,7 @@ void World::CreateWorld()
 	player->item.push_back(candies);
 	entity[3]->item.push_back(chocolate = new Items("chocolate", "Hmmm, delicios :3",true, 0, 0, 5));
 	kitchen->item.push_back(chocolate);
-	entity[3]->item.push_back(bottlewater = new Items("bottle of water", "Very important for live..",true, 1, 0, 1));
+	entity[3]->item.push_back(bottlewater = new Items("waterbottle", "Very important for live..",true, 1, 0, 1));
 	kitchen->item.push_back(bottlewater);
 	entity[3]->item.push_back(pills = new Items("pills", "I'm sick ;(",true, 0, 0, 10));
 	bedroom->item.push_back(pills);
