@@ -21,7 +21,7 @@ public:
 
 public:
 	Entity(const char* name, const char* desc, bool init_room = false) : name(name), desc(desc){};
-	~Entity(){};
+	virtual ~Entity(){};
 
 	void Desc();
 };

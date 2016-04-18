@@ -9,12 +9,12 @@ World::World()
 
 World::~World()
 {
-	unsigned int sizeentitites = entity.size();
+	unsigned int sizeentities = entity.size();
 	
-	for (int clear = sizeentitites - 1; clear >= 0; clear--)
+	for (int clear = sizeentities - 1; clear >= 0; clear--)
 	{
-		entity[clear]->name.~My_String();
-		entity[clear]->desc.~My_String();
+		//entity[clear]->name.~My_String();
+		//entity[clear]->desc.~My_String();
 
 		int size = entity[clear]->item.size();
 		for (int i = size - 1; i >= 0; i--)
@@ -26,28 +26,30 @@ World::~World()
 				else
 				{
 					for (int j = sizeoa - 1; j >= 0; j--)
-					{
+					{/*
 						entity[clear]->item[i]->item[j]->name.~My_String();
 						entity[clear]->item[i]->item[j]->desc.~My_String();
-						entity[clear]->item[i]->item[j]->item.~Vector();
 						entity[clear]->item[i]->item[j]->player.~Vector();
 						entity[clear]->item[i]->item[j]->room.~Vector();
-						entity[clear]->item[i]->item[j]->exit.~Vector();
+						entity[clear]->item[i]->item[j]->exit.~Vector();*/
+						delete entity[clear]->item[i]->item[j];
+						entity[clear]->item[i]->item[j]->item.~Vector();
 					}
 				}
 			}
-			entity[clear]->item[i]->name.~My_String();
+			/*entity[clear]->item[i]->name.~My_String();
 			entity[clear]->item[i]->desc.~My_String();
 			entity[clear]->item[i]->item.~Vector();
 			entity[clear]->item[i]->player.~Vector();
 			entity[clear]->item[i]->room.~Vector();
-			entity[clear]->item[i]->exit.~Vector();
+			entity[clear]->item[i]->exit.~Vector();*/
+			delete entity[clear]->item[i];
 		}
 		entity[clear]->item.~Vector();
 
 		size = entity[clear]->player.size();
 		for (int i = size - 1; i >= 0; i--)
-		{
+		{/*
 			entity[clear]->player[i]->p = nullptr;
 			entity[clear]->player[i]->pos = nullptr;
 			entity[clear]->player[i]->itemequip = nullptr;
@@ -57,14 +59,15 @@ World::~World()
 			entity[clear]->player[i]->player.~Vector();
 			entity[clear]->player[i]->room.~Vector();
 			entity[clear]->player[i]->exit.~Vector();
-			entity[clear]->player[i]->item.~Vector();
+			entity[clear]->player[i]->item.~Vector();*/
+			delete entity[clear]->player[i];
 		}
 		entity[clear]->player.~Vector();
 
 		size = entity[clear]->exit.size();
 		for (int i = size - 1; i >= 0; i--)
 		{
-			entity[clear]->exit[i]->origin = nullptr;
+			/*entity[clear]->exit[i]->origin = nullptr;
 			entity[clear]->exit[i]->destiny = nullptr;
 
 			entity[clear]->exit[i]->name.~My_String();
@@ -72,56 +75,62 @@ World::~World()
 			entity[clear]->exit[i]->item.~Vector();
 			entity[clear]->exit[i]->player.~Vector();
 			entity[clear]->exit[i]->room.~Vector();
-			entity[clear]->exit[i]->exit.~Vector();
+			entity[clear]->exit[i]->exit.~Vector();*/
+			delete entity[clear]->exit[i];
 		}
 		entity[clear]->exit.~Vector();
 
 		size = entity[clear]->room.size();
 		for (int i = size - 1; i >= 0; i--)
 		{
-			entity[clear]->room[i]->name.~My_String();
+			
+			/*entity[clear]->room[i]->name.~My_String();
 			entity[clear]->room[i]->desc.~My_String();
 			entity[clear]->room[i]->descexit.~My_String();
 			entity[clear]->room[i]->player.~Vector();
 			entity[clear]->room[i]->room.~Vector();
 			entity[clear]->room[i]->exit.~Vector();
-			entity[clear]->room[i]->item.~Vector();
+			entity[clear]->room[i]->item.~Vector();*/
+			delete entity[clear]->room[i];
 
 		}
 		entity[clear]->room.~Vector();
+		//delete entity[clear];
 	}
-	joint = nullptr;
-	candies = nullptr;
-	chocolate = nullptr;
-	bottlewater = nullptr;
-	pills = nullptr;
-	perfume = nullptr;
-	backpack = nullptr;
-	scissors = nullptr;
-	lighter = nullptr;
-	umbrellas = nullptr;
-	knife = nullptr;
-	gun = nullptr;
-	screwdriver = nullptr;
-	powersupply = nullptr;
 
-	player = nullptr;
-
-	bedroom = nullptr;
-	living = nullptr;
-	entrance = nullptr;
-	kitchen = nullptr;
-	store = nullptr;
-	machines = nullptr;
-	drying = nullptr;
-	research = nullptr;
-	technology = nullptr;
-	bossroom = nullptr;
-	storesocks = nullptr;
+	for (unsigned int i = 0; i < sizeentities; i++)
+		delete entity[i];
 }
 
 void World::CreateWorld() 
 {
+	Rooms* bedroom = nullptr;
+	Rooms* living = nullptr;
+	Rooms* entrance = nullptr;
+	Rooms* kitchen = nullptr;
+	Rooms* store = nullptr;
+	Rooms* machines = nullptr;
+	Rooms* drying = nullptr;
+	Rooms* research = nullptr;
+	Rooms* technology = nullptr;
+	Rooms* bossroom = nullptr;
+	Rooms* storesocks = nullptr;
+
+	Items* joint = nullptr;
+	Items* candies = nullptr;
+	Items* chocolate = nullptr;
+	Items* bottlewater = nullptr;
+	Items* pills = nullptr;
+	Items* perfume = nullptr;
+	Items* backpack = nullptr;
+	Items* scissors = nullptr;
+	Items* lighter = nullptr;
+	Items* umbrellas = nullptr;
+	Items* knife = nullptr;
+	Items* gun = nullptr;
+	Items* screwdriver = nullptr;
+	Items* powersupply = nullptr;
+
 	entity.Init();
 	entity.push_back(new Entity("Entity 1", "Rooms"));
 	entity[0]->room.Init();
@@ -437,6 +446,10 @@ void World::Command()
 		printf("Introduce a good command...\n\n");
 		Command();
 	}
+
+	for (unsigned int i = 0; i < size; i++)
+		delete commands[i];
+
 }
 
 void World::Help() const{

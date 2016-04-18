@@ -19,7 +19,9 @@ public:
 		if (init_item == true)
 			item.Init();
 	};
-	~Rooms(){};
+	~Rooms()
+	{
+	};
 
 	void DescExit()const;
 };

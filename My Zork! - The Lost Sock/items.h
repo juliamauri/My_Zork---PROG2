@@ -18,7 +18,9 @@ public:
 		if (objectsarea == true)
 			item.Init();
 	};
-	~Items(){};
+	~Items()
+	{
+	};
 };
 
 #endif //__items__

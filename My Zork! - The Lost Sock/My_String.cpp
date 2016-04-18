@@ -24,6 +24,7 @@ My_String::~My_String(){
 
 }
 
+
 void My_String::write(){
 
 	char temp[35];

@@ -30,7 +30,9 @@ public:
 		if (init_item == true)
 			item.Init();
 	};
-	~Players(){};
+	~Players()
+	{
+	};
 
 	void Look(char);
 	void Movement(char);
