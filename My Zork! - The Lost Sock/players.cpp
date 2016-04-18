@@ -12,9 +12,9 @@ void Players::Look(char dir)
 {
 	if (dir){
 		short num_ext = FindExit(dir);
-
+		
 		if (num_ext != -1)
-			exit[num_ext]->destiny->DescExit();
+			p->entity[1]->exit[num_ext]->destiny->DescExit();
 		else
 			printf("Door doesn't exist.\n\n");
 	}
@@ -22,14 +22,14 @@ void Players::Look(char dir)
 		system("cls");
 		pos->Desc();
 		for (unsigned int i = 0; i < ext_size; ++i){
-			if (exit[i]->origin == pos)
+			if (p->entity[1]->exit[i]->origin == pos)
 			{
-				if (exit[i]->dir_dest == 'n') printf("There are way at north!\n\n");
-				if (pos == exit[4]->origin && exit[4]->dir_dest == 's') printf("There are portal at north!\n\n");
-				if (exit[i]->dir_dest == 's') printf("There are way at south!\n\n");
-				if (pos == exit[3]->origin && exit[3]->dir_dest == 'n') printf("There are portal at south!\n\n");
-				if (exit[i]->dir_dest == 'e') printf("There are way at east!\n\n");
-				if (exit[i]->dir_dest == 'w') printf("There are way at west!\n\n");
+				if (p->entity[1]->exit[i]->dir_dest == 'n') printf("There are way at north!\n\n");
+				if (pos == p->entity[1]->exit[4]->origin && p->entity[1]->exit[4]->dir_dest == 's') printf("There are portal at north!\n\n");
+				if (p->entity[1]->exit[i]->dir_dest == 's') printf("There are way at south!\n\n");
+				if (pos == p->entity[1]->exit[3]->origin && p->entity[1]->exit[3]->dir_dest == 'n') printf("There are portal at south!\n\n");
+				if (p->entity[1]->exit[i]->dir_dest == 'e') printf("There are way at east!\n\n");
+				if (p->entity[1]->exit[i]->dir_dest == 'w') printf("There are way at west!\n\n");
 			}
 		}
 		pos->numberitems = pos->item.size();
@@ -50,16 +50,16 @@ void Players::Movement(char dir)
 	Rooms* temp = nullptr;
 
 	if (num_ext != -1){
-		if (exit[num_ext]->door){
-			temp = exit[num_ext]->origin;
-			exit[num_ext]->origin = exit[num_ext]->destiny;
-			exit[num_ext]->destiny = temp;
-			pos = exit[num_ext]->origin;
+		if (p->entity[1]->exit[num_ext]->door){
+			temp = p->entity[1]->exit[num_ext]->origin;
+			p->entity[1]->exit[num_ext]->origin = p->entity[1]->exit[num_ext]->destiny;
+			p->entity[1]->exit[num_ext]->destiny = temp;
+			pos = p->entity[1]->exit[num_ext]->origin;
 
-			if (exit[num_ext]->dir_dest == 'n') exit[num_ext]->dir_dest = 's';
-			else if (exit[num_ext]->dir_dest == 's') exit[num_ext]->dir_dest = 'n';
-			else if (exit[num_ext]->dir_dest == 'e') exit[num_ext]->dir_dest = 'w';
-			else if (exit[num_ext]->dir_dest == 'w') exit[num_ext]->dir_dest = 'e';
+			if (p->entity[1]->exit[num_ext]->dir_dest == 'n') p->entity[1]->exit[num_ext]->dir_dest = 's';
+			else if (p->entity[1]->exit[num_ext]->dir_dest == 's') p->entity[1]->exit[num_ext]->dir_dest = 'n';
+			else if (p->entity[1]->exit[num_ext]->dir_dest == 'e') p->entity[1]->exit[num_ext]->dir_dest = 'w';
+			else if (p->entity[1]->exit[num_ext]->dir_dest == 'w') p->entity[1]->exit[num_ext]->dir_dest = 'e';
 
 			movclose = true;
 
@@ -68,7 +68,7 @@ void Players::Movement(char dir)
 		else
 		{
 			printf("The door is closed..\n\n");
-			lasttrieddoor = exit[num_ext]->dir_dest;
+			lasttrieddoor = p->entity[1]->exit[num_ext]->dir_dest;
 			movclose = false;
 			p->Command();
 		}
@@ -85,12 +85,12 @@ void Players::Movement(char dir)
 
 void Players::ChangeWorld()
 {
-	if (pos == exit[3]->origin && exit[3]->dir_dest == 'n'){
-		pos = exit[4]->origin;
+	if (pos == p->entity[1]->exit[3]->origin && p->entity[1]->exit[3]->dir_dest == 'n'){
+		pos = p->entity[1]->exit[4]->origin;
 		printf("You acroos the portal!\n\n");
 	}
-	else if (pos == exit[4]->origin && exit[4]->dir_dest == 's'){
-		pos = exit[3]->origin;
+	else if (pos == p->entity[1]->exit[4]->origin && p->entity[1]->exit[4]->dir_dest == 's'){
+		pos = p->entity[1]->exit[3]->origin;
 		printf("You acroos the portal!\n\n");
 	}
 	else{
@@ -112,7 +112,7 @@ void Players::OpenDoor(char dir)
 
 		if (num_ext != -1)
 		{
-				exit[num_ext]->door = true;
+				p->entity[1]->exit[num_ext]->door = true;
 				PrintOCDoor(lasttrieddoor, true);
 
 				if (lasttrieddoor == 'n') lasttrieddoor = 's';
@@ -147,7 +147,7 @@ void Players::CloseDoor(char dir)
 
 		if (num_ext != -1)
 		{
-				exit[num_ext]->door = false;
+				p->entity[1]->exit[num_ext]->door = false;
 				PrintOCDoor(lasttrieddoor, false);
 				movclose = false;
 		}
@@ -445,7 +445,7 @@ short Players::FindExit(char dir)const
 {
 	for (unsigned int i = 0; i < ext_size; ++i){
 		
-		if (exit[i]->origin == pos && exit[i]->dir_dest == dir)
+		if (p->entity[1]->exit[i]->origin == pos && p->entity[1]->exit[i]->dir_dest == dir)
 			return i;
 	}
 	return -1;

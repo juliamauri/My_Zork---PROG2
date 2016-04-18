@@ -58,7 +58,7 @@ World::~World()
 			entity[clear]->player[i]->item.~Vector();
 			entity[clear]->player[i]->player.~Vector();
 			entity[clear]->player[i]->room.~Vector();
-			//entity[clear]->player[i]->exit.~Vector();
+			entity[clear]->player[i]->exit.~Vector();
 		}
 		entity[clear]->player.~Vector();
 
@@ -153,7 +153,6 @@ void World::CreateWorld()
 	entity.push_back(new Entity("Entity 3", "Players"));
 	entity[2]->player.push_back(player = new Players("Juli", "The Best", entity[1]->exit.size(),1,2,10));
 	player->room.push_back(player->pos = bedroom);
-	player->exit = entity[1]->exit;
 	player->p = this;
 	
 	
