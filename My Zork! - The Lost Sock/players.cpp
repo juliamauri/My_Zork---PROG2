@@ -160,22 +160,22 @@ void Players::CloseDoor(char dir)
 
 void Players::PDItem(char command,const char* i)
 {
-	My_String item(i);
+	My_String item1(i);
 	pos->numberitems = pos->item.size();
-	p->player->itemcarry = p->player->item.size();
+	itemcarry = item.size();
 
 	switch (command)
 	{
 	case 'p':
 		for (unsigned int i = 0; i < pos->numberitems; i++)
 		{
-			if (item == pos->item[i]->name.c_str())
+			if (item1 == pos->item[i]->name.c_str())
 			{
-				if (p->player->itemcarry < p->player->max_itemcarry)
+				if (itemcarry < max_itemcarry)
 				{
-					p->player->item.push_back(pos->item[i]);
+					item.push_back(pos->item[i]);
 					pos->item.resize(pos->item[i]);
-					printf("The item %s is in your inventory!\n\n", item.c_str());
+					printf("The item %s is in your inventory!\n\n", item1.c_str());
 					p->Command();
 				}
 				else
@@ -189,13 +189,13 @@ void Players::PDItem(char command,const char* i)
 		p->Command();
 		break;
 	case 'd':
-		for (unsigned int i = 0; i < p->player->itemcarry; i++)
+		for (unsigned int i = 0; i < itemcarry; i++)
 		{
-			if (item == p->player->item[i]->name.c_str())
+			if (item1 == item[i]->name.c_str())
 			{
-				pos->item.push_back(p->player->item[i]);
-				p->player->item.resize(p->player->item[i]);
-				printf("You drop the item %s at room of your inventory!\n\n", item.c_str());
+				pos->item.push_back(item[i]);
+				item.resize(item[i]);
+				printf("You drop the item %s at room of your inventory!\n\n", item1.c_str());
 				p->Command();
 			}
 		}
@@ -231,21 +231,21 @@ void Players::Inventory()
 }
 
 void Players::EUItem(char command,const char* i){
-	My_String item(i);
-	p->player->itemcarry = p->player->item.size();
+	My_String item1(i);
+	itemcarry = item.size();
 
 	switch (command)
 	{
 	case 'e':
 		if (itemequip == nullptr)
 		{
-			for (unsigned int i = 0; i < p->player->itemcarry; i++)
+			for (unsigned int i = 0; i < itemcarry; i++)
 			{
-				if (item == p->player->item[i]->name.c_str())
+				if (item1 == item[i]->name.c_str())
 				{
-					itemequip = p->player->item[i];
-					p->player->item.resize(p->player->item[i]);
-					printf("You get the item %s equiped!\n\n", item.c_str());
+					itemequip = item[i];
+					item.resize(item[i]);
+					printf("You get the item %s equiped!\n\n", item1.c_str());
 					p->Command();
 				}
 			}
@@ -266,11 +266,11 @@ void Players::EUItem(char command,const char* i){
 		}
 		else
 		{
-			if (p->player->itemcarry < p->player->max_itemcarry)
+			if (itemcarry < max_itemcarry)
 			{
-				p->player->item.push_back(itemequip);
+				item.push_back(itemequip);
 				itemequip = nullptr;
-				printf("The item %s is in your inventory and unequip!\n\n", item.c_str());
+				printf("The item %s is in your inventory and unequip!\n\n", item1.c_str());
 				p->Command();
 			}
 			else
@@ -289,26 +289,26 @@ void Players::PGItem(char command, const char* i1, const char* i2)
 	My_String item2(i1);
 	bool flag_item1 = true;
 	bool flag_item2 = true;
-	p->player->itemcarry = p->player->item.size();
+	itemcarry = item.size();
 
 	switch (command)
 	{
 	case 'p':
-		for (unsigned int i = 0; i < p->player->itemcarry; i++)
+		for (unsigned int i = 0; i < itemcarry; i++)
 		{
-			if (item1 == p->player->item[i]->name.c_str())
+			if (item1 == item[i]->name.c_str())
 			{
-				if (p->player->item[i]->objectsarea == true)
+				if (item[i]->objectsarea == true)
 				{
-					p->player->item[i]->itemcarry = p->player->item[i]->item.size();
-					if (p->player->item[i]->itemcarry < p->player->item[i]->max_itemcarry)
+					item[i]->itemcarry = item[i]->item.size();
+					if (item[i]->itemcarry < item[i]->max_itemcarry)
 					{
-						for (unsigned int j = 0; j < p->player->itemcarry; j++)
+						for (unsigned int j = 0; j < itemcarry; j++)
 						{
-							if (item2 == p->player->item[j]->name.c_str())
+							if (item2 == item[j]->name.c_str())
 							{
-								p->player->item[i]->item.push_back(p->player->item[j]);
-								p->player->item.resize(p->player->item[j]);
+								item[i]->item.push_back(item[j]);
+								item.resize(item[j]);
 								printf("You put the item %s at %s!\n\n", item2.c_str(), item1.c_str());
 								p->Command();
 							}
@@ -343,19 +343,19 @@ void Players::PGItem(char command, const char* i1, const char* i2)
 	case 'g':
 		if (itemcarry < max_itemcarry)
 		{
-			for (unsigned int i = 0; i < p->player->itemcarry; i++)
+			for (unsigned int i = 0; i < itemcarry; i++)
 			{
-				if (item1 == p->player->item[i]->name.c_str())
+				if (item1 == item[i]->name.c_str())
 				{
-					if (p->player->item[i]->objectsarea == true)
+					if (item[i]->objectsarea == true)
 					{
-						p->player->item[i]->itemcarry = p->player->item[i]->item.size();
-						for (unsigned int j = 0; j < p->player->item[i]->itemcarry; j++)
+						item[i]->itemcarry = item[i]->item.size();
+						for (unsigned int j = 0; j < item[i]->itemcarry; j++)
 						{
-							if (item2 == p->player->item[i]->item[j]->name.c_str())
+							if (item2 == item[i]->item[j]->name.c_str())
 							{
-								p->player->item.push_back(p->player->item[i]->item[j]);
-								p->player->item[i]->item.resize(p->player->item[i]->item[j]);
+								item.push_back(item[i]->item[j]);
+								item[i]->item.resize(item[i]->item[j]);
 								printf("You get the item %s from %s!\n\n", item2.c_str(), item1.c_str());
 								p->Command();
 							}
