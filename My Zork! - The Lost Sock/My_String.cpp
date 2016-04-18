@@ -78,6 +78,5 @@ void My_String::tokens(const char* detection, Vector<My_String*>& ptr){
 			flag = false;
 		else
 			ptr.push_back(send);
-	
 	} while (flag);
 }

@@ -24,6 +24,7 @@
     <ClInclude Include="entity.h" />
     <ClInclude Include="exits.h" />
     <ClInclude Include="items.h" />
+    <ClInclude Include="MemLeaks.h" />
     <ClInclude Include="My_String.h" />
     <ClInclude Include="players.h" />
     <ClInclude Include="rooms.h" />

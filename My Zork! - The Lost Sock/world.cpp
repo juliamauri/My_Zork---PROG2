@@ -9,6 +9,116 @@ World::World()
 
 World::~World()
 {
+
+	unsigned int sizeentitites = entity.size();
+	
+	for (int clear = sizeentitites-1; clear >= 0; clear--)
+	{
+		entity[clear]->name.~My_String();
+		entity[clear]->desc.~My_String();
+
+		int size = entity[clear]->item.size();
+		for (int i = size - 1; i >= 0; i--)
+		{
+			if (entity[clear]->item[i]->objectsarea == true)
+			{
+				int sizeoa = entity[clear]->item[i]->item.size();
+				if (sizeoa == 0){}
+				else
+				{
+					for (int j = sizeoa - 1; j >= 0; j--)
+					{
+						entity[clear]->item[i]->item[j]->name.~My_String();
+						entity[clear]->item[i]->item[j]->desc.~My_String();
+						entity[clear]->item[i]->item[j]->item.~Vector();
+						entity[clear]->item[i]->item[j]->player.~Vector();
+						entity[clear]->item[i]->item[j]->room.~Vector();
+						entity[clear]->item[i]->item[j]->exit.~Vector();
+					}
+				}
+			}
+			entity[clear]->item[i]->name.~My_String();
+			entity[clear]->item[i]->desc.~My_String();
+			entity[clear]->item[i]->item.~Vector();
+			entity[clear]->item[i]->player.~Vector();
+			entity[clear]->item[i]->room.~Vector();
+			entity[clear]->item[i]->exit.~Vector();
+		}
+		entity[clear]->item.~Vector();
+
+		size = entity[clear]->player.size();
+		for (int i = size - 1; i >= 0; i--)
+		{
+			entity[clear]->player[i]->p = nullptr;
+			entity[clear]->player[i]->pos = nullptr;
+			entity[clear]->player[i]->itemequip = nullptr;
+
+			entity[clear]->player[i]->name.~My_String();
+			entity[clear]->player[i]->desc.~My_String();
+			entity[clear]->player[i]->item.~Vector();
+			entity[clear]->player[i]->player.~Vector();
+			entity[clear]->player[i]->room.~Vector();
+			//entity[clear]->player[i]->exit.~Vector();
+		}
+		entity[clear]->player.~Vector();
+
+		size = entity[clear]->exit.size();
+		for (int i = size - 1; i >= 0; i--)
+		{
+			entity[clear]->exit[i]->origin = nullptr;
+			entity[clear]->exit[i]->destiny = nullptr;
+
+			entity[clear]->exit[i]->name.~My_String();
+			entity[clear]->exit[i]->desc.~My_String();
+			entity[clear]->exit[i]->item.~Vector();
+			entity[clear]->exit[i]->player.~Vector();
+			entity[clear]->exit[i]->room.~Vector();
+			entity[clear]->exit[i]->exit.~Vector();
+		}
+		entity[clear]->exit.~Vector();
+
+		size = entity[clear]->room.size();
+		for (int i = size - 1; i >= 0; i--)
+		{
+			entity[clear]->room[i]->name.~My_String();
+			entity[clear]->room[i]->desc.~My_String();
+			entity[clear]->room[i]->descexit.~My_String();
+			entity[clear]->room[i]->item.~Vector();
+			entity[clear]->room[i]->player.~Vector();
+			entity[clear]->room[i]->room.~Vector();
+			entity[clear]->room[i]->exit.~Vector();
+		}
+		entity[clear]->room.~Vector();
+	}
+
+	joint = nullptr;
+	candies = nullptr;
+	chocolate = nullptr;
+	bottlewater = nullptr;
+	pills = nullptr;
+	perfume = nullptr;
+	backpack = nullptr;
+	scissors = nullptr;
+	lighter = nullptr;
+	umbrellas = nullptr;
+	knife = nullptr;
+	gun = nullptr;
+	screwdriver = nullptr;
+	powersupply = nullptr;
+
+	player = nullptr;
+
+	bedroom = nullptr;
+	living = nullptr;
+	entrance = nullptr;
+	kitchen = nullptr;
+	store = nullptr;
+	machines = nullptr;
+	drying = nullptr;
+	research = nullptr;
+	technology = nullptr;
+	bossroom = nullptr;
+	storesocks = nullptr;
 }
 
 void World::CreateWorld() 
@@ -43,7 +153,7 @@ void World::CreateWorld()
 	entity.push_back(new Entity("Entity 3", "Players"));
 	entity[2]->player.push_back(player = new Players("Juli", "The Best", entity[1]->exit.size(),1,2,10));
 	player->room.push_back(player->pos = bedroom);
-	player->exit = this->entity[1]->exit;
+	player->exit = entity[1]->exit;
 	player->p = this;
 	
 	
@@ -88,7 +198,7 @@ void World::Command()
 	My_String* command2 = nullptr;
 	My_String* command3 = nullptr;
 	My_String* command4 = nullptr;
-	int size = NULL;
+	unsigned int size = NULL;
 
 	commands.push_back(new My_String);
 
@@ -325,6 +435,9 @@ void World::Command()
 		printf("Introduce a good command...\n\n");
 		Command();
 	}
+
+	for (unsigned int i = 0; i < size; i++)
+		commands[i]->~My_String();
 }
 
 void World::Help() const{
