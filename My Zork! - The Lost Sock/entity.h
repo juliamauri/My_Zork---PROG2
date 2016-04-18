@@ -20,7 +20,7 @@ public:
 	Vector< Items* > item;
 
 public:
-	Entity(const char* name, const char* desc) : name(name), desc(desc){};
+	Entity(const char* name, const char* desc, bool init_room = false) : name(name), desc(desc){};
 	~Entity(){};
 
 	void Desc();

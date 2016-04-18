@@ -9,10 +9,9 @@ World::World()
 
 World::~World()
 {
-
 	unsigned int sizeentitites = entity.size();
 	
-	for (int clear = sizeentitites-1; clear >= 0; clear--)
+	for (int clear = sizeentitites - 1; clear >= 0; clear--)
 	{
 		entity[clear]->name.~My_String();
 		entity[clear]->desc.~My_String();
@@ -55,10 +54,10 @@ World::~World()
 
 			entity[clear]->player[i]->name.~My_String();
 			entity[clear]->player[i]->desc.~My_String();
-			entity[clear]->player[i]->item.~Vector();
 			entity[clear]->player[i]->player.~Vector();
 			entity[clear]->player[i]->room.~Vector();
 			entity[clear]->player[i]->exit.~Vector();
+			entity[clear]->player[i]->item.~Vector();
 		}
 		entity[clear]->player.~Vector();
 
@@ -83,10 +82,11 @@ World::~World()
 			entity[clear]->room[i]->name.~My_String();
 			entity[clear]->room[i]->desc.~My_String();
 			entity[clear]->room[i]->descexit.~My_String();
-			entity[clear]->room[i]->item.~Vector();
 			entity[clear]->room[i]->player.~Vector();
 			entity[clear]->room[i]->room.~Vector();
 			entity[clear]->room[i]->exit.~Vector();
+			entity[clear]->room[i]->item.~Vector();
+
 		}
 		entity[clear]->room.~Vector();
 	}
@@ -123,8 +123,9 @@ World::~World()
 
 void World::CreateWorld() 
 {
-	
+	entity.Init();
 	entity.push_back(new Entity("Entity 1", "Rooms"));
+	entity[0]->room.Init();
 	entity[0]->room.push_back(bedroom = new Rooms("Bedroom", "Yeah... It's my bedroom...", "It smells a jerk..."));
 	entity[0]->room.push_back(living = new Rooms("Living room", "Normal room that I use every day to contact the other world.", "Smells tasty... WTF?!? o_o"));
 	entity[0]->room.push_back(entrance = new Rooms("Entrance hall", "Yeah... It's my bedroom...", "It smells a jerk..."));
@@ -139,6 +140,7 @@ void World::CreateWorld()
 
 
 	entity.push_back(new Entity("Entity 2", "Exits"));
+	entity[1]->exit.Init();
 	entity[1]->exit.push_back(new Exits("Exit 1", "Bedroom and Living room", 'e', bedroom, living));
 	entity[1]->exit.push_back(new Exits("Exit 2", "Living room and Entrance hall", 'n', living, entrance));
 	entity[1]->exit.push_back(new Exits("Exit 3", "Living room and Kitchen", 'e', living, kitchen));
@@ -151,12 +153,14 @@ void World::CreateWorld()
 	
 
 	entity.push_back(new Entity("Entity 3", "Players"));
-	entity[2]->player.push_back(player = new Players("Juli", "The Best", entity[1]->exit.size(),1,2,10));
-	player->room.push_back(player->pos = bedroom);
+	entity[2]->player.Init();
+	entity[2]->player.push_back(player = new Players("Juli", "The Best", entity[1]->exit.size(),1,2,10,true));
+	player->pos = bedroom;
 	player->p = this;
 	
 	
 	entity.push_back(new Entity("Entity 4", "Items"));
+	entity[3]->item.Init();
 	entity[3]->item.push_back(joint = new Items("joint", "You tavell a lot..",true, 0, -3));
 	living->item.push_back(joint);
 	entity[3]->item.push_back(candies = new Items("candies", "Hmmm, delicios :3",true, 0, 0, 2));
@@ -192,7 +196,7 @@ void World::CreateWorld()
 
 void World::Command() 
 {
-	Vector<My_String*> commands;
+	Vector<My_String*> commands(true);
 	My_String* command = nullptr;
 	My_String* command2 = nullptr;
 	My_String* command3 = nullptr;
@@ -434,9 +438,6 @@ void World::Command()
 		printf("Introduce a good command...\n\n");
 		Command();
 	}
-
-	for (unsigned int i = 0; i < size; i++)
-		commands[i]->~My_String();
 }
 
 void World::Help() const{

@@ -11,9 +11,14 @@ class Rooms : public Entity
 public:
 	My_String descexit;
 	unsigned int numberitems = NULL;
+	bool init_item;
 
 public:
-	Rooms(const char* name, const char* desc, const char* descexit) : Entity(name, desc), descexit(descexit){};
+	Rooms(const char* name, const char* desc, const char* descexit, bool init_item = true) : Entity(name, desc), descexit(descexit), init_item(init_item)
+	{
+		if (init_item == true)
+			item.Init();
+	};
 	~Rooms(){};
 
 	void DescExit()const;

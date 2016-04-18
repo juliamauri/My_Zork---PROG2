@@ -13,7 +13,11 @@ public:
 	unsigned int max_itemcarry = NULL;
 
 public:
-	Items(const char* name, const char* desc, bool consumable, int attack = 0, int defense = 0, int hp = 0, bool objectsarea = false, unsigned int max_itemcarry = 2) : Entity(name, desc), consumable(consumable), Stats(attack, defense, hp), objectsarea(objectsarea), max_itemcarry(max_itemcarry){};
+	Items(const char* name, const char* desc, bool consumable, int attack = 0, int defense = 0, int hp = 0, bool objectsarea = false, unsigned int max_itemcarry = 2) : Entity(name, desc), consumable(consumable), Stats(attack, defense, hp), objectsarea(objectsarea), max_itemcarry(max_itemcarry)
+	{
+		if (objectsarea == true)
+			item.Init();
+	};
 	~Items(){};
 };
 

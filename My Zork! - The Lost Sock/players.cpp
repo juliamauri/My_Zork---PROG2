@@ -214,7 +214,6 @@ void Players::PDItem(char command,const char* i)
 			printf("I am not carring this item...\n\n");
 		break;
 	}
-	item1.~My_String();
 	p->Command();
 }
 
@@ -295,7 +294,6 @@ void Players::EUItem(char command,const char* i){
 		}
 		break;
 	}
-	item1.~My_String();
 	p->Command();
 }
 
@@ -399,8 +397,6 @@ void Players::PGItem(char command, const char* i1, const char* i2)
 			printf("The item %s isn't carring the item %s...\n\n",item1.c_str(), item2.c_str());
 		break;
 	}
-	item2.~My_String();
-	item1.~My_String();
 	p->Command();
 }
 

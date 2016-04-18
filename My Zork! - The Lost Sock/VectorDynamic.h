@@ -13,9 +13,10 @@ private:
 
 
 public:
-	Vector()
+	Vector(bool init = false)
 	{
-		buffer = new TYPE[capacity];
+		if (init == true)
+			Init();
 	}
 
 	Vector(const Vector& copy)
@@ -50,7 +51,10 @@ public:
 		return buffer[i];
 	}
 
-
+	void Init()
+	{
+		buffer = new TYPE[capacity];
+	}
 
 	void push_back(const TYPE &element){
 
