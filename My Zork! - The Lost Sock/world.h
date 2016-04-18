@@ -51,6 +51,7 @@ public:
 	void Help()const;
 	void Init();
 	void Loop();
+	void Quit();
 };
 
 #endif //__world__

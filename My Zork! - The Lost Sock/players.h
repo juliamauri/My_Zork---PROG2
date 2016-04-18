@@ -5,10 +5,11 @@
 #include "rooms.h"
 #include "VectorDynamic.h"
 #include "items.h"
+#include "stats.h"
 
 class World;
 
-class Players : public Entity
+class Players : public Entity, public Stats
 {
 public:
 	World* p;
@@ -23,7 +24,7 @@ public:
 	bool movclose = false;
 
 public:
-	Players(const char* name, const char* desc,unsigned int ext_size) : Entity(name, desc),ext_size(ext_size){};
+	Players(const char* name, const char* desc, int ext_size, int attack = 0, int defense = 0, int hp = 0) : Entity(name, desc), ext_size(ext_size), Stats(attack, defense, hp){};
 	~Players(){};
 
 	void Look(char);
@@ -35,6 +36,8 @@ public:
 	void Inventory();
 	void EUItem(char,const char*);
 	void PGItem(char,const char*, const char*);
+	void UpdateStats();
+	void PrintStats();
 	short FindExit(char)const;
 	void PrintOCDoor(short, bool)const;
 };
