@@ -10,12 +10,17 @@ You are a simple human who praise Lord Gaben
 
 ## Commands
 
-* - look: for printing description room and possible exits.
+* - look: for printing description room, possible exits and items.
 * - look + direction: for printing description of possible exits content.
 * - go + direction: for moving at rooms.
 * - enter + portal: for passing the portal.
 * - open/close + door/gate: for opening or closing doors/gates when you tryied to pass.
 * - open/close + direction + door/gate: for opening or closing doors/gates directly with direction.
+* - pick/drop + item: for picking and dropping items on the room.
+* - inventory/inv/i: s for looking at the list of items player is carrying. You have 3 spaces of limit.
+* - equip/unequip + item: for equiping any item at player.
+* - put/get + item + into/from + item: put items inside other items.;
+* - stats: for seeing your stats, the objects can afect the stats.
 * - quit: to exit the game.
 * - help: for ptinting the help commands.
 	
@@ -24,7 +29,7 @@ All doors are closed.
 
 ## Message for Ric :3
 
-* Can you try to crash the command function?
+* I did the stats function (change variables with items no consumables) because my special feature is better for battles.
 
 ## Links
 
@@ -40,6 +45,7 @@ All doors are closed.
  * Part 9 - https://www.twitch.tv/juligame97/v/54777347
  * Part 10 - https://www.twitch.tv/juligame97/v/54777473
  * Part 11 - https://www.twitch.tv/juligame97/v/54777511
+ **Too much work for streaming :(
  
 ## Credits
 By Julià Mauri Costa, first year student on CITM Terrassa, Catalonia, Spain.
