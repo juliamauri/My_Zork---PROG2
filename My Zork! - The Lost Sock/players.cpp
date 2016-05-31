@@ -44,17 +44,22 @@ void Players::Look(char dir)
 		printf("Items:\n\n");
 		uint i = 0;
 		item_node = localition->contains.end();
-		while (item_node->data != nullptr)
+		if (localition->ObjectsinRoom != false)
 		{
-			printf("%i-", i++ + 1);
-			((Items*)item_node->data)->Desc();
-			printf("-----------------\n\n");
+			while (item_node->data != nullptr)
+			{
+				printf("%i-", i++ + 1);
+				((Items*)item_node->data)->Desc();
+				printf("-----------------\n\n");
 
-			if (item_node->previous != nullptr)
-				item_node = item_node->previous;
-			else
-				break;
+				if (item_node->previous != nullptr)
+					item_node = item_node->previous;
+				else
+					break;
+			}
 		}
+		else
+			printf("Any objects at room..\n\n");
 	}
 	Wd->Command();
 }
@@ -117,27 +122,25 @@ void Players::ChangeWorld()
 	}
 }
 
-/*
 // Open/Close door functions, with some if and values, that changed while player moving, etc. It works for best using the doors.
 void Players::OpenDoor(char dir)
 {
-
 	if (dir)
 		lasttrieddoor = dir;
 
 	if (lasttrieddoor)
 	{
-		short num_ext = FindExit(lasttrieddoor);
+		bool door_exits = FindExit(dir);
 
-		if (num_ext != -1)
+		if (door_exits != false)
 		{
-				p->entity[1]->exit[num_ext]->door = true;
-				PrintOCDoor(lasttrieddoor, true);
+			((Exits*)exit_node->data)->door = true;
+			PrintOCDoor(lasttrieddoor, true);
 
-				if (lasttrieddoor == 'n') lasttrieddoor = 's';
-				else if (lasttrieddoor == 's') lasttrieddoor = 'n';
-				else if (lasttrieddoor == 'e') lasttrieddoor = 'w';
-				else if (lasttrieddoor == 'w') lasttrieddoor = 'e';
+			if (lasttrieddoor == 'n') lasttrieddoor = 's';
+			else if (lasttrieddoor == 's') lasttrieddoor = 'n';
+			else if (lasttrieddoor == 'e') lasttrieddoor = 'w';
+			else if (lasttrieddoor == 'w') lasttrieddoor = 'e';
 		}
 		else
 			printf("You aren't opening any door...\n\n");
@@ -145,7 +148,7 @@ void Players::OpenDoor(char dir)
 	else
 		printf("You didn't try open any door...\n\n");
 
-	p->Command();
+	Wd->Command();
 	
 }
 
@@ -162,13 +165,13 @@ void Players::CloseDoor(char dir)
 
 	if (lasttrieddoor)
 	{
-		short num_ext = FindExit(lasttrieddoor);
+		bool door_exits = FindExit(dir);
 
-		if (num_ext != -1)
+		if (door_exits != false)
 		{
-				p->entity[1]->exit[num_ext]->door = false;
-				PrintOCDoor(lasttrieddoor, false);
-				movclose = false;
+			((Exits*)exit_node->data)->door = false;
+			PrintOCDoor(lasttrieddoor, false);
+			movclose = false;
 		}
 		else
 			printf("You aren't closing any door...\n\n");
@@ -176,10 +179,10 @@ void Players::CloseDoor(char dir)
 	else
 		printf("You didn't try close any door...\n\n");
 	
-	p->Command();
+	Wd->Command();
 
 }
-
+/*
 void Players::PDItem(char command,const char* i)
 {
 	My_String item1(i);

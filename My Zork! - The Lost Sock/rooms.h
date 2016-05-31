@@ -10,10 +10,13 @@ class Rooms : public Entity
 {
 public:
 	My_String descexit;
+	bool ObjectsinRoom = false;
 
 public:
 	Rooms(const char* name, const char* desc, const char* descexit, EntityType type) : Entity(name, desc, type), descexit(descexit){};
 	~Rooms(){};
+
+	update_status Update();
 
 	void DescExit()const;
 };

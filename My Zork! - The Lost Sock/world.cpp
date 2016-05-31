@@ -140,6 +140,19 @@ void World::CreateWorld()
 	player->SetExits();
 }
 
+update_status World::Update()
+{
+	update_status ret = UPDATE_CONTINUE;
+
+	for (uint i = 0; i < entities.size() && ret == UPDATE_CONTINUE; ++i)
+	{
+		entities[i]->Update();
+		ret = UPDATE_CONTINUE;
+	}
+
+	return ret;
+}
+
 void World::Command() 
 {
 	Vector<My_String*> commands(true);
@@ -220,7 +233,6 @@ void World::Command()
 			}
 		}
 	}
-	/*
 	else if (*command == "open")
 	{
 		if (command2 == nullptr)
@@ -287,6 +299,7 @@ void World::Command()
 			}
 		}
 	}
+	/*
 	else if ((*command == "pick" || *command == "drop") && command3 == nullptr)
 	{
 		if (command2 == nullptr)
@@ -429,6 +442,8 @@ void World::Loop(){
 	
 	do{
 		player->localition->Desc();
+
+		Update();
 
 		Command();
 
