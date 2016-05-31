@@ -255,32 +255,53 @@ void Players::PDItem(char command,const char* i)
 	}
 	Wd->Command();
 }
-/*
 void Players::Inventory()
 {
-	itemcarry = item.size();
+	uint i = 0;
+	uint j = 0;
 
-	printf("\n You are carring: \n");
-	for (unsigned int i = 0;i < itemcarry;i++)
+	itemcarry = contains.size();
+	item_node = contains.end();
+
+	if (contains.empty() != true)
 	{
-		printf("%i-", i+1);
-		item[i]->Desc();
-		if (item[i]->objectsarea == true){
-			item[i]->itemcarry = item[i]->item.size();
-			for (unsigned int j = 0; j < item[i]->itemcarry; j++)
-			{
-				printf("%i.%i-", i+1,j + 1);
-				item[i]->item[j]->Desc();
-				printf("\n-------\n");
+		printf("\n You are carring: \n");
+		while (item_node->data != nullptr)
+		{
+			printf("%i-", i++ + 1);
+			((Items*)item_node->data)->Desc();
+			if (((Items*)item_node->data)->objectsarea == true){
+				((Items*)item_node->data)->itemcarry = ((Items*)item_node->data)->contains.size();
+				Node<Entity*>* carryitem_node = ((Items*)item_node->data)->contains.end();
+				if (((Items*)item_node->data)->contains.empty() != true)
+				{
+					while (carryitem_node->data != nullptr)
+					{
+						printf("%i.%i-", i + 1, j++ + 1);
+						((Items*)carryitem_node->data)->Desc();
+						printf("\n-------\n");
+						if (carryitem_node->previous != nullptr)
+							carryitem_node = carryitem_node->previous;
+						else
+							break;
+					}
+				}
+				printf("Total space of object: %i/%i\n\n", ((Items*)item_node->data)->itemcarry, ((Items*)item_node->data)->max_itemcarry);
 			}
-			printf("Total space of object: %i/%i\n\n", item[i]->itemcarry, item[i]->max_itemcarry);
+			printf("\n-----------------\n");
+			if (item_node->previous != nullptr)
+				item_node = item_node->previous;
+			else
+				break;
 		}
-		printf("\n-----------------\n");
+		printf("Total space of you: %i/%i\n\n", itemcarry, max_itemcarry);
 	}
-	printf("Total space of you: %i/%i\n\n", itemcarry, max_itemcarry);
-	p->Command();
-}
+	else
+		printf("You aren't carring any object..");
 
+	Wd->Command();
+}
+/*
 void Players::EUItem(char command,const char* i){
 	My_String item1(i);
 	bool flag_item = true;
