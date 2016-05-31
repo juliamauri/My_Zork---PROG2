@@ -1,8 +1,8 @@
-#ifndef __exits__
-#define __exits__
+#ifndef __EXITS_H__
+#define __EXITS_H__
 
-#include "entity.h"
-#include "rooms.h"
+#include "Entity.h"
+#include "Rooms.h"
 
 class Exits : public Entity
 {
@@ -13,8 +13,8 @@ public:
 	char dir_dest;
 
 public:
-	Exits(const char* name, const char* desc, const char& dir_dest, Rooms* o, Rooms* d) : Entity(name, desc), dir_dest(dir_dest), origin(o), destiny(d){};
+	Exits(const char* name, const char* desc, const char& dir_dest, Rooms* o, Rooms* d, EntityType type) : Entity(name, desc, type), dir_dest(dir_dest), origin(o), destiny(d){};
 	~Exits(){};
 };
 
-#endif //__exits__
+#endif //__EXITS_H__

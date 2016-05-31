@@ -1,48 +1,64 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "world.h"
-#include "exits.h"
-#include "players.h"
-#include "rooms.h"
+#include "World.h"
+#include "Exits.h"
+#include "Players.h"
+#include "Rooms.h"
 #include "My_String.h"
 
 
-void Players::Look(char dir)const
+
+void Players::Look(char dir)
 {
 	if (dir){
-		short num_ext = FindExit(dir);
+
+
+		bool door_exits = FindExit(dir);
 		
-		if (num_ext != -1)
-			p->entity[1]->exit[num_ext]->destiny->DescExit();
+		if (door_exits == true)
+			((Exits*)exit_node->data)->destiny->DescExit();
 		else
 			printf("Door doesn't exist.\n\n");
 	}
 	else {
 		system("cls");
-		pos->Desc();
-		for (unsigned int i = 0; i < ext_size; ++i){
-			if (p->entity[1]->exit[i]->origin == pos)
+		localition->Desc();
+		exit_node = exit_list.end();
+		while (exit_node->data != nullptr)
+		{
+			if (((Exits*)exit_node->data)->origin == localition)
 			{
-				if (p->entity[1]->exit[i]->dir_dest == 'n') printf("There are way at north!\n\n");
-				if (pos == p->entity[1]->exit[4]->origin && p->entity[1]->exit[4]->dir_dest == 's') printf("There are portal at north!\n\n");
-				if (p->entity[1]->exit[i]->dir_dest == 's') printf("There are way at south!\n\n");
-				if (pos == p->entity[1]->exit[3]->origin && p->entity[1]->exit[3]->dir_dest == 'n') printf("There are portal at south!\n\n");
-				if (p->entity[1]->exit[i]->dir_dest == 'e') printf("There are way at east!\n\n");
-				if (p->entity[1]->exit[i]->dir_dest == 'w') printf("There are way at west!\n\n");
+				if (((Exits*)exit_node->data)->dir_dest == 'n') printf("There are way at north!\n\n");
+				if (localition == ((Exits*)Wd->entities[15])->origin && ((Exits*)Wd->entities[15])->dir_dest == 's') printf("There are portal at north!\n\n");
+				if (((Exits*)exit_node->data)->dir_dest == 's') printf("There are way at south!\n\n");
+				if (localition == ((Exits*)Wd->entities[14])->origin && ((Exits*)Wd->entities[14])->dir_dest == 'n') printf("There are portal at south!\n\n");
+				if (((Exits*)exit_node->data)->dir_dest == 'e') printf("There are way at east!\n\n");
+				if (((Exits*)exit_node->data)->dir_dest == 'w') printf("There are way at west!\n\n");
 			}
+			if (exit_node->previous != nullptr)
+				exit_node = exit_node->previous;
+			else
+				break;
 		}
-		pos->numberitems = pos->item.size();
 		printf("Items:\n\n");
-		for (unsigned int i = 0; i < pos->numberitems; i++){
-			printf("%i-", i + 1);
-			pos->item[i]->Desc();
+		uint i = 0;
+		item_node = localition->contains.end();
+		while (item_node->data != nullptr)
+		{
+			printf("%i-", i++ + 1);
+			((Items*)item_node->data)->Desc();
 			printf("-----------------\n\n");
+
+			if (item_node->previous != nullptr)
+				item_node = item_node->previous;
+			else
+				break;
 		}
 	}
-	p->Command();
+	Wd->Command();
 }
-
+/*
 void Players::Movement(char dir)
 {
 
@@ -436,16 +452,24 @@ void Players::PrintStats()
 	printf("HP: %i\n\n",hp);
 	p->Command();
 }
-
+*/
 //Find exit of conection with doors
-short Players::FindExit(char dir)const
+bool Players::FindExit(char dir)
 {
-	for (unsigned int i = 0; i < ext_size; ++i){
-		
-		if (p->entity[1]->exit[i]->origin == pos && p->entity[1]->exit[i]->dir_dest == dir)
-			return i;
+	bool ret = false;
+
+	exit_node = exit_list.end();
+	while (exit_node->data != nullptr)
+	{
+		if (((Exits*)exit_node->data)->origin == localition && ((Exits*)exit_node->data)->dir_dest == dir)
+			ret = true;
+			
+		if (ret == false)
+			exit_node = exit_node->previous;
+		else
+			break;
 	}
-	return -1;
+	return ret;
 }
 
 void Players::PrintOCDoor(short dir, bool OpenClose)const
@@ -477,4 +501,11 @@ void Players::PrintOCDoor(short dir, bool OpenClose)const
 			printf("The west door is now close!\n\n");
 		break;
 	}
+}
+
+void Players::SetExits()
+{
+	exit_list = Wd->FindAll(EXIT);
+
+	exit_node = exit_list.end();
 }

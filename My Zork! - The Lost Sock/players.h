@@ -1,40 +1,31 @@
-#ifndef __players__
-#define __players__
+#ifndef __PLAYERS_H__
+#define __PLAYERS_H__
 
-#include "entity.h"
-#include "rooms.h"
-#include "VectorDynamic.h"
-#include "items.h"
-#include "stats.h"
+#include "Creature.h"
 
-class World;
+class Items;
+class Rooms;
 
-class Players : public Entity, public Stats
+class Players : public Creature
 {
 public:
-	World* p;
-	Rooms* pos = nullptr;
 	Items* itemequip = nullptr;
-	unsigned int ext_size = NULL;
-	unsigned int itemcarry = NULL;
-	unsigned int max_itemcarry = 3;
-	bool init_item;
+	uint itemcarry = NULL;
+	uint max_itemcarry = 3;
+
+	List<Entity*> exit_list;
+	Node<Entity*>* exit_node = nullptr;
+	Node<Entity*>* item_node = nullptr;
 
 	//Variables for doing the Close/Open door funciton, with totally uses of commands.
 	char lasttrieddoor;
 	bool movclose = false;
 
 public:
-	Players(const char* name, const char* desc, int ext_size, int attack = 0, int defense = 0, int hp = 0, bool init_item = false) : Entity(name, desc), ext_size(ext_size), Stats(attack, defense, hp), init_item(init_item)
-	{
-		if (init_item == true)
-			item.Init();
-	};
-	~Players()
-	{
-	};
+	Players(const char* name, const char* desc, Rooms* pos, EntityType type, int attack = 0, int defense = 0, int hp = 0) : Creature(name,desc,pos,type,attack,defense,hp){};
+	~Players(){};
 
-	void Look(char)const;
+	void Look(char);
 	void Movement(char);
 	void ChangeWorld();
 	void OpenDoor(char);
@@ -45,8 +36,9 @@ public:
 	void PGItem(char,const char*, const char*);
 	void UpdateStats();
 	void PrintStats();
-	short FindExit(char)const;
+	bool FindExit(char);
 	void PrintOCDoor(short, bool)const;
+	void SetExits();
 };
 
-#endif //__players__
+#endif //__PLAYERS_H__

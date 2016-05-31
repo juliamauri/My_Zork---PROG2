@@ -1,29 +1,21 @@
-#ifndef __rooms__
-#define __rooms__
+#ifndef __ROOMS_H__
+#define __ROOMS_H__
 
-#include "entity.h"
+#include "Entity.h"
 #include "VectorDynamic.h"
 #include "My_String.h"
-#include "items.h"
+#include "Items.h"
 
 class Rooms : public Entity
 {
 public:
 	My_String descexit;
-	unsigned int numberitems = NULL;
-	bool init_item;
 
 public:
-	Rooms(const char* name, const char* desc, const char* descexit, bool init_item = true) : Entity(name, desc), descexit(descexit), init_item(init_item)
-	{
-		if (init_item == true)
-			item.Init();
-	};
-	~Rooms()
-	{
-	};
+	Rooms(const char* name, const char* desc, const char* descexit, EntityType type) : Entity(name, desc, type), descexit(descexit){};
+	~Rooms(){};
 
 	void DescExit()const;
 };
 
-#endif //__rooms__
+#endif //__ROOMS_H__

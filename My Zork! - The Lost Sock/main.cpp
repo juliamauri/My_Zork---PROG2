@@ -1,16 +1,18 @@
 #include <stdio.h>
-#include "world.h"
+#include "World.h"
 #include "MemLeaks.h"
+
+World* Wd = nullptr;
 
 int main()
 {
 	ReportMemoryLeaks();
 
-	World Sock;
+	Wd = new World;
 
-	Sock.Init();
+	Wd->Init();
 
-	Sock.Loop();
+	Wd->Loop();
 
 	return 0;
 }

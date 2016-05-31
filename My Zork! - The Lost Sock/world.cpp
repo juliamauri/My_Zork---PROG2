@@ -1,14 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "world.h"
+#include "World.h"
+#include "Players.h"
+#include "Rooms.h"
+#include "Exits.h"
+#include "Stats.h"
+#include "Items.h"
 
 World::World()
-{
-}
+{}
 
 World::~World()
 {
+	/*
 	unsigned int sizeentities = entity.size();
 	
 	for (int clear = sizeentities - 1; clear >= 0; clear--)
@@ -43,6 +48,7 @@ World::~World()
 
 		delete entity[clear];
 	}
+	*/
 }
 
 void World::CreateWorld()
@@ -74,75 +80,64 @@ void World::CreateWorld()
 	Items* screwdriver = nullptr;
 	Items* powersupply = nullptr;
 
-	entity.Init();
-	entity.push_back(new Entity("Entity 1", "Rooms"));
-	entity[0]->room.Init();
-	entity[0]->room.push_back(bedroom = new Rooms("Bedroom", "Yeah... It's my bedroom...", "It smells a jerk..."));
-	entity[0]->room.push_back(living = new Rooms("Living room", "Normal room that I use every day to contact the other world.", "Smells tasty... WTF?!? o_o"));
-	entity[0]->room.push_back(entrance = new Rooms("Entrance hall", "Yeah... It's my bedroom...", "It smells a jerk..."));
-	entity[0]->room.push_back(kitchen = new Rooms("Kitchen", "Too much sugar everywhere ._.", "Hmm... I'm hungry :3"));
-	entity[0]->room.push_back(store = new Rooms("Storeroom", "Amount of rope everywhere...", "It smells trash"));
-	entity[0]->room.push_back(machines = new Rooms("Machines room", "Too much metal", "Nosy!! OMG! PLS! STOP!"));
-	entity[0]->room.push_back(drying = new Rooms("Drying room", "Wind everywhere", "I feel cold"));
-	entity[0]->room.push_back(research = new Rooms("Research room", "Papers everiwhere...", "I can see lights..."));
-	entity[0]->room.push_back(technology = new Rooms("Technology room", "Unknown technology... Waow *^*", "Too much security..."));
-	entity[0]->room.push_back(bossroom = new Rooms("Boss room", "Wires across the room", "I activated my senses arachnids..."));
-	entity[0]->room.push_back(storesocks = new Rooms("Store socks", "Socks everywhere!", "I supose that is the last room, pls!!"));
+	entities.push_back(bedroom = new Rooms("Bedroom", "Yeah... It's my bedroom...", "It smells a jerk...", ROOM));
+	entities.push_back(living = new Rooms("Living room", "Normal room that I use every day to contact the other world.", "Smells tasty... WTF?!? o_o", ROOM));
+	entities.push_back(entrance = new Rooms("Entrance hall", "Yeah... It's my bedroom...", "It smells a jerk...", ROOM));
+	entities.push_back(kitchen = new Rooms("Kitchen", "Too much sugar everywhere ._.", "Hmm... I'm hungry :3", ROOM));
+	entities.push_back(store = new Rooms("Storeroom", "Amount of rope everywhere...", "It smells trash", ROOM));
+	entities.push_back(machines = new Rooms("Machines room", "Too much metal", "Nosy!! OMG! PLS! STOP!", ROOM));
+	entities.push_back(drying = new Rooms("Drying room", "Wind everywhere", "I feel cold", ROOM));
+	entities.push_back(research = new Rooms("Research room", "Papers everiwhere...", "I can see lights...", ROOM));
+	entities.push_back(technology = new Rooms("Technology room", "Unknown technology... Waow *^*", "Too much security...", ROOM));
+	entities.push_back(bossroom = new Rooms("Boss room", "Wires across the room", "I activated my senses arachnids...", ROOM));
+	entities.push_back(storesocks = new Rooms("Store socks", "Socks everywhere!", "I supose that is the last room, pls!!", ROOM));
+	//0 - 10
 
-
-	entity.push_back(new Entity("Entity 2", "Exits"));
-	entity[1]->exit.Init();
-	entity[1]->exit.push_back(new Exits("Exit 1", "Bedroom and Living room", 'e', bedroom, living));
-	entity[1]->exit.push_back(new Exits("Exit 2", "Living room and Entrance hall", 'n', living, entrance));
-	entity[1]->exit.push_back(new Exits("Exit 3", "Living room and Kitchen", 'e', living, kitchen));
-	entity[1]->exit.push_back(new Exits("Exit 4", "Kitchen and Storeroom", 's', kitchen, store));
-	entity[1]->exit.push_back(new Exits("Exit 5", "Machines room and Drying room", 's', machines, drying));
-	entity[1]->exit.push_back(new Exits("Exit 6", "Drying room and Research room", 'e', drying, research));
-	entity[1]->exit.push_back(new Exits("Exit 7", "Research room and Technology room", 's', research, technology));
-	entity[1]->exit.push_back(new Exits("Exit 8", "Research room and Boss room", 'e', research, bossroom));
-	entity[1]->exit.push_back(new Exits("Exit 9", "Boss room and Store socks", 'n', bossroom, storesocks));
+	entities.push_back(new Exits("Exit 1", "Bedroom and Living room", 'e', bedroom, living, EXIT));
+	entities.push_back(new Exits("Exit 2", "Living room and Entrance hall", 'n', living, entrance, EXIT));
+	entities.push_back(new Exits("Exit 3", "Living room and Kitchen", 'e', living, kitchen, EXIT));
+	entities.push_back(new Exits("Exit 4", "Kitchen and Storeroom", 's', kitchen, store, EXIT));
+	entities.push_back(new Exits("Exit 5", "Machines room and Drying room", 's', machines, drying, EXIT));
+	entities.push_back(new Exits("Exit 6", "Drying room and Research room", 'e', drying, research, EXIT));
+	entities.push_back(new Exits("Exit 7", "Research room and Technology room", 's', research, technology, EXIT));
+	entities.push_back(new Exits("Exit 8", "Research room and Boss room", 'e', research, bossroom, EXIT));
+	entities.push_back(new Exits("Exit 9", "Boss room and Store socks", 'n', bossroom, storesocks, EXIT));
 	
+	entities.push_back(player = new Players("Juli", "The Best", bedroom, PLAYER, 1, 2, 10));
 
-	entity.push_back(new Entity("Entity 3", "Players"));
-	entity[2]->player.Init();
-	entity[2]->player.push_back(player = new Players("Juli", "The Best", entity[1]->exit.size(),1,2,10,true));
-	player->pos = bedroom;
-	player->p = this;
-	
-	
-	entity.push_back(new Entity("Entity 4", "Items"));
-	entity[3]->item.Init();
-	entity[3]->item.push_back(joint = new Items("joint", "You tavell a lot..",true, 0, -3));
-	living->item.push_back(joint);
-	entity[3]->item.push_back(candies = new Items("candies", "Hmmm, delicios :3",true, 0, 0, 2));
-	player->item.push_back(candies);
-	entity[3]->item.push_back(chocolate = new Items("chocolate", "Hmmm, delicios :3",true, 0, 0, 5));
-	kitchen->item.push_back(chocolate);
-	entity[3]->item.push_back(bottlewater = new Items("waterbottle", "Very important for live..",true, 1, 0, 1));
-	kitchen->item.push_back(bottlewater);
-	entity[3]->item.push_back(pills = new Items("pills", "I'm sick ;(",true, 0, 0, 10));
-	bedroom->item.push_back(pills);
-	entity[3]->item.push_back(perfume = new Items("perfume", "I'm glourious :D",true));
-	bedroom->item.push_back(perfume);
+	entities.push_back(joint = new Items("joint", "You tavell a lot..", ITEM, true, 0, -3));
+	living->contains.pushback(joint);
+	entities.push_back(candies = new Items("candies", "Hmmm, delicios :3", ITEM, true, 0, 0, 2));
+	player->contains.pushback(candies);
+	entities.push_back(chocolate = new Items("chocolate", "Hmmm, delicios :3", ITEM, true, 0, 0, 5));
+	kitchen->contains.pushback(chocolate);
+	entities.push_back(bottlewater = new Items("waterbottle", "Very important for live..", ITEM, true, 1, 0, 1));
+	kitchen->contains.pushback(bottlewater);
+	entities.push_back(pills = new Items("pills", "I'm sick ;(", ITEM, true, 0, 0, 10));
+	bedroom->contains.pushback(pills);
+	entities.push_back(perfume = new Items("perfume", "I'm glourious :D", ITEM, true));
+	bedroom->contains.pushback(perfume);
 
-	entity[3]->item.push_back(backpack = new Items("backpack", "More place for items :D",false, 0, 3, 0, true, 5));
-	bedroom->item.push_back(backpack);
+	entities.push_back(backpack = new Items("backpack", "More place for items :D", ITEM, false, 0, 3, 0, true, 5));
+	bedroom->contains.pushback(backpack);
 
-	entity[3]->item.push_back(scissors = new Items("scissors", "Cut everithing",false, 2));
-	living->item.push_back(scissors);
-	entity[3]->item.push_back(lighter = new Items("lighter", "Burn everithing", false, 4));
-	living->item.push_back(lighter);
-	entity[3]->item.push_back(umbrellas = new Items("umbrellas", "It's raining men..", false, 1));
-	entrance->item.push_back(umbrellas);
-	entity[3]->item.push_back(knife = new Items("knife", "I cut my finger :D", false, 5));
-	kitchen->item.push_back(knife);
-	entity[3]->item.push_back(gun = new Items("gun", "Shot the air", false, 6));
-	bedroom->item.push_back(gun);
+	entities.push_back(scissors = new Items("scissors", "Cut everithing", ITEM, false, 2));
+	living->contains.pushback(scissors);
+	entities.push_back(lighter = new Items("lighter", "Burn everithing", ITEM, false, 4));
+	living->contains.pushback(lighter);
+	entities.push_back(umbrellas = new Items("umbrellas", "It's raining men..", ITEM, false, 1));
+	entrance->contains.pushback(umbrellas);
+	entities.push_back(knife = new Items("knife", "I cut my finger :D", ITEM, false, 5));
+	kitchen->contains.pushback(knife);
+	entities.push_back(gun = new Items("gun", "Shot the air", ITEM, false, 6));
+	bedroom->contains.pushback(gun);
 
-	entity[3]->item.push_back(screwdriver = new Items("screwdriver", "Fix some bugs", false, 2));
-	machines->item.push_back(screwdriver);
-	entity[3]->item.push_back(powersupply = new Items("powersupply", "More energy, please",false));
-	technology->item.push_back(powersupply);
+	entities.push_back(screwdriver = new Items("screwdriver", "Fix some bugs", ITEM, false, 2));
+	machines->contains.pushback(screwdriver);
+	entities.push_back(powersupply = new Items("powersupply", "More energy, please", ITEM, false));
+	technology->contains.pushback(powersupply);
+
+	player->SetExits();
 }
 
 void World::Command() 
@@ -204,6 +199,7 @@ void World::Command()
 			Command();
 		}
 	}
+	/*
 	else if (*command == "go")
 	{
 		if (command2 == nullptr)
@@ -358,6 +354,7 @@ void World::Command()
 	{
 		player->PrintStats();
 	}
+	*/
 	else if (*command == "quit" && command2 == nullptr)
 	{
 		loop = false;
@@ -366,6 +363,7 @@ void World::Command()
 	{
 		Help();
 	}
+	/*
 	else if (*command == "enter" && command3 == nullptr)
 	{
 		if (command2 == nullptr)
@@ -384,6 +382,7 @@ void World::Command()
 			}
 		}
 	}
+	*/
 	else
 	{
 		printf("Introduce a good command...\n\n");
@@ -430,7 +429,7 @@ void World::Init(){
 void World::Loop(){
 	
 	do{
-		player->pos->Desc();
+		player->localition->Desc();
 
 		Command();
 
@@ -440,4 +439,26 @@ void World::Loop(){
 		system("cls");
 
 	} while (loop != false);
+}
+
+Entity* World::Find(EntityType type)
+{
+	uint num_elements = entities.size();
+	for (uint i = 0; i < num_elements; i++)
+	{
+		if (entities[i]->type == type)
+			return entities[i];
+	}
+}
+
+List<Entity*> World::FindAll(EntityType type)
+{
+	uint num_elements = entities.size();
+	List<Entity*> ret;
+	for (uint i = 0; i < num_elements; i++)
+	{
+		if (entities[i]->type == type)
+			ret.pushback(entities[i]);
+	}
+	return ret;
 }

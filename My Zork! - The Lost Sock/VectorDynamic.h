@@ -7,16 +7,15 @@ template<class TYPE>
 class Vector{
 private:
 	TYPE* buffer;
-	unsigned int capacity = 1;
+	unsigned int capacity = 10;
 	unsigned int num_elements = 0;
 
 
 
 public:
-	Vector(bool init = false)
+	Vector()
 	{
-		if (init == true)
-			Init();
+		buffer = new TYPE[capacity];
 	}
 
 	Vector(const Vector& copy)
@@ -51,10 +50,6 @@ public:
 		return buffer[i];
 	}
 
-	void Init()
-	{
-		buffer = new TYPE[capacity];
-	}
 
 	void push_back(const TYPE &element){
 
@@ -186,6 +181,7 @@ public:
 
 		buffer = temp;
 	}
+
 
 	//at(), [] don't use assert..
 

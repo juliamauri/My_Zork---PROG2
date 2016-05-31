@@ -1,4 +1,4 @@
-#include "entity.h"
+#include "Entity.h"
 
 void Entity::Desc()const{
 	printf("%s\n\n", name);

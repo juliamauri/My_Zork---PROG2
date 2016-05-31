@@ -1,30 +1,35 @@
-#ifndef __world__
-#define __world__
+#ifndef __WORLD_H__
+#define __WORLD_H__
 
-#include "entity.h"
+#include "Globals.h"
 #include "VectorDynamic.h"
-#include "rooms.h"
-#include "exits.h"
-#include "players.h"
-#include "items.h"
+#include "Entity.h"
+#include "Linked_List.h"
+
+class Players;
 
 class World
 {
 public:
 	bool loop = true;
-	Vector<Entity*> entity;
+	Vector<Entity*> entities;
 	Players* player = nullptr;
-
 
 public:
 	World();
 	~World();
+
+	update_status Update();
 
 	void CreateWorld();
 	void Command();
 	void Help()const;
 	void Init();
 	void Loop();
+	Entity* Find(EntityType type);
+	List<Entity*> FindAll(EntityType type);
 };
 
-#endif //__world__
+extern World* Wd;
+
+#endif //__WORLD_H__

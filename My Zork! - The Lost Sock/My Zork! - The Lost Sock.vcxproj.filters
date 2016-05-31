@@ -1,75 +1,88 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
+    <Filter Include="Containers">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Core">
+      <UniqueIdentifier>{a00b2538-e36e-4d1d-80f7-0211afb14ffb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Zones">
+      <UniqueIdentifier>{43044a99-ca80-4d3e-ae9d-8727b8ae7fa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Creatures">
+      <UniqueIdentifier>{53bcd8e4-1b23-41b3-931a-24b13649a0fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{7adc4aff-1f20-41e3-91bb-4a5f72fbd158}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="World.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="world.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="players.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="rooms.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="exits.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Zones</Filter>
     </ClCompile>
-    <ClCompile Include="My_String.cpp">
-      <Filter>Resource Files</Filter>
+    <ClCompile Include="rooms.cpp">
+      <Filter>Zones</Filter>
     </ClCompile>
-    <ClCompile Include="entity.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="players.cpp">
+      <Filter>Creatures</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="items.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="My_String.cpp">
+      <Filter>Containers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="world.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Entity.h">
+      <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="exits.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Globals.h">
+      <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="players.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="World.h">
+      <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="rooms.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Exits.h">
+      <Filter>Zones</Filter>
     </ClInclude>
-    <ClInclude Include="My_String.h">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="Rooms.h">
+      <Filter>Zones</Filter>
     </ClInclude>
-    <ClInclude Include="VectorDynamic.h">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="Players.h">
+      <Filter>Creatures</Filter>
     </ClInclude>
-    <ClInclude Include="entity.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Stats.h">
+      <Filter>Creatures</Filter>
     </ClInclude>
-    <ClInclude Include="items.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Items.h">
+      <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="stats.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Linked_List.h">
+      <Filter>Containers</Filter>
     </ClInclude>
     <ClInclude Include="MemLeaks.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="My_String.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorDynamic.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Creature.h">
+      <Filter>Creatures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
