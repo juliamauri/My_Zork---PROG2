@@ -182,63 +182,80 @@ void Players::CloseDoor(char dir)
 	Wd->Command();
 
 }
-/*
+
 void Players::PDItem(char command,const char* i)
 {
 	My_String item1(i);
 	bool flag_item = true;
-	pos->numberitems = pos->item.size();
-	itemcarry = item.size();
+	item_node = localition->contains.end();
+	itemcarry = contains.size();
 	
-
 	switch (command)
 	{
 	case 'p':
-		for (unsigned int i = 0; i < pos->numberitems; i++)
+		if (localition->ObjectsinRoom != false)
 		{
-			if (item1 == pos->item[i]->name.c_str())
+			while (item_node->data != nullptr)
 			{
-				if (itemcarry < max_itemcarry)
+				if (item1 == ((Items*)item_node->data)->name.c_str())
 				{
-					flag_item = true;
-					item.push_back(pos->item[i]);
-					pos->item.resize(pos->item[i]);
-					printf("The item %s is in your inventory!\n\n", item1.c_str());
-					break;
+					if (itemcarry < max_itemcarry)
+					{
+						flag_item = true;
+						contains.pushback(item_node->data);
+						localition->contains.erase(item_node);
+						printf("The item %s is in your inventory!\n\n", item1.c_str());
+						break;
+					}
+					else
+					{
+						printf("You are full of item capacity...\n\n");
+						break;
+					}
 				}
 				else
-				{
-					printf("You are full of item capacity...\n\n");
+					flag_item = false;
+				if (item_node->previous != nullptr)
+					item_node = item_node->previous;
+				else
 					break;
-				}
 			}
-			else
-				flag_item = false;
+			if (flag_item == false)
+			{
+				printf("This item not exist in these room...\n\n");
+				break;
+			}
 		}
-		if (flag_item == false)
-			printf("This item not exist in these room...\n\n");
+		else
+			printf("Any objects at room..\n\n");
 		break;
 	case 'd':
-		for (unsigned int i = 0; i < itemcarry; i++)
+		item_node = contains.end();
+
+		while (item_node->data != nullptr)
 		{
-			if (item1 == item[i]->name.c_str())
+			if (item1 == ((Items*)item_node->data)->name.c_str())
 			{
 				flag_item = true;
-				pos->item.push_back(item[i]);
-				item.resize(item[i]);
+				localition->contains.pushback(item_node->data);
+				contains.erase(item_node);
 				printf("You drop the item %s at room of your inventory!\n\n", item1.c_str());
 				break;
 			}
 			else
 				flag_item = false;
+			if (item_node->previous != nullptr)
+				item_node = item_node->previous;
+			else
+				break;
 		}
 		if (flag_item == false)
 			printf("I am not carring this item...\n\n");
 		break;
 	}
-	p->Command();
+	Wd->Command();
 }
-
+/*
 void Players::Inventory()
 {
 	itemcarry = item.size();
@@ -422,7 +439,8 @@ void Players::PGItem(char command, const char* i1, const char* i2)
 	}
 	p->Command();
 }
-
+*/
+/*
 void Players::UpdateStats()
 {
 	itemcarry = item.size();
@@ -459,6 +477,7 @@ void Players::PrintStats()
 	p->Command();
 }
 */
+
 //Find exit of conection with doors
 bool Players::FindExit(char dir)
 {

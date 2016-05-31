@@ -299,7 +299,6 @@ void World::Command()
 			}
 		}
 	}
-	/*
 	else if ((*command == "pick" || *command == "drop") && command3 == nullptr)
 	{
 		if (command2 == nullptr)
@@ -312,6 +311,7 @@ void World::Command()
 			player->PDItem(*command->c_str(),command2->c_str());
 		}
 	}
+	/*
 	else if ((*command == "inventory" || *command == "inv" || *command == "i") && command2 == nullptr)
 	{
 		player->Inventory();
