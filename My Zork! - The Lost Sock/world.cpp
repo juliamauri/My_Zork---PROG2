@@ -199,7 +199,7 @@ void World::Command()
 			Command();
 		}
 	}
-	/*
+	
 	else if (*command == "go")
 	{
 		if (command2 == nullptr)
@@ -220,6 +220,7 @@ void World::Command()
 			}
 		}
 	}
+	/*
 	else if (*command == "open")
 	{
 		if (command2 == nullptr)
@@ -363,7 +364,6 @@ void World::Command()
 	{
 		Help();
 	}
-	/*
 	else if (*command == "enter" && command3 == nullptr)
 	{
 		if (command2 == nullptr)
@@ -382,7 +382,6 @@ void World::Command()
 			}
 		}
 	}
-	*/
 	else
 	{
 		printf("Introduce a good command...\n\n");

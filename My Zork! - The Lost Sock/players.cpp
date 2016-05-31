@@ -58,24 +58,26 @@ void Players::Look(char dir)
 	}
 	Wd->Command();
 }
-/*
+
 void Players::Movement(char dir)
 {
 
-	short num_ext = FindExit(dir);
+	bool door_exits = FindExit(dir);
 	Rooms* temp = nullptr;
 
-	if (num_ext != -1){
-		if (p->entity[1]->exit[num_ext]->door){
-			temp = p->entity[1]->exit[num_ext]->origin;
-			p->entity[1]->exit[num_ext]->origin = p->entity[1]->exit[num_ext]->destiny;
-			p->entity[1]->exit[num_ext]->destiny = temp;
-			pos = p->entity[1]->exit[num_ext]->origin;
+	if (door_exits != false){
+		if (((Exits*)exit_node->data)->door)
+		{
 
-			if (p->entity[1]->exit[num_ext]->dir_dest == 'n') p->entity[1]->exit[num_ext]->dir_dest = 's';
-			else if (p->entity[1]->exit[num_ext]->dir_dest == 's') p->entity[1]->exit[num_ext]->dir_dest = 'n';
-			else if (p->entity[1]->exit[num_ext]->dir_dest == 'e') p->entity[1]->exit[num_ext]->dir_dest = 'w';
-			else if (p->entity[1]->exit[num_ext]->dir_dest == 'w') p->entity[1]->exit[num_ext]->dir_dest = 'e';
+			temp = ((Exits*)exit_node->data)->origin;
+			((Exits*)exit_node->data)->origin = ((Exits*)exit_node->data)->destiny;
+			((Exits*)exit_node->data)->destiny = temp;
+			localition = ((Exits*)exit_node->data)->origin;
+
+			if (((Exits*)exit_node->data)->dir_dest == 'n') ((Exits*)exit_node->data)->dir_dest = 's';
+			else if (((Exits*)exit_node->data)->dir_dest == 's') ((Exits*)exit_node->data)->dir_dest = 'n';
+			else if (((Exits*)exit_node->data)->dir_dest == 'e') ((Exits*)exit_node->data)->dir_dest = 'w';
+			else if (((Exits*)exit_node->data)->dir_dest == 'w') ((Exits*)exit_node->data)->dir_dest = 'e';
 
 			movclose = true;
 
@@ -84,15 +86,15 @@ void Players::Movement(char dir)
 		else
 		{
 			printf("The door is closed..\n\n");
-			lasttrieddoor = p->entity[1]->exit[num_ext]->dir_dest;
+			lasttrieddoor = ((Exits*)exit_node->data)->dir_dest;
 			movclose = false;
-			p->Command();
+			Wd->Command();
 		}
 	}
 	else
 	{
 		printf("Door doesn't exist.\n\n");
-		p->Command();
+		Wd->Command();
 	}
 	
 	temp = nullptr;
@@ -101,20 +103,21 @@ void Players::Movement(char dir)
 
 void Players::ChangeWorld()
 {
-	if (pos == p->entity[1]->exit[3]->origin && p->entity[1]->exit[3]->dir_dest == 'n'){
-		pos = p->entity[1]->exit[4]->origin;
+	if (localition == ((Exits*)Wd->entities[14])->origin && ((Exits*)Wd->entities[14])->dir_dest == 'n'){
+		localition = ((Exits*)Wd->entities[15])->origin;
 		printf("You acroos the portal!\n\n");
 	}
-	else if (pos == p->entity[1]->exit[4]->origin && p->entity[1]->exit[4]->dir_dest == 's'){
-		pos = p->entity[1]->exit[3]->origin;
+	else if (localition == ((Exits*)Wd->entities[15])->origin && ((Exits*)Wd->entities[15])->dir_dest == 's'){
+		localition = ((Exits*)Wd->entities[14])->origin;
 		printf("You acroos the portal!\n\n");
 	}
 	else{
 		printf("What!?!?\n\n"); 
-		p->Command();
+		Wd->Command();
 	}
 }
 
+/*
 // Open/Close door functions, with some if and values, that changed while player moving, etc. It works for best using the doors.
 void Players::OpenDoor(char dir)
 {
@@ -458,14 +461,19 @@ bool Players::FindExit(char dir)
 {
 	bool ret = false;
 
+	uint count_exits = 0;
+
 	exit_node = exit_list.end();
 	while (exit_node->data != nullptr)
 	{
 		if (((Exits*)exit_node->data)->origin == localition && ((Exits*)exit_node->data)->dir_dest == dir)
 			ret = true;
 			
-		if (ret == false)
+		if (ret == false && count_exits < NUM_EXITS - 1)//NUM_EXITS -1(total of previous)
+		{
 			exit_node = exit_node->previous;
+			count_exits++;
+		}
 		else
 			break;
 	}
